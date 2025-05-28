@@ -3,536 +3,700 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AweSome - Interactive Demo</title>
-    <meta name="description" content="AweSome Wellness Platform - Interactive JavaScript Demo with habit tracking, workouts, and wellness features">
-    <meta name="keywords" content="wellness, fitness, habit tracking, health, workout">
+    <title>AweSome - Your Health Journey Starts Here</title>
+    <meta name="description" content="Digital wellness platform for busy people. Get workout plans, nutrition advice, and join a supportive community. Your trusted fitness advisor available 24/7.">
+    <meta name="keywords" content="fitness, wellness, workout plans, nutrition, health community, busy professionals">
     <meta name="author" content="AweSome Wellness Team">
     
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="AweSome - Your Health Journey Starts Here">
+    <meta property="og:description" content="Digital wellness platform for busy people seeking healthier lifestyles">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://awesome-wellness.github.io">
+    
     <!-- External Stylesheets -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-    <!-- Header -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1><i class="fas fa-heart"></i> AweSome</h1>
-                    <p>Interactive Demo</p>
-                </div>
-                <nav class="main-nav">
-                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <ul class="nav-menu" id="navMenu">
-                        <li><a href="#mobile-demo">Mobile Menu</a></li>
-                        <li><a href="#typing-demo">Typing</a></li>
-                        <li><a href="#tab-demo">Tabs</a></li>
-                        <li><a href="#form-demo">Forms</a></li>
-                        <li><a href="#habit-demo">Habits</a></li>
-                    </ul>
-                </nav>
-            </div>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Loading AweSome...</h3>
+            <p>Preparing your wellness experience</p>
         </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="main-header" id="mainHeader">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="#home">
+                            <i class="fas fa-heart pulse"></i>
+                            <span>AweSome</span>
+                        </a>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="#programs" class="nav-link">Programs</a></li>
+                        <li><a href="#nutrition" class="nav-link">Nutrition Hub</a></li>
+                        <li><a href="#blog" class="nav-link">Wellness Blog</a></li>
+                        <li><a href="#shop" class="nav-link">Shop</a></li>
+                        <li><a href="#community" class="nav-link">Community</a></li>
+                    </ul>
+
+                    <!-- CTA Button -->
+                    <div class="nav-cta">
+                        <button class="btn btn-primary" id="joinNowBtn">
+                            <i class="fas fa-rocket"></i>
+                            Start Free Trial
+                        </button>
+                    </div>
+
+                    <!-- Mobile Toggle -->
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="container">
-            <!-- Hero Section -->
-            <section class="hero-section">
-                <div class="hero-content">
-                    <h2>AweSome Wellness Platform</h2>
-                    <p>Experience our interactive features designed for your wellness journey</p>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-users"></i>
-                            <span class="stat-number">10K+</span>
-                            <span class="stat-label">Active Users</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span class="stat-number">50K+</span>
-                            <span class="stat-label">Habits Tracked</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-medal"></i>
-                            <span class="stat-number">95%</span>
-                            <span class="stat-label">Success Rate</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Mobile Menu Demo Section -->
-            <section id="mobile-demo" class="demo-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-bars"></i> Mobile Menu Demo</h2>
-                    <p>Responsive navigation with smooth animations</p>
-                </div>
-                <div class="demo-content">
-                    <div class="mobile-demo-container">
-                        <button class="demo-mobile-toggle" id="demoMobileToggle">
-                            <i class="fas fa-bars"></i> Toggle Demo Menu
-                        </button>
-                        <nav class="demo-nav-menu" id="demoNavMenu">
-                            <a href="#" class="demo-nav-link"><i class="fas fa-home"></i> Home</a>
-                            <a href="#" class="demo-nav-link"><i class="fas fa-dumbbell"></i> Workouts</a>
-                            <a href="#" class="demo-nav-link"><i class="fas fa-leaf"></i> Wellness</a>
-                            <a href="#" class="demo-nav-link"><i class="fas fa-chart-bar"></i> Tracking</a>
-                            <a href="#" class="demo-nav-link"><i class="fas fa-user"></i> Profile</a>
-                        </nav>
-                    </div>
-                    <div class="demo-info">
-                        <h4>Features:</h4>
-                        <ul>
-                            <li>Smooth slide animations</li>
-                            <li>Icon transformation</li>
-                            <li>Touch-friendly interface</li>
-                            <li>Accessible keyboard navigation</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Typing Animation Demo Section -->
-            <section id="typing-demo" class="demo-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-keyboard"></i> Typing Animation Demo</h2>
-                    <p>Dynamic typewriter effect for engaging user experience</p>
-                </div>
-                <div class="demo-content">
-                    <div class="typing-container">
-                        <div class="typing-display" id="typingText"></div>
-                        <div class="typing-controls">
-                            <button class="btn btn-primary" onclick="restartTypingAnimation()">
-                                <i class="fas fa-redo"></i> Restart Animation
-                            </button>
-                            <button class="btn btn-secondary" onclick="changeTypingSpeed()">
-                                <i class="fas fa-tachometer-alt"></i> Change Speed
-                            </button>
-                        </div>
-                    </div>
-                    <div class="demo-info">
-                        <h4>Customizable Options:</h4>
-                        <ul>
-                            <li>Adjustable typing speed</li>
-                            <li>Custom cursor styling</li>
-                            <li>Multiple text sequences</li>
-                            <li>Loop functionality</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Tab Navigation Demo Section -->
-            <section id="tab-demo" class="demo-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-tabs"></i> Tab Navigation Demo</h2>
-                    <p>Organized content filtering with smooth transitions</p>
-                </div>
-                <div class="demo-content">
-                    <div class="tab-container">
-                        <div class="tab-buttons">
-                            <button class="tab-btn active" data-tab="overview">
-                                <i class="fas fa-eye"></i> Overview
-                            </button>
-                            <button class="tab-btn" data-tab="workouts">
-                                <i class="fas fa-dumbbell"></i> Workouts
-                            </button>
-                            <button class="tab-btn" data-tab="nutrition">
-                                <i class="fas fa-apple-alt"></i> Nutrition
-                            </button>
-                            <button class="tab-btn" data-tab="mindfulness">
-                                <i class="fas fa-brain"></i> Mindfulness
-                            </button>
-                        </div>
-                        <div class="tab-content-container">
-                            <div class="tab-content active" data-content="overview">
-                                <h4>Platform Overview</h4>
-                                <p>Welcome to AweSome, your comprehensive wellness companion. Track habits, monitor progress, and achieve your health goals with our intuitive platform.</p>
-                                <div class="feature-highlights">
-                                    <div class="feature-item">
-                                        <i class="fas fa-chart-line"></i>
-                                        <span>Progress Tracking</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-users"></i>
-                                        <span>Community Support</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-trophy"></i>
-                                        <span>Achievement System</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-content" data-content="workouts">
-                                <h4>Workout Programs</h4>
-                                <p>Discover personalized workout routines designed for all fitness levels. From beginner-friendly exercises to advanced training programs.</p>
-                                <div class="workout-categories">
-                                    <div class="category-card">
-                                        <i class="fas fa-running"></i>
-                                        <h5>Cardio</h5>
-                                        <p>Heart-pumping exercises</p>
-                                    </div>
-                                    <div class="category-card">
-                                        <i class="fas fa-dumbbell"></i>
-                                        <h5>Strength</h5>
-                                        <p>Build muscle and power</p>
-                                    </div>
-                                    <div class="category-card">
-                                        <i class="fas fa-leaf"></i>
-                                        <h5>Flexibility</h5>
-                                        <p>Improve mobility</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-content" data-content="nutrition">
-                                <h4>Nutrition Guidance</h4>
-                                <p>Expert nutritional advice and meal planning to complement your fitness journey and overall wellness goals.</p>
-                                <div class="nutrition-tips">
-                                    <div class="tip-item">
-                                        <i class="fas fa-water"></i>
-                                        <span>Stay hydrated with 8+ glasses daily</span>
-                                    </div>
-                                    <div class="tip-item">
-                                        <i class="fas fa-carrot"></i>
-                                        <span>Include 5 servings of fruits & vegetables</span>
-                                    </div>
-                                    <div class="tip-item">
-                                        <i class="fas fa-fish"></i>
-                                        <span>Choose lean proteins for muscle health</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-content" data-content="mindfulness">
-                                <h4>Mindfulness & Mental Health</h4>
-                                <p>Develop mental resilience through meditation, stress management techniques, and mindfulness practices.</p>
-                                <div class="mindfulness-practices">
-                                    <div class="practice-item">
-                                        <i class="fas fa-om"></i>
-                                        <h5>Daily Meditation</h5>
-                                        <p>5-20 minutes of guided practice</p>
-                                    </div>
-                                    <div class="practice-item">
-                                        <i class="fas fa-moon"></i>
-                                        <h5>Sleep Hygiene</h5>
-                                        <p>Optimize your rest quality</p>
-                                    </div>
-                                    <div class="practice-item">
-                                        <i class="fas fa-heart"></i>
-                                        <h5>Gratitude Practice</h5>
-                                        <p>Daily appreciation exercises</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Form Validation Demo Section -->
-            <section id="form-demo" class="demo-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-check-circle"></i> Form Validation Demo</h2>
-                    <p>Real-time validation with user-friendly feedback</p>
-                </div>
-                <div class="demo-content">
-                    <div class="form-container">
-                        <form class="demo-form" id="contactForm">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="firstName">First Name *</label>
-                                    <input type="text" id="firstName" name="firstName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">Last Name *</label>
-                                    <input type="text" id="lastName" name="lastName" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="fitnessGoal">Fitness Goal</label>
-                                <select id="fitnessGoal" name="fitnessGoal">
-                                    <option value="">Select your goal</option>
-                                    <option value="weight-loss">Weight Loss</option>
-                                    <option value="muscle-gain">Muscle Gain</option>
-                                    <option value="endurance">Improve Endurance</option>
-                                    <option value="flexibility">Increase Flexibility</option>
-                                    <option value="general-health">General Health</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea id="message" name="message" rows="4" required placeholder="Tell us about your wellness journey..."></textarea>
-                            </div>
-                            <div class="form-group checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="newsletter" name="newsletter">
-                                    <span class="checkmark"></span>
-                                    Subscribe to our wellness newsletter
-                                </label>
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-paper-plane"></i> Send Message
-                                </button>
-                                <button type="reset" class="btn btn-secondary">
-                                    <i class="fas fa-undo"></i> Reset Form
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="demo-info">
-                        <h4>Validation Features:</h4>
-                        <ul>
-                            <li>Real-time field validation</li>
-                            <li>Email format checking</li>
-                            <li>Custom error messages</li>
-                            <li>Success notifications</li>
-                            <li>Accessible form design</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Habit Tracking Demo Section -->
-            <section id="habit-demo" class="demo-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-chart-line"></i> Habit Tracking Demo</h2>
-                    <p>Interactive dashboard for monitoring daily habits and progress</p>
-                </div>
-                <div class="demo-content">
-                    <div class="habit-dashboard">
-                        <div class="dashboard-header">
-                            <h3>Your Daily Habits</h3>
-                            <div class="dashboard-stats">
-                                <div class="stat-card">
-                                    <i class="fas fa-fire"></i>
-                                    <span class="stat-value" id="streakCounter">7</span>
-                                    <span class="stat-label">Day Streak</span>
-                                </div>
-                                <div class="stat-card">
-                                    <i class="fas fa-percent"></i>
-                                    <span class="stat-value" id="completionRate">85</span>
-                                    <span class="stat-label">% Complete</span>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary" id="addHabitBtn">
-                                <i class="fas fa-plus"></i> Add New Habit
-                            </button>
-                        </div>
-                        <div class="habits-list" id="habitsList">
-                            <div class="habit-item">
-                                <div class="habit-info">
-                                    <div class="habit-icon water">
-                                        <i class="fas fa-tint"></i>
-                                    </div>
-                                    <div class="habit-details">
-                                        <h4>Drink Water</h4>
-                                        <p>Stay hydrated throughout the day</p>
-                                        <small>Target: 8 glasses</small>
-                                    </div>
-                                </div>
-                                <div class="habit-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 75%"></div>
-                                    </div>
-                                    <span class="progress-text">6/8</span>
-                                </div>
-                                <button class="habit-check" data-completed="false" data-target="8" data-current="6">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            
-                            <div class="habit-item">
-                                <div class="habit-info">
-                                    <div class="habit-icon exercise">
-                                        <i class="fas fa-running"></i>
-                                    </div>
-                                    <div class="habit-details">
-                                        <h4>Exercise</h4>
-                                        <p>30 minutes of physical activity</p>
-                                        <small>Target: 1 session</small>
-                                    </div>
-                                </div>
-                                <div class="habit-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 100%"></div>
-                                    </div>
-                                    <span class="progress-text">Completed</span>
-                                </div>
-                                <button class="habit-check completed" data-completed="true" data-target="1" data-current="1">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                            </div>
-                            
-                            <div class="habit-item">
-                                <div class="habit-info">
-                                    <div class="habit-icon reading">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                    <div class="habit-details">
-                                        <h4>Read</h4>
-                                        <p>Read for 20 minutes daily</p>
-                                        <small>Target: 20 minutes</small>
-                                    </div>
-                                </div>
-                                <div class="habit-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                    <span class="progress-text">0/1</span>
-                                </div>
-                                <button class="habit-check" data-completed="false" data-target="1" data-current="0">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-
-                            <div class="habit-item">
-                                <div class="habit-info">
-                                    <div class="habit-icon meditation">
-                                        <i class="fas fa-om"></i>
-                                    </div>
-                                    <div class="habit-details">
-                                        <h4>Meditation</h4>
-                                        <p>Mindfulness practice</p>
-                                        <small>Target: 10 minutes</small>
-                                    </div>
-                                </div>
-                                <div class="habit-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 50%"></div>
-                                    </div>
-                                    <span class="progress-text">5/10</span>
-                                </div>
-                                <button class="habit-check" data-completed="false" data-target="10" data-current="5">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Add Habit Modal -->
-    <div class="modal" id="addHabitModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-plus"></i> Add New Habit</h3>
-                <button class="modal-close" id="modalClose">
-                    <i class="fas fa-times"></i>
-                </button>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-background">
+                <div class="hero-overlay"></div>
             </div>
-            <form id="addHabitForm" class="modal-form">
-                <div class="form-group">
-                    <label for="habitName">Habit Name *</label>
-                    <input type="text" id="habitName" required placeholder="e.g., Morning Yoga">
-                </div>
-                <div class="form-group">
-                    <label for="habitDescription">Description</label>
-                    <input type="text" id="habitDescription" placeholder="Brief description of your habit">
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="habitIcon">Icon</label>
-                        <select id="habitIcon">
-                            <option value="tint">💧 Water</option>
-                            <option value="running">🏃 Exercise</option>
-                            <option value="book">📚 Reading</option>
-                            <option value="bed">🛏️ Sleep</option>
-                            <option value="apple-alt">🍎 Nutrition</option>
-                            <option value="om">🧘 Meditation</option>
-                            <option value="heart">❤️ Health</option>
-                            <option value="music">🎵 Music</option>
-                            <option value="camera">📷 Photo</option>
-                            <option value="coffee">☕ Coffee</option>
-                        </select>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="typing-text" id="typingText">Your Health Journey Starts Here</span>
+                            <span class="cursor">|</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            The trusted digital advisor for busy people who want to get healthier but feel overwhelmed. 
+                            <strong>Available 24/7</strong> - even when gyms are closed.
+                        </p>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="10000">0</span>
+                                <span class="stat-label">Active Members</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="500">0</span>
+                                <span class="stat-label">Workout Plans</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="95">0</span>
+                                <span class="stat-label">% Success Rate</span>
+                            </div>
+                        </div>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-large" id="startJourneyBtn">
+                                <i class="fas fa-play"></i>
+                                Start Your Journey
+                            </button>
+                            <button class="btn btn-outline btn-large" id="watchVideoBtn">
+                                <i class="fas fa-play-circle"></i>
+                                Watch Demo
+                            </button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="habitTarget">Daily Target</label>
-                        <input type="number" id="habitTarget" min="1" value="1" placeholder="1">
+                    <div class="hero-image">
+                        <div class="hero-card floating">
+                            <div class="card-content">
+                                <h4>Quick Workout</h4>
+                                <p>15-min Morning Boost</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <span class="progress-text">3/4 completed</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="habitCategory">Category</label>
-                    <select id="habitCategory">
-                        <option value="health">Health & Fitness</option>
-                        <option value="learning">Learning & Growth</option>
-                        <option value="productivity">Productivity</option>
-                        <option value="social">Social & Family</option>
-                        <option value="creativity">Creativity</option>
-                        <option value="mindfulness">Mindfulness</option>
-                    </select>
+            </div>
+        </section>
+
+        <!-- Quick Access Section -->
+        <section class="quick-access-section">
+            <div class="container">
+                <div class="quick-access-grid">
+                    <div class="access-card" data-section="programs">
+                        <div class="card-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Programs</h3>
+                        <p>Structured workout plans for every fitness level</p>
+                        <span class="card-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="access-card" data-section="nutrition">
+                        <div class="card-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <h3>Nutrition Hub</h3>
+                        <p>Meal plans and recipes for busy lifestyles</p>
+                        <span class="card-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="access-card" data-section="community">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Community</h3>
+                        <p>Connect with like-minded wellness enthusiasts</p>
+                        <span class="card-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="access-card" data-section="shop">
+                        <div class="card-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3>Shop</h3>
+                        <p>Quality fitness gear and trusted supplements</p>
+                        <span class="card-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
                 </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" id="cancelHabit">Cancel</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Add Habit
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs" class="programs-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Workout Programs</h2>
+                    <p>Find the perfect program for your schedule and fitness level</p>
+                </div>
+                
+                <!-- Program Filters -->
+                <div class="program-filters">
+                    <button class="filter-btn active" data-filter="all">All Programs</button>
+                    <button class="filter-btn" data-filter="beginner">Beginner</button>
+                    <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                    <button class="filter-btn" data-filter="advanced">Advanced</button>
+                    <button class="filter-btn" data-filter="quick">Quick (15-20 min)</button>
+                </div>
+
+                <!-- Programs Grid -->
+                <div class="programs-grid" id="programsGrid">
+                    <div class="program-card" data-level="beginner" data-duration="15">
+                        <div class="program-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="7-Day Beginner Yoga Challenge">
+                            <div class="program-badge">Beginner</div>
+                            <div class="program-duration">7 Days</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>7-Day Beginner Yoga Challenge</h3>
+                            <p>Perfect for Priya - gentle morning routines that fit before the kids wake up</p>
+                            <div class="program-meta">
+                                <span><i class="fas fa-clock"></i> 15-20 min</span>
+                                <span><i class="fas fa-home"></i> No equipment</span>
+                                <span><i class="fas fa-users"></i> 2.3k members</span>
+                            </div>
+                            <div class="program-actions">
+                                <button class="btn btn-primary">Start Challenge</button>
+                                <button class="btn btn-outline">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card" data-level="intermediate" data-duration="30">
+                        <div class="program-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="Office Worker's Back Relief">
+                            <div class="program-badge">Intermediate</div>
+                            <div class="program-duration">4 Weeks</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Office Worker's Back Relief</h3>
+                            <p>Designed for Alex - combat desk posture with targeted exercises</p>
+                            <div class="program-meta">
+                                <span><i class="fas fa-clock"></i> 25-30 min</span>
+                                <span><i class="fas fa-chair"></i> Desk-friendly</span>
+                                <span><i class="fas fa-users"></i> 1.8k members</span>
+                            </div>
+                            <div class="program-actions">
+                                <button class="btn btn-primary">Start Program</button>
+                                <button class="btn btn-outline">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card" data-level="beginner" data-duration="20">
+                        <div class="program-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="Joint-Friendly Fitness">
+                            <div class="program-badge">All Levels</div>
+                            <div class="program-duration">6 Weeks</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Joint-Friendly Fitness</h3>
+                            <p>Perfect for David - low-impact exercises that protect your joints</p>
+                            <div class="program-meta">
+                                <span><i class="fas fa-clock"></i> 20-25 min</span>
+                                <span><i class="fas fa-heart"></i> Low impact</span>
+                                <span><i class="fas fa-users"></i> 3.1k members</span>
+                            </div>
+                            <div class="program-actions">
+                                <button class="btn btn-primary">Start Program</button>
+                                <button class="btn btn-outline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card" data-level="advanced" data-duration="45">
+                        <div class="program-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="HIIT Transformation">
+                            <div class="program-badge">Advanced</div>
+                            <div class="program-duration">8 Weeks</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>HIIT Transformation</h3>
+                            <p>High-intensity workouts for maximum results in minimum time</p>
+                            <div class="program-meta">
+                                <span><i class="fas fa-clock"></i> 40-45 min</span>
+                                <span><i class="fas fa-fire"></i> High intensity</span>
+                                <span><i class="fas fa-users"></i> 1.2k members</span>
+                            </div>
+                            <div class="program-actions">
+                                <button class="btn btn-primary">Start Program</button>
+                                <button class="btn btn-outline">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nutrition Hub Section -->
+        <section id="nutrition" class="nutrition-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nutrition Hub</h2>
+                    <p>Fuel your body with smart meal planning and nutrition guidance</p>
+                </div>
+
+                <div class="nutrition-content">
+                    <div class="nutrition-tabs">
+                        <button class="tab-btn active" data-tab="meal-plans">Meal Plans</button>
+                        <button class="tab-btn" data-tab="recipes">Quick Recipes</button>
+                        <button class="tab-btn" data-tab="guides">Nutrition Guides</button>
+                    </div>
+
+                    <div class="tab-content active" data-content="meal-plans">
+                        <div class="meal-plans-grid">
+                            <div class="meal-plan-card">
+                                <div class="plan-header">
+                                    <h4>Budget Meal Prep</h4>
+                                    <span class="plan-price">Free PDF</span>
+                                </div>
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> 7-day meal plan</li>
+                                        <li><i class="fas fa-check"></i> Shopping list included</li>
+                                        <li><i class="fas fa-check"></i> Under $50/week</li>
+                                        <li><i class="fas fa-check"></i> 30-min prep time</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary">Download Free</button>
+                            </div>
+
+                            <div class="meal-plan-card featured">
+                                <div class="plan-header">
+                                    <h4>Post-Pregnancy Core Recovery</h4>
+                                    <span class="plan-price">$19/month</span>
+                                </div>
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> Nutrient-dense meals</li>
+                                        <li><i class="fas fa-check"></i> Breastfeeding support</li>
+                                        <li><i class="fas fa-check"></i> Energy-boosting recipes</li>
+                                        <li><i class="fas fa-check"></i> Family-friendly options</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary">Start Plan</button>
+                            </div>
+
+                            <div class="meal-plan-card">
+                                <div class="plan-header">
+                                    <h4>Executive Energy</h4>
+                                    <span class="plan-price">$29/month</span>
+                                </div>
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> Brain-boosting foods</li>
+                                        <li><i class="fas fa-check"></i> Anti-inflammatory focus</li>
+                                        <li><i class="fas fa-check"></i> Meal delivery options</li>
+                                        <li><i class="fas fa-check"></i> Business lunch ideas</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary">Choose Plan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" data-content="recipes">
+                        <div class="recipes-grid">
+                            <div class="recipe-card">
+                                <img src="/placeholder.svg?height=150&width=200" alt="5-Minute Protein Smoothie">
+                                <div class="recipe-content">
+                                    <h4>5-Minute Protein Smoothie</h4>
+                                    <p>Perfect pre-workout fuel</p>
+                                    <div class="recipe-meta">
+                                        <span><i class="fas fa-clock"></i> 5 min</span>
+                                        <span><i class="fas fa-utensils"></i> No cooking</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recipe-card">
+                                <img src="/placeholder.svg?height=150&width=200" alt="Overnight Oats">
+                                <div class="recipe-content">
+                                    <h4>Overnight Oats</h4>
+                                    <p>Prep tonight, eat tomorrow</p>
+                                    <div class="recipe-meta">
+                                        <span><i class="fas fa-clock"></i> 2 min prep</span>
+                                        <span><i class="fas fa-moon"></i> Overnight</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recipe-card">
+                                <img src="/placeholder.svg?height=150&width=200" alt="Power Lunch Bowl">
+                                <div class="recipe-content">
+                                    <h4>Power Lunch Bowl</h4>
+                                    <p>Sustained afternoon energy</p>
+                                    <div class="recipe-meta">
+                                        <span><i class="fas fa-clock"></i> 10 min</span>
+                                        <span><i class="fas fa-leaf"></i> Plant-based</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" data-content="guides">
+                        <div class="guides-grid">
+                            <div class="guide-card">
+                                <div class="guide-icon">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <h4>Reading Nutrition Labels</h4>
+                                <p>Decode ingredient lists like a pro</p>
+                                <button class="btn btn-outline">Read Guide</button>
+                            </div>
+                            <div class="guide-card">
+                                <div class="guide-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h4>Macro Calculator</h4>
+                                <p>Find your perfect protein/carb/fat ratio</p>
+                                <button class="btn btn-outline">Calculate</button>
+                            </div>
+                            <div class="guide-card">
+                                <div class="guide-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h4>Smart Grocery Shopping</h4>
+                                <p>Budget-friendly healthy choices</p>
+                                <button class="btn btn-outline">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Stories Section -->
+        <section class="success-stories-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Real People, Real Results</h2>
+                    <p>See how our community members transformed their lives</p>
+                </div>
+
+                <div class="stories-carousel" id="storiesCarousel">
+                    <div class="story-card active">
+                        <div class="story-image">
+                            <img src="/placeholder.svg?height=100&width=100" alt="Sarah's transformation">
+                        </div>
+                        <div class="story-content">
+                            <h4>Sarah, Working Mom</h4>
+                            <p>"Lost 25 lbs with 20-minute morning workouts. Finally found something that fits my crazy schedule!"</p>
+                            <div class="story-stats">
+                                <span>25 lbs lost</span>
+                                <span>6 months</span>
+                                <span>Morning workouts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="/placeholder.svg?height=100&width=100" alt="Mike's transformation">
+                        </div>
+                        <div class="story-content">
+                            <h4>Mike, Office Worker</h4>
+                            <p>"No more back pain! The desk exercises actually work. I do them during conference calls."</p>
+                            <div class="story-stats">
+                                <span>Pain-free</span>
+                                <span>3 months</span>
+                                <span>Desk exercises</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="/placeholder.svg?height=100&width=100" alt="Lisa's transformation">
+                        </div>
+                        <div class="story-content">
+                            <h4>Lisa, Executive</h4>
+                            <p>"Increased energy and better sleep. The nutrition plans are actually doable for busy professionals."</p>
+                            <div class="story-stats">
+                                <span>Better sleep</span>
+                                <span>4 months</span>
+                                <span>Nutrition focus</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" id="prevStory">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots" id="carouselDots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                    <button class="carousel-btn next" id="nextStory">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-            </form>
-        </div>
-    </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="community-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Join Our Wellness Community</h2>
+                    <p>Connect, motivate, and grow together</p>
+                </div>
+
+                <div class="community-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Live Events</h3>
+                        <p>Saturday HIIT challenges, nutrition Q&As, and wellness workshops</p>
+                        <div class="upcoming-event">
+                            <strong>Next: Saturday HIIT Challenge</strong>
+                            <span>This Saturday, 9 AM EST</span>
+                        </div>
+                        <button class="btn btn-primary">Join Event</button>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Support Groups</h3>
+                        <p>Find your tribe: New moms, desk warriors, 50+ fitness enthusiasts</p>
+                        <div class="group-stats">
+                            <span>12 active groups</span>
+                            <span>2.3k discussions this week</span>
+                        </div>
+                        <button class="btn btn-primary">Find Your Group</button>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Challenges & Rewards</h3>
+                        <p>Monthly challenges with real prizes and recognition</p>
+                        <div class="current-challenge">
+                            <strong>Current: 30-Day Consistency Challenge</strong>
+                            <span>847 participants</span>
+                        </div>
+                        <button class="btn btn-primary">Join Challenge</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Section -->
+        <section id="shop" class="shop-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Trusted Wellness Shop</h2>
+                    <p>Quality gear and supplements we actually use and recommend</p>
+                </div>
+
+                <div class="shop-categories">
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="/placeholder.svg?height=200&width=250" alt="Protein Supplements">
+                        </div>
+                        <div class="category-content">
+                            <h3>Protein & Supplements</h3>
+                            <p>Lab-tested, no sketchy ingredients</p>
+                            <div class="category-features">
+                                <span><i class="fas fa-check"></i> Third-party tested</span>
+                                <span><i class="fas fa-check"></i> No artificial fillers</span>
+                                <span><i class="fas fa-check"></i> Money-back guarantee</span>
+                            </div>
+                            <button class="btn btn-primary">Shop Supplements</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="/placeholder.svg?height=200&width=250" alt="Home Gym Equipment">
+                        </div>
+                        <div class="category-content">
+                            <h3>Home Gym Essentials</h3>
+                            <p>Space-saving equipment for small apartments</p>
+                            <div class="category-features">
+                                <span><i class="fas fa-check"></i> Compact design</span>
+                                <span><i class="fas fa-check"></i> Multi-functional</span>
+                                <span><i class="fas fa-check"></i> Easy storage</span>
+                            </div>
+                            <button class="btn btn-primary">Shop Equipment</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="/placeholder.svg?height=200&width=250" alt="Wellness Accessories">
+                        </div>
+                        <div class="category-content">
+                            <h3>Wellness Accessories</h3>
+                            <p>Recovery tools and lifestyle products</p>
+                            <div class="category-features">
+                                <span><i class="fas fa-check"></i> Professional grade</span>
+                                <span><i class="fas fa-check"></i> Durable materials</span>
+                                <span><i class="fas fa-check"></i> Expert recommended</span>
+                            </div>
+                            <button class="btn btn-primary">Shop Accessories</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h2>Stay Connected</h2>
+                        <p>Get weekly wellness tips, new program alerts, and exclusive member discounts</p>
+                        <div class="newsletter-benefits">
+                            <span><i class="fas fa-check"></i> Weekly workout tips</span>
+                            <span><i class="fas fa-check"></i> Nutrition insights</span>
+                            <span><i class="fas fa-check"></i> Member-only discounts</span>
+                        </div>
+                    </div>
+                    <div class="newsletter-form">
+                        <form id="newsletterForm">
+                            <div class="form-group">
+                                <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Subscribe
+                                </button>
+                            </div>
+                            <p class="form-note">No spam, unsubscribe anytime. We respect your privacy.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4><i class="fas fa-heart"></i> AweSome</h4>
-                    <p>Your partner in wellness and habit tracking since 2025.</p>
+                    <div class="footer-logo">
+                        <i class="fas fa-heart"></i>
+                        <span>AweSome</span>
+                    </div>
+                    <p>Your trusted digital wellness advisor, available 24/7 to support your health journey.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
+
                 <div class="footer-section">
-                    <h4>Features</h4>
+                    <h4>Programs</h4>
                     <ul>
-                        <li><a href="#mobile-demo">Mobile Navigation</a></li>
-                        <li><a href="#typing-demo">Typing Animation</a></li>
-                        <li><a href="#tab-demo">Tab Navigation</a></li>
-                        <li><a href="#form-demo">Form Validation</a></li>
-                        <li><a href="#habit-demo">Habit Tracking</a></li>
+                        <li><a href="#programs">Beginner Workouts</a></li>
+                        <li><a href="#programs">Office Worker Relief</a></li>
+                        <li><a href="#programs">Joint-Friendly Fitness</a></li>
+                        <li><a href="#programs">Quick 15-Min Sessions</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-section">
-                    <h4>Technologies</h4>
+                    <h4>Nutrition</h4>
                     <ul>
-                        <li>HTML5 Semantic Markup</li>
-                        <li>CSS3 Grid & Flexbox</li>
-                        <li>Vanilla JavaScript ES6+</li>
-                        <li>Responsive Design</li>
-                        <li>Accessibility Standards</li>
+                        <li><a href="#nutrition">Meal Plans</a></li>
+                        <li><a href="#nutrition">Quick Recipes</a></li>
+                        <li><a href="#nutrition">Nutrition Guides</a></li>
+                        <li><a href="#nutrition">Supplement Advice</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-section">
-                    <h4>Contact</h4>
-                    <address>
-                        <p><i class="fas fa-map-marker-alt"></i> Block 8, Gaborone, Botswana</p>
-                        <p><i class="fas fa-phone"></i> +267 76819115</p>
-                        <p><i class="fas fa-envelope"></i> dferdrick10@gmail.com</p>
-                    </address>
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#community">Live Events</a></li>
+                        <li><a href="#community">Support Groups</a></li>
+                        <li><a href="#community">Success Stories</a></li>
+                        <li><a href="#community">Challenges</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; 2025 AweSome Wellness Platform. All rights reserved.</p>
-                <p>Built with ❤️ for wellness enthusiasts everywhere</p>
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 AweSome Wellness Platform. All rights reserved.</p>
+                    <p>Built with ❤️ for busy people seeking healthier lifestyles</p>
+                </div>
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> Block 8, Gaborone, Botswana</p>
+                    <p><i class="fas fa-phone"></i> +267 76819115</p>
+                    <p><i class="fas fa-envelope"></i> dferdrick10@gmail.com</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -540,12 +704,16 @@
     <!-- Toast Container -->
     <div id="toastContainer" class="toast-container"></div>
 
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h3>Loading AweSome...</h3>
-            <p>Preparing your wellness experience</p>
+    <!-- Modal for Video Demo -->
+    <div id="videoModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content video-modal">
+            <button class="modal-close" id="closeVideoModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-container">
+                <iframe id="demoVideo" width="100%" height="400" src="/placeholder.svg" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 
