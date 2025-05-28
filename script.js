@@ -1,670 +1,567 @@
 /**
- * AweSome Wellness Platform
- * Main JavaScript file for interactive functionality
- * 
- * This file contains all the JavaScript functionality for the AweSome Wellness platform,
- * including animations, interactive elements, form validation, and more.
+ * AweSome Wellness Platform - Enhanced JavaScript
+ * Comprehensive functionality for wellness platform
  */
 
-// Wait for the DOM to be fully loaded before executing scripts
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
-    initMobileMenu();
-    initTypingAnimation();
-    initTabNavigation();
-    initFormValidation();
-    initHabitTracking();
-    initSmoothScrolling();
-    initCharts();
-    initAuthTabs();
-});
+// Global variables and state
+let typingInterval
+const currentTypingSpeed = 80
+const isTypingAnimationRunning = false
+const currentStoryIndex = 0
+let storyInterval
+
+// Application state
+const AppState = {
+  currentSection: "home",
+  isMenuOpen: false,
+  activeFilters: {
+    programs: "all",
+    nutrition: "meal-plans",
+  },
+  user: {
+    preferences: {},
+    progress: {},
+  },
+}
+
+// Declare gtag variable
+const gtag =
+  window.gtag ||
+  (() => {
+    window.gtag = window.gtag || []
+    window.gtag.push(arguments)
+  })
+
+// DOM Content Loaded Event Listener
+document.addEventListener("DOMContentLoaded", () => {
+  initializeApp()
+})
 
 /**
- * Mobile Menu Functionality
- * Handles the responsive mobile menu toggle
+ * Initialize the application
  */
+function initializeApp() {
+  initMobileMenu()
+  initTypingAnimation()
+  initScrollAnimations()
+  initWorkoutFilters()
+  initWellnessTabs()
+  initHabitTracker()
+  initContactForm()
+  initProgressCircles()
+  initSmoothScrolling()
+  initTooltips()
+  initLazyLoading()
+}
+
+// Mobile Menu Toggle
 function initMobileMenu() {
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-    
-    if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            
-            // Change icon based on menu state
-            const icon = mobileToggle.querySelector('i');
-            if (icon) {
-                if (navMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!navMenu.contains(event.target) && !mobileToggle.contains(event.target) && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                const icon = mobileToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        });
-    }
+  const hamburger = document.querySelector(".hamburger")
+  const navMenu = document.querySelector(".nav-menu")
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active")
+      navMenu.classList.toggle("active")
+    })
+
+    // Close menu when clicking on a link
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active")
+        navMenu.classList.remove("active")
+      })
+    })
+  }
 }
 
-/**
- * Typing Animation
- * Creates a typewriter effect for the welcome message on the homepage
- */
+// Typing Animation
 function initTypingAnimation() {
-    const typingElement = document.getElementById('typingText');
-    
-    if (typingElement) {
-        const welcomeText = "Welcome to AweSome";
-        let i = 0;
-        const typingSpeed = 100; // milliseconds per character
-        
-        function typeWriter() {
-            if (i < welcomeText.length) {
-                typingElement.textContent += welcomeText.charAt(i);
-                i++;
-                setTimeout(typeWriter, typingSpeed);
-            }
-        }
-        
-        // Start the typing animation
-        typeWriter();
-    }
-}
+  const typingText = document.getElementById("typingText")
+  if (!typingText) return
 
-/**
- * Tab Navigation
- * Handles tab switching for workouts and wellness pages
- */
-function initTabNavigation() {
-    // Workout tabs
-    initTabs('workout-tabs', 'tab-btn', 'workoutsGrid', 'workout-card', 'data-level');
-    
-    // Wellness tabs
-    initTabs('wellness-tabs', 'tab-btn', 'wellnessGrid', 'wellness-card', 'data-category');
-    
-    // Auth tabs (login/signup)
-    initAuthTabs();
-}
+  const messages = ["Welcome to AweSome", "Your Wellness Journey", "Transform Your Life", "Build Healthy Habits"]
 
-/**
- * Initialize tab functionality for a specific tab group
- */
-function initTabs(tabsContainerClass, tabBtnClass, gridId, itemClass, dataAttribute) {
-    const tabsContainer = document.querySelector(`.${tabsContainerClass}`);
-    
-    if (tabsContainer) {
-        const tabButtons = tabsContainer.querySelectorAll(`.${tabBtnClass}`);
-        const grid = document.getElementById(gridId);
-        
-        if (grid && tabButtons.length > 0) {
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    const filter = this.getAttribute('data-tab');
-                    const items = grid.querySelectorAll(`.${itemClass}`);
-                    
-                    items.forEach(item => {
-                        if (filter === 'all') {
-                            item.style.display = 'block';
-                        } else {
-                            if (item.getAttribute(dataAttribute) === filter) {
-                                item.style.display = 'block';
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        }
-                    });
-                });
-            });
-        }
-    }
-}
+  let messageIndex = 0
+  let charIndex = 0
+  let isDeleting = false
 
-/**
- * Auth Tabs
- * Handles switching between login and signup forms
- */
-function initAuthTabs() {
-    const authTabs = document.querySelectorAll('.auth-tab');
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
-    
-    if (authTabs.length > 0 && loginForm && signupForm) {
-        authTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs
-                authTabs.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                
-                const tabType = this.getAttribute('data-tab');
-                
-                if (tabType === 'login') {
-                    loginForm.classList.add('active');
-                    signupForm.classList.remove('active');
-                } else if (tabType === 'signup') {
-                    signupForm.classList.add('active');
-                    loginForm.classList.remove('active');
-                }
-            });
-        });
-    }
-}
+  function typeMessage() {
+    const currentMessage = messages[messageIndex]
 
-/**
- * Form Validation
- * Validates contact and authentication forms
- */
-function initFormValidation() {
-    // Contact form validation
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            let isValid = true;
-            const requiredFields = contactForm.querySelectorAll('[required]');
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    highlightInvalidField(field);
-                } else {
-                    removeInvalidHighlight(field);
-                }
-            });
-            
-            // Email validation
-            const emailField = contactForm.querySelector('input[type="email"]');
-            if (emailField && !validateEmail(emailField.value)) {
-                isValid = false;
-                highlightInvalidField(emailField);
-            }
-            
-            if (isValid) {
-                // Simulate form submission
-                showFormSuccess(contactForm, 'Thank you! Your message has been sent successfully.');
-            }
-        });
-    }
-    
-    // Login form validation
-    const loginForm = document.querySelector('#loginForm form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            let isValid = true;
-            const emailField = loginForm.querySelector('input[type="email"]');
-            const passwordField = loginForm.querySelector('input[type="password"]');
-            
-            if (!validateEmail(emailField.value)) {
-                isValid = false;
-                highlightInvalidField(emailField);
-            } else {
-                removeInvalidHighlight(emailField);
-            }
-            
-            if (!passwordField.value.trim()) {
-                isValid = false;
-                highlightInvalidField(passwordField);
-            } else {
-                removeInvalidHighlight(passwordField);
-            }
-            
-            if (isValid) {
-                // Simulate login
-                showFormSuccess(loginForm, 'Login successful! Redirecting...');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-            }
-        });
-    }
-    
-    // Sign up form validation
-    const signupForm = document.querySelector('#signupForm form');
-    if (signupForm) {
-        signupForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            let isValid = true;
-            const requiredFields = signupForm.querySelectorAll('[required]');
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    highlightInvalidField(field);
-                } else {
-                    removeInvalidHighlight(field);
-                }
-            });
-            
-            // Email validation
-            const emailField = signupForm.querySelector('input[type="email"]');
-            if (emailField && !validateEmail(emailField.value)) {
-                isValid = false;
-                highlightInvalidField(emailField);
-            }
-            
-            // Password validation
-            const passwordField = signupForm.querySelector('input[name="password"]');
-            const confirmPasswordField = signupForm.querySelector('input[name="confirmPassword"]');
-            
-            if (passwordField && passwordField.value.length < 8) {
-                isValid = false;
-                highlightInvalidField(passwordField);
-                showFieldError(passwordField, 'Password must be at least 8 characters long');
-            } else {
-                removeInvalidHighlight(passwordField);
-            }
-            
-            if (passwordField && confirmPasswordField && passwordField.value !== confirmPasswordField.value) {
-                isValid = false;
-                highlightInvalidField(confirmPasswordField);
-                showFieldError(confirmPasswordField, 'Passwords do not match');
-            }
-            
-            if (isValid) {
-                // Simulate signup
-                showFormSuccess(signupForm, 'Account created successfully! Redirecting...');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-            }
-        });
-    }
-}
-
-/**
- * Validate email format
- */
-function validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-
-/**
- * Highlight invalid form field
- */
-function highlightInvalidField(field) {
-    field.classList.add('invalid');
-    field.style.borderColor = '#dc3545';
-    
-    // Add error message if it doesn't exist
-    let errorMessage = field.nextElementSibling;
-    if (!errorMessage || !errorMessage.classList.contains('error-message')) {
-        errorMessage = document.createElement('span');
-        errorMessage.classList.add('error-message');
-        errorMessage.style.color = '#dc3545';
-        errorMessage.style.fontSize = '0.8rem';
-        errorMessage.style.display = 'block';
-        errorMessage.style.marginTop = '0.25rem';
-        errorMessage.textContent = 'This field is required';
-        field.parentNode.insertBefore(errorMessage, field.nextSibling);
-    }
-}
-
-/**
- * Remove invalid highlight from form field
- */
-function removeInvalidHighlight(field) {
-    field.classList.remove('invalid');
-    field.style.borderColor = '';
-    
-    // Remove error message if it exists
-    const errorMessage = field.nextElementSibling;
-    if (errorMessage && errorMessage.classList.contains('error-message')) {
-        errorMessage.remove();
-    }
-}
-
-/**
- * Show specific error message for a field
- */
-function showFieldError(field, message) {
-    let errorMessage = field.nextElementSibling;
-    if (errorMessage && errorMessage.classList.contains('error-message')) {
-        errorMessage.textContent = message;
+    if (isDeleting) {
+      typingText.textContent = currentMessage.substring(0, charIndex - 1)
+      charIndex--
     } else {
-        errorMessage = document.createElement('span');
-        errorMessage.classList.add('error-message');
-        errorMessage.style.color = '#dc3545';
-        errorMessage.style.fontSize = '0.8rem';
-        errorMessage.style.display = 'block';
-        errorMessage.style.marginTop = '0.25rem';
-        errorMessage.textContent = message;
-        field.parentNode.insertBefore(errorMessage, field.nextSibling);
+      typingText.textContent = currentMessage.substring(0, charIndex + 1)
+      charIndex++
     }
-}
 
-/**
- * Show success message after form submission
- */
-function showFormSuccess(form, message) {
-    // Create success message element
-    const successMessage = document.createElement('div');
-    successMessage.classList.add('success-message');
-    successMessage.style.backgroundColor = '#d4edda';
-    successMessage.style.color = '#155724';
-    successMessage.style.padding = '1rem';
-    successMessage.style.borderRadius = '0.25rem';
-    successMessage.style.marginTop = '1rem';
-    successMessage.style.textAlign = 'center';
-    successMessage.textContent = message;
-    
-    // Add success message to form
-    form.appendChild(successMessage);
-    
-    // Reset form
-    form.reset();
-}
+    let typeSpeed = isDeleting ? 50 : 100
 
-/**
- * Habit Tracking Functionality
- * Handles habit tracking interactions on the tracking page
- */
-function initHabitTracking() {
-    const habitsList = document.getElementById('habitsList');
-    const addHabitBtn = document.getElementById('addHabitBtn');
-    
-    if (habitsList) {
-        // Handle habit check buttons
-        const habitCheckButtons = habitsList.querySelectorAll('.habit-check');
-        habitCheckButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const isCompleted = this.getAttribute('data-completed') === 'true';
-                const habitItem = this.closest('.habit-item');
-                const progressBar = habitItem.querySelector('.progress-fill');
-                const progressText = habitItem.querySelector('.progress-text');
-                
-                if (isCompleted) {
-                    // Uncomplete habit
-                    this.setAttribute('data-completed', 'false');
-                    this.classList.remove('completed');
-                    this.innerHTML = '<i class="fas fa-plus"></i>';
-                    
-                    // Update progress bar (example: decrease by 25%)
-                    const currentWidth = parseInt(progressBar.style.width) || 0;
-                    const newWidth = Math.max(0, currentWidth - 25);
-                    progressBar.style.width = newWidth + '%';
-                    
-                    // Update progress text
-                    if (progressText.textContent.includes('/')) {
-                        const parts = progressText.textContent.split('/');
-                        const current = parseInt(parts[0]) - 1;
-                        const total = parseInt(parts[1]);
-                        progressText.textContent = `${current}/${total}`;
-                    } else {
-                        progressText.textContent = '0/1';
-                    }
-                } else {
-                    // Complete habit
-                    this.setAttribute('data-completed', 'true');
-                    this.classList.add('completed');
-                    this.innerHTML = '<i class="fas fa-check"></i>';
-                    
-                    // Update progress bar (example: increase by 25%)
-                    const currentWidth = parseInt(progressBar.style.width) || 0;
-                    const newWidth = Math.min(100, currentWidth + 25);
-                    progressBar.style.width = newWidth + '%';
-                    
-                    // Update progress text
-                    if (progressText.textContent.includes('/')) {
-                        const parts = progressText.textContent.split('/');
-                        const current = parseInt(parts[0]) + 1;
-                        const total = parseInt(parts[1]);
-                        progressText.textContent = current >= total ? 'Completed' : `${current}/${total}`;
-                    } else {
-                        progressText.textContent = 'Completed';
-                    }
-                }
-            });
-        });
+    if (!isDeleting && charIndex === currentMessage.length) {
+      typeSpeed = 2000
+      isDeleting = true
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false
+      messageIndex = (messageIndex + 1) % messages.length
+      typeSpeed = 500
     }
-    
-    // Add new habit functionality
-    if (addHabitBtn && habitsList) {
-        addHabitBtn.addEventListener('click', function() {
-            // Create modal for adding new habit
-            const modal = document.createElement('div');
-            modal.classList.add('modal');
-            modal.style.position = 'fixed';
-            modal.style.top = '0';
-            modal.style.left = '0';
-            modal.style.width = '100%';
-            modal.style.height = '100%';
-            modal.style.backgroundColor = 'rgba(0,0,0,0.5)';
-            modal.style.display = 'flex';
-            modal.style.alignItems = 'center';
-            modal.style.justifyContent = 'center';
-            modal.style.zIndex = '1000';
-            
-            const modalContent = document.createElement('div');
-            modalContent.classList.add('modal-content');
-            modalContent.style.backgroundColor = 'white';
-            modalContent.style.padding = '2rem';
-            modalContent.style.borderRadius = '8px';
-            modalContent.style.width = '90%';
-            modalContent.style.maxWidth = '500px';
-            
-            modalContent.innerHTML = `
-                <h3 style="margin-bottom: 1.5rem;">Add New Habit</h3>
-                <form id="addHabitForm">
-                    <div style="margin-bottom: 1rem;">
-                        <label for="habitName" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Habit Name</label>
-                        <input type="text" id="habitName" style="width: 100%; padding: 0.75rem; border: 2px solid #e1e5e9; border-radius: 6px;" required>
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label for="habitDescription" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Description</label>
-                        <input type="text" id="habitDescription" style="width: 100%; padding: 0.75rem; border: 2px solid #e1e5e9; border-radius: 6px;">
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label for="habitIcon" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Icon</label>
-                        <select id="habitIcon" style="width: 100%; padding: 0.75rem; border: 2px solid #e1e5e9; border-radius: 6px;">
-                            <option value="tint">Water (tint)</option>
-                            <option value="running">Exercise (running)</option>
-                            <option value="book">Reading (book)</option>
-                            <option value="bed">Sleep (bed)</option>
-                            <option value="apple-alt">Nutrition (apple)</option>
-                            <option value="brain">Meditation (brain)</option>
-                        </select>
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="habitTarget" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Daily Target</label>
-                        <input type="number" id="habitTarget" min="1" value="1" style="width: 100%; padding: 0.75rem; border: 2px solid #e1e5e9; border-radius: 6px;">
-                    </div>
-                    <div style="display: flex; gap: 1rem; justify-content: flex-end;">
-                        <button type="button" id="cancelHabit" style="padding: 0.75rem 1.5rem; border: 2px solid #e1e5e9; background: white; border-radius: 6px; cursor: pointer;">Cancel</button>
-                        <button type="submit" style="padding: 0.75rem 1.5rem; background: #0A2463; color: white; border: none; border-radius: 6px; cursor: pointer;">Add Habit</button>
-                    </div>
-                </form>
-            `;
-            
-            modal.appendChild(modalContent);
-            document.body.appendChild(modal);
-            
-            // Handle form submission
-            const addHabitForm = document.getElementById('addHabitForm');
-            addHabitForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                const habitName = document.getElementById('habitName').value;
-                const habitDescription = document.getElementById('habitDescription').value || 'New habit tracking';
-                const habitIcon = document.getElementById('habitIcon').value;
-                const habitTarget = document.getElementById('habitTarget').value || 1;
-                
-                // Create new habit item
-                const newHabit = document.createElement('div');
-                newHabit.classList.add('habit-item');
-                newHabit.innerHTML = `
-                    <div class="habit-info">
-                        <div class="habit-icon">
-                            <i class="fas fa-${habitIcon}"></i>
-                        </div>
-                        <div class="habit-details">
-                            <h4>${habitName}</h4>
-                            <p>${habitDescription}</p>
-                        </div>
-                    </div>
-                    <div class="habit-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                        <span class="progress-text">0/${habitTarget}</span>
-                    </div>
-                    <button class="habit-check" data-completed="false">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                `;
-                
-                // Add event listener to new habit check button
-                const checkButton = newHabit.querySelector('.habit-check');
-                checkButton.addEventListener('click', function() {
-                    const isCompleted = this.getAttribute('data-completed') === 'true';
-                    const habitItem = this.closest('.habit-item');
-                    const progressBar = habitItem.querySelector('.progress-fill');
-                    const progressText = habitItem.querySelector('.progress-text');
-                    
-                    if (isCompleted) {
-                        // Uncomplete habit
-                        this.setAttribute('data-completed', 'false');
-                        this.classList.remove('completed');
-                        this.innerHTML = '<i class="fas fa-plus"></i>';
-                        
-                        // Update progress bar
-                        progressBar.style.width = '0%';
-                        
-                        // Update progress text
-                        progressText.textContent = `0/${habitTarget}`;
-                    } else {
-                        // Complete habit
-                        this.setAttribute('data-completed', 'true');
-                        this.classList.add('completed');
-                        this.innerHTML = '<i class="fas fa-check"></i>';
-                        
-                        // Update progress bar
-                        progressBar.style.width = '100%';
-                        
-                        // Update progress text
-                        progressText.textContent = 'Completed';
-                    }
-                });
-                
-                // Add new habit to list
-                habitsList.appendChild(newHabit);
-                
-                // Close modal
-                document.body.removeChild(modal);
-            });
-            
-            // Handle cancel button
-            const cancelButton = document.getElementById('cancelHabit');
-            cancelButton.addEventListener('click', function() {
-                document.body.removeChild(modal);
-            });
-            
-            // Close modal when clicking outside
-            modal.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    document.body.removeChild(modal);
-                }
-            });
-        });
-    }
+
+    setTimeout(typeMessage, typeSpeed)
+  }
+
+  typeMessage()
 }
 
-/**
- * Smooth Scrolling
- * Enables smooth scrolling for anchor links
- */
-function initSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Get header height for offset
-                const header = document.querySelector('.header');
-                const headerHeight = header ? header.offsetHeight : 0;
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - headerHeight - 20,
-                    behavior: 'smooth'
-                });
-                
-                // Update URL without scrolling
-                history.pushState(null, null, targetId);
-            }
-        });
-    });
+// Scroll Animations
+function initScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animated")
+      }
+    })
+  }, observerOptions)
+
+  // Observe elements for animation
+  document
+    .querySelectorAll(
+      ".feature-card, .workout-card, .wellness-card, .stat-card, .habit-item, .post-card, .group-card, .story-card, .team-member, .faq-item, .tip-card",
+    )
+    .forEach((el) => {
+      el.classList.add("animate-on-scroll")
+      observer.observe(el)
+    })
 }
 
-/**
- * Charts and Visualizations
- * Initializes charts on the tracking page
- */
-function initCharts() {
-    // This is a simple implementation
-    // In a real application, you might use a library like Chart.js
-    
-    const chartBars = document.querySelectorAll('.chart-bar .bar');
-    
-    if (chartBars.length > 0) {
-        // Animate chart bars on load
-        chartBars.forEach((bar, index) => {
-            setTimeout(() => {
-                const height = bar.style.height;
-                bar.style.height = '0';
-                
-                setTimeout(() => {
-                    bar.style.transition = 'height 1s ease';
-                    bar.style.height = height;
-                }, 100);
-            }, index * 100);
-        });
-    }
-}
+// Workout Filters
+function initWorkoutFilters() {
+  const filterButtons = document.querySelectorAll(".filter-btn")
+  const workoutCards = document.querySelectorAll(".workout-card")
 
-/**
- * Active Navigation Link
- * Highlights the current page in the navigation menu
- */
-(function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop();
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        
-        if (currentPage === linkHref || 
-            (currentPage === '' && linkHref === 'index.html') ||
-            (currentPage === '/' && linkHref === 'index.html')) {
-            link.classList.add('active');
+  if (filterButtons.length === 0) return
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const category = this.getAttribute("data-category")
+
+      // Update active button
+      filterButtons.forEach((btn) => btn.classList.remove("active"))
+      this.classList.add("active")
+
+      // Filter workout cards
+      workoutCards.forEach((card) => {
+        const cardCategory = card.getAttribute("data-category")
+
+        if (category === "all" || cardCategory === category) {
+          card.style.display = "block"
+          card.style.animation = "slideInUp 0.5s ease"
         } else {
-            link.classList.remove('active');
+          card.style.display = "none"
         }
-    });
-})();
+      })
+    })
+  })
+}
+
+// Wellness Tabs
+function initWellnessTabs() {
+  const tabButtons = document.querySelectorAll(".tab-btn")
+  const tabContents = document.querySelectorAll(".tab-content")
+
+  if (tabButtons.length === 0) return
+
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const targetTab = this.getAttribute("data-tab")
+
+      // Update active button
+      tabButtons.forEach((btn) => btn.classList.remove("active"))
+      this.classList.add("active")
+
+      // Show/hide tab content
+      tabContents.forEach((content) => {
+        content.classList.remove("active")
+        if (content.id === targetTab) {
+          content.classList.add("active")
+        }
+      })
+    })
+  })
+}
+
+// Habit Tracker
+function initHabitTracker() {
+  const incrementBtns = document.querySelectorAll(".btn-increment")
+  const decrementBtns = document.querySelectorAll(".btn-decrement")
+  const completeBtns = document.querySelectorAll(".btn-complete")
+
+  // Increment buttons
+  incrementBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const habitItem = this.closest(".habit-item")
+      const progressCircle = habitItem.querySelector(".progress-circle")
+      const progressText = progressCircle.querySelector("span")
+
+      // Simple increment logic (you can make this more sophisticated)
+      if (progressText.textContent.includes("/")) {
+        const [current, total] = progressText.textContent.split("/").map(Number)
+        if (current < total) {
+          const newCurrent = current + 1
+          progressText.textContent = `${newCurrent}/${total}`
+          updateProgressCircle(progressCircle, (newCurrent / total) * 100)
+        }
+      }
+    })
+  })
+
+  // Decrement buttons
+  decrementBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const habitItem = this.closest(".habit-item")
+      const progressCircle = habitItem.querySelector(".progress-circle")
+      const progressText = progressCircle.querySelector("span")
+
+      if (progressText.textContent.includes("/")) {
+        const [current, total] = progressText.textContent.split("/").map(Number)
+        if (current > 0) {
+          const newCurrent = current - 1
+          progressText.textContent = `${newCurrent}/${total}`
+          updateProgressCircle(progressCircle, (newCurrent / total) * 100)
+        }
+      }
+    })
+  })
+
+  // Complete buttons
+  completeBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      if (this.classList.contains("completed")) return
+
+      const habitItem = this.closest(".habit-item")
+      const progressCircle = habitItem.querySelector(".progress-circle")
+      const progressText = progressCircle.querySelector("span")
+
+      progressText.textContent = "✓"
+      updateProgressCircle(progressCircle, 100)
+      this.classList.add("completed")
+      this.textContent = "Completed"
+
+      // Add celebration effect
+      this.style.animation = "pulse 0.5s ease"
+    })
+  })
+}
+
+// Update Progress Circle
+function updateProgressCircle(circle, percentage) {
+  const degrees = (percentage / 100) * 360
+  circle.style.background = `conic-gradient(#3b82f6 ${degrees}deg, #e5e7eb ${degrees}deg)`
+}
+
+// Initialize Progress Circles
+function initProgressCircles() {
+  document.querySelectorAll(".progress-circle").forEach((circle) => {
+    const progress = circle.getAttribute("data-progress")
+    if (progress) {
+      updateProgressCircle(circle, Number.parseInt(progress))
+    }
+  })
+}
+
+// Contact Form
+function initContactForm() {
+  const contactForm = document.getElementById("contactForm")
+
+  if (!contactForm) return
+
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault()
+
+    // Get form data
+    const formData = new FormData(this)
+    const data = Object.fromEntries(formData)
+
+    // Validate form
+    if (validateContactForm(data)) {
+      // Simulate form submission
+      submitContactForm(data)
+    }
+  })
+}
+
+function validateContactForm(data) {
+  let isValid = true
+  const errors = []
+
+  // Clear previous errors
+  document.querySelectorAll(".error-message").forEach((error) => error.remove())
+
+  // Validate required fields
+  if (!data.name.trim()) {
+    showFieldError("name", "Name is required")
+    isValid = false
+  }
+
+  if (!data.email.trim()) {
+    showFieldError("email", "Email is required")
+    isValid = false
+  } else if (!isValidEmail(data.email)) {
+    showFieldError("email", "Please enter a valid email address")
+    isValid = false
+  }
+
+  if (!data.subject) {
+    showFieldError("subject", "Please select a subject")
+    isValid = false
+  }
+
+  if (!data.message.trim()) {
+    showFieldError("message", "Message is required")
+    isValid = false
+  }
+
+  return isValid
+}
+
+function showFieldError(fieldName, message) {
+  const field = document.getElementById(fieldName)
+  const errorElement = document.createElement("span")
+  errorElement.className = "error-message"
+  errorElement.style.color = "#ef4444"
+  errorElement.style.fontSize = "0.875rem"
+  errorElement.style.marginTop = "0.25rem"
+  errorElement.style.display = "block"
+  errorElement.textContent = message
+
+  field.parentNode.appendChild(errorElement)
+  field.style.borderColor = "#ef4444"
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+function submitContactForm(data) {
+  const submitBtn = document.querySelector('#contactForm button[type="submit"]')
+  const originalText = submitBtn.textContent
+
+  // Show loading state
+  submitBtn.textContent = "Sending..."
+  submitBtn.disabled = true
+  submitBtn.classList.add("loading")
+
+  // Simulate API call
+  setTimeout(() => {
+    // Reset button
+    submitBtn.textContent = originalText
+    submitBtn.disabled = false
+    submitBtn.classList.remove("loading")
+
+    // Show success message
+    showSuccessMessage("Thank you! Your message has been sent successfully. We'll get back to you soon!")
+
+    // Reset form
+    document.getElementById("contactForm").reset()
+
+    // Clear any error styling
+    document.querySelectorAll("input, select, textarea").forEach((field) => {
+      field.style.borderColor = "#e5e7eb"
+    })
+  }, 2000)
+}
+
+function showSuccessMessage(message) {
+  const successDiv = document.createElement("div")
+  successDiv.className = "success-message"
+  successDiv.style.cssText = `
+        background: #d1fae5;
+        color: #065f46;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        border: 1px solid #a7f3d0;
+    `
+  successDiv.textContent = message
+
+  const form = document.getElementById("contactForm")
+  form.appendChild(successDiv)
+
+  // Remove success message after 5 seconds
+  setTimeout(() => {
+    successDiv.remove()
+  }, 5000)
+}
+
+// Smooth Scrolling
+function initSmoothScrolling() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault()
+      const target = document.querySelector(this.getAttribute("href"))
+
+      if (target) {
+        const headerHeight = document.querySelector(".navbar").offsetHeight
+        const targetPosition = target.offsetTop - headerHeight - 20
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        })
+      }
+    })
+  })
+}
+
+// Interactive Button Effects
+document.addEventListener("click", (e) => {
+  if (e.target.matches(".btn-primary, .btn-secondary, .btn-login, .btn-signup")) {
+    createRippleEffect(e)
+  }
+})
+
+function createRippleEffect(e) {
+  const button = e.target
+  const ripple = document.createElement("span")
+  const rect = button.getBoundingClientRect()
+  const size = Math.max(rect.width, rect.height)
+  const x = e.clientX - rect.left - size / 2
+  const y = e.clientY - rect.top - size / 2
+
+  ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    `
+
+  // Add ripple animation if not exists
+  if (!document.querySelector("#ripple-styles")) {
+    const style = document.createElement("style")
+    style.id = "ripple-styles"
+    style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `
+    document.head.appendChild(style)
+  }
+
+  button.style.position = "relative"
+  button.style.overflow = "hidden"
+  button.appendChild(ripple)
+
+  setTimeout(() => {
+    ripple.remove()
+  }, 600)
+}
+
+// Navbar scroll effect
+window.addEventListener("scroll", () => {
+  const navbar = document.querySelector(".navbar")
+  if (window.scrollY > 100) {
+    navbar.style.background = "rgba(255, 255, 255, 0.98)"
+    navbar.style.backdropFilter = "blur(20px)"
+  } else {
+    navbar.style.background = "rgba(255, 255, 255, 0.95)"
+    navbar.style.backdropFilter = "blur(10px)"
+  }
+})
+
+// Add loading animation to page transitions
+window.addEventListener("beforeunload", () => {
+  document.body.style.opacity = "0.8"
+  document.body.style.transition = "opacity 0.3s ease"
+})
+
+// Initialize tooltips for interactive elements
+function initTooltips() {
+  const tooltipElements = document.querySelectorAll("[data-tooltip]")
+
+  tooltipElements.forEach((element) => {
+    element.addEventListener("mouseenter", function () {
+      const tooltip = document.createElement("div")
+      tooltip.className = "tooltip"
+      tooltip.textContent = this.getAttribute("data-tooltip")
+      tooltip.style.cssText = `
+                position: absolute;
+                background: #333;
+                color: white;
+                padding: 0.5rem;
+                border-radius: 4px;
+                font-size: 0.875rem;
+                z-index: 1000;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `
+
+      document.body.appendChild(tooltip)
+
+      const rect = this.getBoundingClientRect()
+      tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px"
+      tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + "px"
+
+      setTimeout(() => (tooltip.style.opacity = "1"), 10)
+
+      this.addEventListener(
+        "mouseleave",
+        () => {
+          tooltip.remove()
+        },
+        { once: true },
+      )
+    })
+  })
+}
+
+// Performance optimization: Lazy load images
+function initLazyLoading() {
+  const images = document.querySelectorAll("img[data-src]")
+
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target
+        img.src = img.dataset.src
+        img.classList.remove("lazy")
+        observer.unobserve(img)
+      }
+    })
+  })
+
+  images.forEach((img) => imageObserver.observe(img))
+}
+
+// Add page visibility API for performance
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    // Pause animations when page is not visible
+    document.querySelectorAll(".floating-card").forEach((card) => {
+      card.style.animationPlayState = "paused"
+    })
+  } else {
+    // Resume animations when page becomes visible
+    document.querySelectorAll(".floating-card").forEach((card) => {
+      card.style.animationPlayState = "running"
+    })
+  }
+})
+
+console.log("AweSome Wellness Platform initialized successfully! 🎉")
