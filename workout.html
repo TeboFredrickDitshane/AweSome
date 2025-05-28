@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Routines - AweSome</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">AweSome</a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="workouts.html" class="nav-link active">Workouts</a>
+                <a href="wellness.html" class="nav-link">Wellness</a>
+                <a href="tracking.html" class="nav-link">Tracking</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-login">Login</a>
+                <a href="login.html" class="btn btn-signup">Sign Up</a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Workout Routines</h1>
+            <p>Discover effective workout routines tailored to your fitness level and goals.</p>
+        </div>
+    </section>
+
+    <!-- Workout Categories -->
+    <section class="workouts-section">
+        <div class="container">
+            <div class="section-controls">
+                <h2>Browse Workouts</h2>
+                <div class="workout-tabs">
+                    <button class="tab-btn active" data-tab="all">All</button>
+                    <button class="tab-btn" data-tab="beginner">Beginner</button>
+                    <button class="tab-btn" data-tab="intermediate">Intermediate</button>
+                    <button class="tab-btn" data-tab="advanced">Advanced</button>
+                </div>
+            </div>
+
+            <div class="workouts-grid" id="workoutsGrid">
+                <!-- Workout Card 1 -->
+                <div class="workout-card" data-level="beginner">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=200&fit=crop" alt="Full Body Workout" />
+                    </div>
+                    <div class="workout-content">
+                        <div class="workout-header">
+                            <span class="workout-level beginner">Beginner</span>
+                            <span class="workout-duration"><i class="fas fa-clock"></i> 30 min</span>
+                        </div>
+                        <h3>Full Body Workout</h3>
+                        <p>A complete workout targeting all major muscle groups.</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-fire"></i> 350 calories</span>
+                            <span><i class="fas fa-chart-bar"></i> Strength & Cardio</span>
+                        </div>
+                        <button class="btn btn-primary workout-btn">View Workout</button>
+                    </div>
+                </div>
+
+                <!-- Workout Card 2 -->
+                <div class="workout-card" data-level="intermediate">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=400&h=200&fit=crop" alt="HIIT Challenge" />
+                    </div>
+                    <div class="workout-content">
+                        <div class="workout-header">
+                            <span class="workout-level intermediate">Intermediate</span>
+                            <span class="workout-duration"><i class="fas fa-clock"></i> 20 min</span>
+                        </div>
+                        <h3>HIIT Challenge</h3>
+                        <p>High-intensity interval training for maximum calorie burn.</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-fire"></i> 400 calories</span>
+                            <span><i class="fas fa-chart-bar"></i> Cardio</span>
+                        </div>
+                        <button class="btn btn-primary workout-btn">View Workout</button>
+                    </div>
+                </div>
+
+                <!-- Workout Card 3 -->
+                <div class="workout-card" data-level="all">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=200&fit=crop" alt="Yoga Flow" />
+                    </div>
+                    <div class="workout-content">
+                        <div class="workout-header">
+                            <span class="workout-level all-levels">All Levels</span>
+                            <span class="workout-duration"><i class="fas fa-clock"></i> 45 min</span>
+                        </div>
+                        <h3>Yoga Flow</h3>
+                        <p>Gentle yoga flow to improve flexibility and reduce stress.</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-fire"></i> 200 calories</span>
+                            <span><i class="fas fa-chart-bar"></i> Flexibility & Balance</span>
+                        </div>
+                        <button class="btn btn-primary workout-btn">View Workout</button>
+                    </div>
+                </div>
+
+                <!-- Workout Card 4 -->
+                <div class="workout-card" data-level="intermediate">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=200&fit=crop" alt="Core Strength" />
+                    </div>
+                    <div class="workout-content">
+                        <div class="workout-header">
+                            <span class="workout-level intermediate">Intermediate</span>
+                            <span class="workout-duration"><i class="fas fa-clock"></i> 25 min</span>
+                        </div>
+                        <h3>Core Strength</h3>
+                        <p>Build a strong core with this targeted workout routine.</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-fire"></i> 250 calories</span>
+                            <span><i class="fas fa-chart-bar"></i> Strength</span>
+                        </div>
+                        <button class="btn btn-primary workout-btn">View Workout</button>
+                    </div>
+                </div>
+
+                <!-- Workout Card 5 -->
+                <div class="workout-card" data-level="advanced">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=200&fit=crop" alt="Upper Body Focus" />
+                    </div>
+                    <div class="workout-content">
+                        <div class="workout-header">
+                            <span class="workout-level advanced">Advanced</span>
+                            <span class="workout-duration"><i class="fas fa-clock"></i> 40 min</span>
+                        </div>
+                        <h3>Upper Body Focus</h3>
+                        <p>Build strength in your arms, shoulders, and back.</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-fire"></i> 300 calories</span>
+                            <span><i class="fas fa-chart-bar"></i> Strength</span>
+                        </div>
+                        <button class="btn btn-primary workout-btn">View Workout</button>
+                    </div>
+                </div>
+
+                <!-- Workout Card 6 -->
+                <div class="workout-card" data-level="beginner">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=200&fit=crop" alt="Lower Body Blast" />
+                    </div>
+                    <div class="workout-content">
+                        <div class="workout-header">
+                            <span class="workout-level beginner">Beginner</span>
+                            <span class="workout-duration"><i class="fas fa-clock"></i> 35 min</span>
+                        </div>
+                        <h3>Lower Body Blast</h3>
+                        <p>Strengthen your legs and glutes with this targeted routine.</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-fire"></i> 320 calories</span>
+                            <span><i class="fas fa-chart-bar"></i> Strength</span>
+                        </div>
+                        <button class="btn btn-primary workout-btn">View Workout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Workout -->
+    <section class="featured-workout">
+        <div class="container">
+            <h2>Featured Workout</h2>
+            <div class="featured-content">
+                <div class="featured-image">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop" alt="30-Day Fitness Challenge" />
+                    <div class="featured-overlay">
+                        <span class="featured-badge">New Challenge</span>
+                        <h3>30-Day Fitness Challenge</h3>
+                        <p>Transform your body and mind with our comprehensive 30-day program.</p>
+                        <button class="btn btn-primary">Start Challenge</button>
+                    </div>
+                </div>
+                <div class="featured-details">
+                    <h3>What You'll Get</h3>
+                    <ul class="benefits-list">
+                        <li><i class="fas fa-check-circle"></i> 30 days of structured workouts</li>
+                        <li><i class="fas fa-check-circle"></i> Nutrition guidance and meal plans</li>
+                        <li><i class="fas fa-check-circle"></i> Progress tracking tools</li>
+                        <li><i class="fas fa-check-circle"></i> Community support and motivation</li>
+                        <li><i class="fas fa-check-circle"></i> Expert tips and modifications</li>
+                    </ul>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Fitness Journey?</h2>
+                <p>Sign up today to access all our workout routines and start tracking your progress.</p>
+                <div class="cta-buttons">
+                    <a href="login.html" class="btn btn-secondary">Sign Up Now</a>
+                    <a href="contact.html" class="btn btn-outline-white">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AweSome</h3>
+                    <p>Your partner in wellness and habit tracking since 2025.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="workouts.html">Workouts</a></li>
+                        <li><a href="wellness.html">Wellness</a></li>
+                        <li><a href="tracking.html">Tracking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <address>
+                        <p>Block 8, Gaborone</p>
+                        <p>Phone: +267 76819115</p>
+                        <p>Email: dferdrick10@gmail.com</p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AweSome. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
