@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracking - AweSome</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">AweSome</a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="workouts.html" class="nav-link">Workouts</a>
+                <a href="wellness.html" class="nav-link">Wellness</a>
+                <a href="tracking.html" class="nav-link active">Tracking</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-login">Login</a>
+                <a href="login.html" class="btn btn-signup">Sign Up</a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Habit Tracking</h1>
+            <p>Track your daily habits and watch your progress unfold over time.</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="tracking-dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Your Wellness Dashboard</h2>
+                <p>Monitor your progress and stay motivated on your wellness journey.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>7</h3>
+                        <p>Day Streak</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>85%</h3>
+                        <p>Completion Rate</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>12</h3>
+                        <p>Goals Achieved</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>30</h3>
+                        <p>Days Active</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habit Tracker -->
+            <div class="habit-tracker">
+                <div class="tracker-header">
+                    <h3>Today's Habits</h3>
+                    <button class="btn btn-outline" id="addHabitBtn">
+                        <i class="fas fa-plus"></i> Add Habit
+                    </button>
+                </div>
+                <div class="habits-list" id="habitsList">
+                    <div class="habit-item">
+                        <div class="habit-info">
+                            <div class="habit-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>Drink 8 Glasses of Water</h4>
+                                <p>Stay hydrated throughout the day</p>
+                            </div>
+                        </div>
+                        <div class="habit-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <span class="progress-text">6/8</span>
+                        </div>
+                        <button class="habit-check" data-completed="false">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="habit-item">
+                        <div class="habit-info">
+                            <div class="habit-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>30 Minutes Exercise</h4>
+                                <p>Daily physical activity</p>
+                            </div>
+                        </div>
+                        <div class="habit-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-text">Completed</span>
+                        </div>
+                        <button class="habit-check completed" data-completed="true">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+
+                    <div class="habit-item">
+                        <div class="habit-info">
+                            <div class="habit-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>Read for 20 Minutes</h4>
+                                <p>Daily reading habit</p>
+                            </div>
+                        </div>
+                        <div class="habit-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-text">0/20 min</span>
+                        </div>
+                        <button class="habit-check" data-completed="false">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="habit-item">
+                        <div class="habit-info">
+                            <div class="habit-icon">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>Sleep 8 Hours</h4>
+                                <p>Quality sleep for recovery</p>
+                            </div>
+                        </div>
+                        <div class="habit-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-text">8/8 hours</span>
+                        </div>
+                        <button class="habit-check completed" data-completed="true">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Chart -->
+            <div class="progress-chart">
+                <h3>Weekly Progress</h3>
+                <div class="chart-container">
+                    <div class="chart-bars">
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 80%"></div>
+                            <span class="bar-label">Mon</span>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 90%"></div>
+                            <span class="bar-label">Tue</span>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 75%"></div>
+                            <span class="bar-label">Wed</span>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 95%"></div>
+                            <span class="bar-label">Thu</span>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 85%"></div>
+                            <span class="bar-label">Fri</span>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 70%"></div>
+                            <span class="bar-label">Sat</span>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 88%"></div>
+                            <span class="bar-label">Sun</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="tracking-features">
+        <div class="container">
+            <h2>Powerful Tracking Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Visual Progress</h3>
+                    <p>See your progress with beautiful charts and graphs that motivate you to keep going.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Smart Reminders</h3>
+                    <p>Get personalized reminders at the perfect time to help you stay on track.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Achievement Badges</h3>
+                    <p>Earn badges and celebrate milestones as you build lasting healthy habits.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Connect with others on similar journeys and share your progress.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start Tracking Your Habits Today</h2>
+                <p>Join thousands of users who have transformed their lives through consistent habit tracking.</p>
+                <div class="cta-buttons">
+                    <a href="login.html" class="btn btn-secondary">Get Started</a>
+                    <a href="contact.html" class="btn btn-outline-white">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AweSome</h3>
+                    <p>Your partner in wellness and habit tracking since 2025.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="workouts.html">Workouts</a></li>
+                        <li><a href="wellness.html">Wellness</a></li>
+                        <li><a href="tracking.html">Tracking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <address>
+                        <p>Block 8, Gaborone</p>
+                        <p>Phone: +267 76819115</p>
+                        <p>Email: dferdrick10@gmail.com</p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AweSome. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
