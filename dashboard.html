@@ -3,211 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - AweSome</title>
-    <meta name="description" content="Track your habits and wellness journey with the AweSome personal dashboard.">
-    <link rel="stylesheet" href="styles.css">
+    <title>User Dashboard - AweSome Fitness</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <div class="logo">
-                <a href="index.html">
-                    <h1>Awe<span>Some</span></h1>
-                </a>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="workouts.html">Workouts</a></li>
-                    <li><a href="wellness.html">Wellness</a></li>
-                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+            <a class="navbar-brand" href="index.html">AweSome</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wellness.html">Wellness</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
                 </ul>
-                <div class="auth-buttons">
-                    <a href="login.html" class="btn btn-login">Login</a>
-                    <a href="login.html#register" class="btn btn-register">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold text-white">My Dashboard</h1>
                 </div>
-                <div class="mobile-menu">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                    <div class="line3"></div>
-                </div>
-            </nav>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="page-banner">
-            <div class="container">
-                <h1>Your Wellness Dashboard</h1>
-                <p>Track your progress, set goals, and monitor your wellness journey</p>
-            </div>
-        </section>
-
-        <section class="dashboard-login-prompt">
-            <div class="container">
-                <div class="login-prompt">
-                    <h2>Track Your Progress</h2>
-                    <p>Please log in or create an account to access your personalized dashboard</p>
-                    <div class="login-buttons">
-                        <a href="login.html" class="btn btn-primary">Login</a>
-                        <a href="login.html#register" class="btn btn-secondary">Create Account</a>
+    <!-- Dashboard Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="dashboard-sidebar card">
+                        <div class="card-body text-center">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" class="rounded-circle mb-3" width="100" alt="User">
+                            <h5>Sarah Johnson</h5>
+                            <p class="text-muted">Member since June 2022</p>
+                            <hr>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-calendar-alt me-2"></i> Workout Plan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-chart-line me-2"></i> Progress</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-bookmark me-2"></i> Saved Workouts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="dashboard-preview">
-            <div class="container">
-                <h2>Dashboard Features</h2>
-                <div class="preview-grid">
-                    <div class="preview-card">
-                        <div class="preview-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Progress Tracking</h3>
-                        <p>Monitor your wellness journey with visual progress charts and statistics.</p>
-                    </div>
-                    <div class="preview-card">
-                        <div class="preview-icon">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <h3>Habit Formation</h3>
-                        <p>Create custom habits, set goals, and track your daily, weekly, and monthly consistency.</p>
-                    </div>
-                    <div class="preview-card">
-                        <div class="preview-icon">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <h3>Workout Scheduling</h3>
-                        <p>Plan and schedule your workouts with reminders to stay on track.</p>
-                    </div>
-                    <div class="preview-card">
-                        <div class="preview-icon">
-                            <i class="fas fa-apple-alt"></i>
-                        </div>
-                        <h3>Nutrition Log</h3>
-                        <p>Keep track of your meals, water intake, and nutritional goals.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="dashboard-demo">
-            <div class="container">
-                <div class="demo-content">
-                    <h2>Your Wellness at a Glance</h2>
-                    <p>The AweSome dashboard provides a comprehensive view of your wellness journey, making it easy to track progress and identify areas for improvement.</p>
-                    <div class="demo-features">
-                        <div class="demo-feature">
-                            <div class="feature-check">
-                                <i class="fas fa-check"></i>
+                
+                <!-- Main Content -->
+                <div class="col-lg-9">
+                    <!-- Welcome Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h4 class="mb-3">Welcome back, Sarah!</h4>
+                                    <p class="mb-md-0">You're on a 5-day streak! Keep up the great work. Your next scheduled workout is <strong>HIIT Burn</strong> tomorrow at 7:00 AM.</p>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <button class="btn btn-primary">Start Today's Workout</button>
+                                </div>
                             </div>
-                            <p>Customizable habit tracking for any wellness goal</p>
-                        </div>
-                        <div class="demo-feature">
-                            <div class="feature-check">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <p>Visual progress charts showing your consistency</p>
-                        </div>
-                        <div class="demo-feature">
-                            <div class="feature-check">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <p>Personalized insights based on your activity</p>
-                        </div>
-                        <div class="demo-feature">
-                            <div class="feature-check">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <p>Integration with workout routines and wellness advice</p>
                         </div>
                     </div>
-                </div>
-                <div class="demo-image">
-                    <img src="https://placehold.co/800x500/e0f2fe/0c4a6e?text=Dashboard+Preview" alt="Dashboard interface preview" class="img-responsive">
+                    
+                    <!-- Stats Cards -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="stats-card card h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="text-muted">Workouts Completed</h6>
+                                            <h3>24</h3>
+                                        </div>
+                                        <div class="icon-circle bg-primary-light">
+                                            <i class="fas fa-dumbbell text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 8px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 65%;"></div>
+                                    </div>
+                                    <small class="text-muted">65% of monthly goal</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stats-card card h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="text-muted">Active Minutes</h6>
+                                            <h3>1,245</h3>
+                                        </div>
+                                        <div class="icon-circle bg-success-light">
+                                            <i class="fas fa-fire text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 8px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 82%;"></div>
+                                    </div>
+                                    <small class="text-muted">82% of monthly goal</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stats-card card h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="text-muted">Calories Burned</h6>
+                                            <h3>12,450</h3>
+                                        </div>
+                                        <div class="icon-circle bg-warning-light">
+                                            <i class="fas fa-bolt text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 8px;">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 45%;"></div>
+                                    </div>
+                                    <small class="text-muted">45% of monthly goal</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Workout Plan -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">This Week's Workout Plan</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Day</th>
+                                            <th>Workout</th>
+                                            <th>Duration</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Monday</td>
+                                            <td>Full Body Strength</td>
+                                            <td>45 min</td>
+                                            <td><span class="badge bg-success">Completed</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tuesday</td>
+                                            <td>Yoga Flow</td>
+                                            <td>30 min</td>
+                                            <td><span class="badge bg-success">Completed</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wednesday</td>
+                                            <td>Rest Day</td>
+                                            <td>-</td>
+                                            <td><span class="badge bg-secondary">Scheduled</span></td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Thursday</td>
+                                            <td>HIIT Burn</td>
+                                            <td>25 min</td>
+                                            <td><span class="badge bg-warning text-dark">Upcoming</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">Preview</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Friday</td>
+                                            <td>Core Crusher</td>
+                                            <td>20 min</td>
+                                            <td><span class="badge bg-warning text-dark">Upcoming</span></td>
+                                            <td><button class="btn btn-sm btn-outline-primary">Preview</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Charts -->
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Weekly Activity</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="activityChart" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Workout Types</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="workoutTypesChart" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="habit-examples">
-            <div class="container">
-                <h2>Popular Habit Tracking Categories</h2>
-                <div class="examples-grid">
-                    <div class="example-card">
-                        <div class="example-icon">
-                            <i class="fas fa-running"></i>
-                        </div>
-                        <h3>Fitness</h3>
-                        <ul class="example-list">
-                            <li>Daily exercise</li>
-                            <li>Step count goals</li>
-                            <li>Weekly workout completion</li>
-                            <li>Strength training progress</li>
-                        </ul>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AweSome</h5>
+                    <p>Your 24/7 fitness and wellness companion.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
                     </div>
-                    <div class="example-card">
-                        <div class="example-icon">
-                            <i class="fas fa-apple-alt"></i>
-                        </div>
-                        <h3>Nutrition</h3>
-                        <ul class="example-list">
-                            <li>Water intake</li>
-                            <li>Vegetable servings</li>
-                            <li>Meal preparation</li>
-                            <li>Balanced diet tracking</li>
-                        </ul>
-                    </div>
-                    <div class="example-card">
-                        <div class="example-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3>Mental Wellness</h3>
-                        <ul class="example-list">
-                            <li>Meditation sessions</li>
-                            <li>Gratitude journaling</li>
-                            <li>Screen-free time</li>
-                            <li>Reading goals</li>
-                        </ul>
-                    </div>
-                    <div class="example-card">
-                        <div class="example-icon">
-                            <i class="fas fa-moon"></i>
-                        </div>
-                        <h3>Sleep</h3>
-                        <ul class="example-list">
-                            <li>Sleep duration</li>
-                            <li>Bedtime routine</li>
-                            <li>Morning wake-up time</li>
-                            <li>Screen-free bedtime</li>
-                        </ul>
-                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="about.html" class="text-white">About</a></li>
+                        <li><a href="workouts.html" class="text-white">Workouts</a></li>
+                        <li><a href="wellness.html" class="text-white">Wellness</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="dashboard.html" class="text-white">Dashboard</a></li>
+                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                        <li><a href="login.html" class="text-white">Login</a></li>
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Fitness St, Wellness City</li>
+                        <li><i class="fas fa-phone me-2"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@awesomefitness.com</li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <section class="testimonial-feature">
-            <div class="container">
-                <div class="testimonial-image">
-                    <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=User+Testimonial" alt="Happy user of AweSome dashboard" class="img-responsive">
-                </div>
-                <div class="testimonial-content">
-                    <div class="quote-icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <blockquote>
-                        <p>The habit tracking dashboard changed everything for me. Being able to visualize my progress and see my streaks keeps me motivated. In just three months, I've built five consistent healthy habits that I couldn't stick to before.</p>
-                        <cite>— Michael R., Member since 2025</cite>
-                    </blockquote>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta">
-            <div class
+            <hr class="my-4 bg-secondary">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 AweSome Fitness. All rights reserved
