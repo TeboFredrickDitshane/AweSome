@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AweSome - Interactive Script Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Basic demo styles */
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .demo-section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h2 {
+            color: #0A2463;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #3E92CC;
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Mobile menu styles */
+        .nav-menu {
+            display: flex;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu.active {
+            background: #0A2463;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .mobile-toggle {
+            background: #3E92CC;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        /* Typing animation styles */
+        .typing-demo {
+            font-size: 2rem;
+            color: #0A2463;
+            min-height: 3rem;
+            border-right: 2px solid #3E92CC;
+            padding-right: 0.5rem;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        
+        /* Tab styles */
+        .tab-container {
+            margin: 1rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: #f8f9fa;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background: #0A2463;
+            color: white;
+            border-color: #0A2463;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Form styles */
+        .demo-form {
+            max-width: 500px;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3E92CC;
+        }
+        
+        .form-group input.invalid {
+            border-color: #dc3545;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: #0A2463;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #3E92CC;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        /* Habit tracking styles */
+        .habit-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: white;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .habit-item:hover {
+            border-color: #3E92CC;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .habit-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .habit-icon {
+            width: 3rem;
+            height: 3rem;
+            background: #3E92CC;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .habit-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .progress-bar {
+            width: 150px;
+            height: 8px;
+            background: #e1e5e9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #28a745;
+            transition: width 0.3s ease;
+        }
+        
+        .habit-check {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 2px solid #e1e5e9;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .habit-check.completed {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 0.25rem;
+        }
+        
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .demo-container {
+                padding: 1rem;
+            }
+            
+            .demo-section {
+                padding: 1rem;
+            }
+            
+            .habit-item {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .tab-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <header style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="color: #0A2463; font-size: 3rem; margin-bottom: 0.5rem;">
+                <i class="fas fa-heart"></i> AweSome
+            </h1>
+            <p style="color: #6c757d; font-size: 1.2rem;">Interactive JavaScript Demo</p>
+        </header>
+
+        <!-- Mobile Menu Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-bars"></i> Mobile Menu Demo</h2>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i> Toggle Menu
+                </button>
+                <nav class="nav-menu" id="navMenu">
+                    <a href="#" style="color: inherit; text-decoration: none; padding: 0.5rem;">Home</a>
+                    <a href="#" style="color: inherit; text-decoration: none; padding: 0.5rem;">Workouts</a>
+                    <a href="#" style="color: inherit; text-decoration: none; padding: 0.5rem;">Wellness</a>
+                    <a href="#" style="color: inherit; text-decoration: none; padding: 0.5rem;">Tracking</a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Typing Animation Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-keyboard"></i> Typing Animation Demo</h2>
+            <div class="typing-demo" id="typingText"></div>
+            <button class="btn" onclick="restartTypingAnimation()" style="margin-top: 1rem;">
+                <i class="fas fa-redo"></i> Restart Animation
+            </button>
+        </section>
+
+        <!-- Tab Navigation Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-tabs"></i> Tab Navigation Demo</h2>
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="all">All Content</button>
+                    <button class="tab-btn" data-tab="beginner">Beginner</button>
+                    <button class="tab-btn" data-tab="intermediate">Intermediate</button>
+                    <button class="tab-btn" data-tab="advanced">Advanced</button>
+                </div>
+                <div class="tab-content active" data-content="all">
+                    <h4>All Content</h4>
+                    <p>This shows all available content regardless of difficulty level.</p>
+                </div>
+                <div class="tab-content" data-content="beginner">
+                    <h4>Beginner Content</h4>
+                    <p>Perfect for those just starting their wellness journey!</p>
+                </div>
+                <div class="tab-content" data-content="intermediate">
+                    <h4>Intermediate Content</h4>
+                    <p>For users who have some experience and want to advance further.</p>
+                </div>
+                <div class="tab-content" data-content="advanced">
+                    <h4>Advanced Content</h4>
+                    <p>Challenging content for experienced wellness enthusiasts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Validation Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-check-circle"></i> Form Validation Demo</h2>
+            <form class="demo-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </section>
+
+        <!-- Habit Tracking Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-chart-line"></i> Habit Tracking Demo</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h3>Your Daily Habits</h3>
+                <button class="btn" id="addHabitBtn">
+                    <i class="fas fa-plus"></i> Add Habit
+                </button>
+            </div>
+            <div id="habitsList">
+                <div class="habit-item">
+                    <div class="habit-info">
+                        <div class="habit-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="habit-details">
+                            <h4>Drink Water</h4>
+                            <p>Stay hydrated throughout the day</p>
+                        </div>
+                    </div>
+                    <div class="habit-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <span class="progress-text">6/8</span>
+                    </div>
+                    <button class="habit-check" data-completed="false">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="habit-item">
+                    <div class="habit-info">
+                        <div class="habit-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="habit-details">
+                            <h4>Exercise</h4>
+                            <p>30 minutes of physical activity</p>
+                        </div>
+                    </div>
+                    <div class="habit-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-text">Completed</span>
+                    </div>
+                    <button class="habit-check completed" data-completed="true">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+                
+                <div class="habit-item">
+                    <div class="habit-info">
+                        <div class="habit-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="habit-details">
+                            <h4>Read</h4>
+                            <p>Read for 20 minutes daily</p>
+                        </div>
+                    </div>
+                    <div class="habit-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0/1</span>
+                    </div>
+                    <button class="habit-check" data-completed="false">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Habit Modal -->
+        <div class="modal" id="addHabitModal">
+            <div class="modal-content">
+                <h3 style="margin-bottom: 1.5rem;">Add New Habit</h3>
+                <form id="addHabitForm">
+                    <div class="form-group">
+                        <label for="habitName">Habit Name *</label>
+                        <input type="text" id="habitName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="habitDescription">Description</label>
+                        <input type="text" id="habitDescription">
+                    </div>
+                    <div class="form-group">
+                        <label for="habitIcon">Icon</label>
+                        <select id="habitIcon">
+                            <option value="tint">Water (💧)</option>
+                            <option value="running">Exercise (🏃)</option>
+                            <option value="book">Reading (📚)</option>
+                            <option value="bed">Sleep (🛏️)</option>
+                            <option value="apple-alt">Nutrition (🍎)</option>
+                            <option value="brain">Meditation (🧠)</option>
+                            <option value="heart">Health (❤️)</option>
+                            <option value="music">Music (🎵)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="habitTarget">Daily Target</label>
+                        <input type="number" id="habitTarget" min="1" value="1">
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-secondary" id="cancelHabit">Cancel</button>
+                        <button type="submit" class="btn">Add Habit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e1e5e9;">
+            <p style="color: #6c757d;">
+                AweSome Wellness Platform - Interactive JavaScript Demo
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        /**
+         * AweSome Wellness Platform - Inline JavaScript
+         * All interactive functionality in one script block
+         */
+
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initMobileMenu();
+            initTypingAnimation();
+            initTabNavigation();
+            initFormValidation();
+            initHabitTracking();
+        });
+
+        /**
+         * Mobile Menu Functionality
+         */
+        function initMobileMenu() {
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileToggle && navMenu) {
+                mobileToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        if (navMenu.classList.contains('active')) {
+                            icon.classList.remove('fa-bars');
+                            icon.classList.add('fa-times');
+                            this.innerHTML = '<i class="fas fa-times"></i> Close Menu';
+                        } else {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                            this.innerHTML = '<i class="fas fa-bars"></i> Toggle Menu';
+                        }
+                    }
+                });
+            }
+        }
+
+        /**
+         * Typing Animation
+         */
+        let typingInterval;
+        
+        function initTypingAnimation() {
+            startTypingAnimation();
+        }
+        
+        function startTypingAnimation() {
+            const typingElement = document.getElementById('typingText');
+            if (typingElement) {
+                const welcomeText = "Welcome to AweSome - Your Wellness Journey Starts Here!";
+                let i = 0;
+                const typingSpeed = 80;
+                
+                // Clear existing text and interval
+                typingElement.textContent = '';
+                if (typingInterval) clearInterval(typingInterval);
+                
+                typingInterval = setInterval(function() {
+                    if (i < welcomeText.length) {
+                        typingElement.textContent += welcomeText.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingInterval);
+                    }
+                }, typingSpeed);
+            }
+        }
+        
+        function restartTypingAnimation() {
+            startTypingAnimation();
+        }
+
+        /**
+         * Tab Navigation
+         */
+        function initTabNavigation() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const targetContent = document.querySelector(`[data-content="${targetTab}"]`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        /**
+         * Form Validation
+         */
+        function initFormValidation() {
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    let isValid = true;
+                    const requiredFields = this.querySelectorAll('[required]');
+                    
+                    // Remove existing error messages
+                    this.querySelectorAll('.error-message').forEach(msg => msg.remove());
+                    this.querySelectorAll('.success-message').forEach(msg => msg.remove());
+                    
+                    // Check required fields
+                    requiredFields.forEach(field => {
+                        if (!field.value.trim()) {
+                            isValid = false;
+                            highlightInvalidField(field, 'This field is required');
+                        } else {
+                            removeInvalidHighlight(field);
+                        }
+                    });
+                    
+                    // Email validation
+                    const emailField = this.querySelector('input[type="email"]');
+                    if (emailField && emailField.value && !validateEmail(emailField.value)) {
+                        isValid = false;
+                        highlightInvalidField(emailField, 'Please enter a valid email address');
+                    }
+                    
+                    if (isValid) {
+                        showFormSuccess(this, 'Thank you! Your message has been sent successfully. We\'ll get back to you soon!');
+                        this.reset();
+                    }
+                });
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function highlightInvalidField(field, message) {
+            field.classList.add('invalid');
+            
+            const errorMessage = document.createElement('span');
+            errorMessage.classList.add('error-message');
+            errorMessage.textContent = message;
+            field.parentNode.appendChild(errorMessage);
+        }
+
+        function removeInvalidHighlight(field) {
+            field.classList.remove('invalid');
+            const errorMessage = field.parentNode.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+        }
+
+        function showFormSuccess(form, message) {
+            const successMessage = document.createElement('div');
+            successMessage.classList.add('success-message');
+            successMessage.textContent = message;
+            form.appendChild(successMessage);
+            
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
+        }
+
+        /**
+         * Habit Tracking
+         */
+        function initHabitTracking() {
+            const habitsList = document.getElementById('habitsList');
+            const addHabitBtn = document.getElementById('addHabitBtn');
+            const modal = document.getElementById('addHabitModal');
+            const addHabitForm = document.getElementById('addHabitForm');
+            const cancelBtn = document.getElementById('cancelHabit');
+            
+            // Handle existing habit check buttons
+            initHabitCheckButtons();
+            
+            // Add new habit button
+            if (addHabitBtn && modal) {
+                addHabitBtn.addEventListener('click', function() {
+                    modal.classList.add('active');
+                    document.getElementById('habitName').focus();
+                });
+            }
+            
+            // Cancel button
+            if (cancelBtn && modal) {
+                cancelBtn.addEventListener('click', function() {
+                    modal.classList.remove('active');
+                    addHabitForm.reset();
+                });
+            }
+            
+            // Close modal when clicking outside
+            if (modal) {
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.classList.remove('active');
+                        addHabitForm.reset();
+                    }
+                });
+            }
+            
+            // Add habit form submission
+            if (addHabitForm) {
+                addHabitForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const habitName = document.getElementById('habitName').value;
+                    const habitDescription = document.getElementById('habitDescription').value || 'Track this habit daily';
+                    const habitIcon = document.getElementById('habitIcon').value;
+                    const habitTarget = document.getElementById('habitTarget').value || 1;
+                    
+                    // Create new habit element
+                    const newHabit = document.createElement('div');
+                    newHabit.classList.add('habit-item');
+                    newHabit.innerHTML = `
+                        <div class="habit-info">
+                            <div class="habit-icon">
+                                <i class="fas fa-${habitIcon}"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>${habitName}</h4>
+                                <p>${habitDescription}</p>
+                            </div>
+                        </div>
+                        <div class="habit-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-text">0/${habitTarget}</span>
+                        </div>
+                        <button class="habit-check" data-completed="false" data-target="${habitTarget}">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    `;
+                    
+                    // Add to habits list
+                    habitsList.appendChild(newHabit);
+                    
+                    // Initialize check button for new habit
+                    initHabitCheckButtons();
+                    
+                    // Close modal and reset form
+                    modal.classList.remove('active');
+                    this.reset();
+                    
+                    // Show success message
+                    showToast(`"${habitName}" habit added successfully!`, 'success');
+                });
+            }
+        }
+
+        function initHabitCheckButtons() {
+            const habitCheckButtons = document.querySelectorAll('.habit-check');
+            
+            habitCheckButtons.forEach(button => {
+                // Remove existing listeners to avoid duplicates
+                button.replaceWith(button.cloneNode(true));
+            });
+            
+            // Re-select buttons after cloning
+            const newHabitCheckButtons = document.querySelectorAll('.habit-check');
+            
+            newHabitCheckButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const isCompleted = this.getAttribute('data-completed') === 'true';
+                    const habitItem = this.closest('.habit-item');
+                    const progressBar = habitItem.querySelector('.progress-fill');
+                    const progressText = habitItem.querySelector('.progress-text');
+                    const target = parseInt(this.getAttribute('data-target')) || 1;
+                    
+                    if (isCompleted) {
+                        // Uncomplete habit
+                        this.setAttribute('data-completed', 'false');
+                        this.classList.remove('completed');
+                        this.innerHTML = '<i class="fas fa-plus"></i>';
+                        
+                        // Update progress
+                        const currentProgress = parseInt(progressText.textContent.split('/')[0]) || 0;
+                        const newProgress = Math.max(0, currentProgress - 1);
+                        
+                        progressBar.style.width = `${(newProgress / target) * 100}%`;
+                        progressText.textContent = `${newProgress}/${target}`;
+                        
+                        showToast('Habit unchecked', 'info');
+                    } else {
+                        // Complete habit
+                        this.setAttribute('data-completed', 'true');
+                        this.classList.add('completed');
+                        this.innerHTML = '<i class="fas fa-check"></i>';
+                        
+                        // Update progress
+                        const currentProgress = parseInt(progressText.textContent.split('/')[0]) || 0;
+                        const newProgress = Math.min(target, currentProgress + 1);
+                        
+                        progressBar.style.width = `${(newProgress / target) * 100}%`;
+                        
+                        if (newProgress >= target) {
+                            progressText.textContent = 'Completed';
+                            showToast('Habit completed! Great job! 🎉', 'success');
+                        } else {
+                            progressText.textContent = `${newProgress}/${target}`;
+                            showToast('Habit progress updated!', 'success');
+                        }
+                    }
+                });
+            });
+        }
+
+        /**
+         * Toast Notifications
+         */
+        function showToast(message, type = 'info') {
+            // Remove existing toasts
+            document.querySelectorAll('.toast').forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 6px;
+                color: white;
+                font-weight: 500;
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                max-width: 300px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            `;
+            
+            // Set background color based on type
+            switch(type) {
+                case 'success':
+                    toast.style.background = '#28a745';
+                    break;
+                case 'error':
+                    toast.style.background = '#dc3545';
+                    break;
+                case 'warning':
+                    toast.style.background = '#ffc107';
+                    toast.style.color = '#333';
+                    break;
+                default:
+                    toast.style.background = '#17a2b8';
+            }
+            
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Add animation styles if not already present
+            if (!document.querySelector('#toast-styles')) {
+                const style = document.createElement('style');
+                style.id = 'toast-styles';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.remove();
+                    }
+                }, 300);
+            }, 3000);
+            
+            // Click to dismiss
+            toast.addEventListener('click', function() {
+                this.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (this.parentNode) {
+                        this.remove();
+                    }
+                }, 300);
+            });
+        }
+
+        /**
+         * Utility Functions
+         */
+        
+        // Smooth scroll function for any anchor links
+        function smoothScrollTo(element, offset = 0) {
+            if (element) {
+                const targetPosition = element.offsetTop - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // Add smooth scrolling to any anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    smoothScrollTo(targetElement, 80);
+                }
+            });
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(event) {
+            // Close modal with Escape key
+            if (event.key === 'Escape') {
+                const activeModal = document.querySelector('.modal.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                }
+            }
+        });
+
+        // Show welcome message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                showToast('Welcome to AweSome! All interactive features are ready to use.', 'success');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
