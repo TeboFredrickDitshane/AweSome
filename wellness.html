@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Advice - AweSome</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">AweSome</a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="workouts.html" class="nav-link">Workouts</a>
+                <a href="wellness.html" class="nav-link active">Wellness</a>
+                <a href="tracking.html" class="nav-link">Tracking</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-login">Login</a>
+                <a href="login.html" class="btn btn-signup">Sign Up</a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Wellness Advice</h1>
+            <p>Expert guidance to help you live your healthiest, most balanced life.</p>
+        </div>
+    </section>
+
+    <!-- Wellness Categories -->
+    <section class="wellness-section">
+        <div class="container">
+            <div class="section-controls">
+                <h2>Wellness Resources</h2>
+                <div class="wellness-tabs">
+                    <button class="tab-btn active" data-tab="all">All</button>
+                    <button class="tab-btn" data-tab="nutrition">Nutrition</button>
+                    <button class="tab-btn" data-tab="mental">Mental Health</button>
+                    <button class="tab-btn" data-tab="sleep">Sleep</button>
+                </div>
+            </div>
+
+            <div class="wellness-grid" id="wellnessGrid">
+                <!-- Wellness Card 1 -->
+                <div class="wellness-card" data-category="nutrition">
+                    <div class="wellness-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="wellness-content">
+                        <h3>Balanced Nutrition Guide</h3>
+                        <p class="wellness-description">Learn how to create balanced meals that fuel your body and mind.</p>
+                        <p class="wellness-details">Discover the principles of balanced nutrition, including macronutrients, micronutrients, and how to create meal plans that work for your lifestyle.</p>
+                        <button class="btn btn-primary">Read Guide</button>
+                    </div>
+                </div>
+
+                <!-- Wellness Card 2 -->
+                <div class="wellness-card" data-category="mental">
+                    <div class="wellness-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="wellness-content">
+                        <h3>Stress Management</h3>
+                        <p class="wellness-description">Effective techniques to reduce stress and improve mental wellbeing.</p>
+                        <p class="wellness-details">Learn practical strategies for managing stress, including mindfulness practices, breathing techniques, and cognitive behavioral approaches.</p>
+                        <button class="btn btn-primary">Read Guide</button>
+                    </div>
+                </div>
+
+                <!-- Wellness Card 3 -->
+                <div class="wellness-card" data-category="sleep">
+                    <div class="wellness-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="wellness-content">
+                        <h3>Sleep Optimization</h3>
+                        <p class="wellness-description">Improve your sleep quality for better health and recovery.</p>
+                        <p class="wellness-details">Discover the science of sleep and learn practical tips for creating the perfect sleep environment and establishing healthy sleep routines.</p>
+                        <button class="btn btn-primary">Read Guide</button>
+                    </div>
+                </div>
+
+                <!-- Wellness Card 4 -->
+                <div class="wellness-card" data-category="nutrition">
+                    <div class="wellness-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <div class="wellness-content">
+                        <h3>Healthy Eating Habits</h3>
+                        <p class="wellness-description">Build sustainable eating habits that last a lifetime.</p>
+                        <p class="wellness-details">Learn how to develop healthy eating patterns, understand portion control, and make nutritious food choices that support your wellness goals.</p>
+                        <button class="btn btn-primary">Read Guide</button>
+                    </div>
+                </div>
+
+                <!-- Wellness Card 5 -->
+                <div class="wellness-card" data-category="mental">
+                    <div class="wellness-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="wellness-content">
+                        <h3>Mindfulness & Meditation</h3>
+                        <p class="wellness-description">Cultivate inner peace and mental clarity through mindfulness.</p>
+                        <p class="wellness-details">Explore various meditation techniques, mindfulness exercises, and breathing practices to reduce anxiety and improve focus.</p>
+                        <button class="btn btn-primary">Read Guide</button>
+                    </div>
+                </div>
+
+                <!-- Wellness Card 6 -->
+                <div class="wellness-card" data-category="sleep">
+                    <div class="wellness-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="wellness-content">
+                        <h3>Sleep Hygiene</h3>
+                        <p class="wellness-description">Create the perfect environment for restorative sleep.</p>
+                        <p class="wellness-details">Learn about sleep hygiene practices, bedroom optimization, and daily habits that promote better sleep quality and duration.</p>
+                        <button class="btn btn-primary">Read Guide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-article">
+        <div class="container">
+            <div class="article-content">
+                <div class="article-image">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop" alt="Wellness Journey" />
+                </div>
+                <div class="article-text">
+                    <span class="article-badge">Featured Article</span>
+                    <h2>The Complete Guide to Holistic Wellness</h2>
+                    <p>Discover how to integrate physical, mental, and emotional wellness into your daily routine for a more balanced and fulfilling life.</p>
+                    <ul class="article-highlights">
+                        <li><i class="fas fa-check"></i> Physical wellness fundamentals</li>
+                        <li><i class="fas fa-check"></i> Mental health strategies</li>
+                        <li><i class="fas fa-check"></i> Emotional balance techniques</li>
+                        <li><i class="fas fa-check"></i> Social wellness importance</li>
+                    </ul>
+                    <button class="btn btn-primary">Read Full Article</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+        <div class="container">
+            <h2>Daily Wellness Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-number">1</div>
+                    <h3>Start Your Day with Water</h3>
+                    <p>Drink a glass of water first thing in the morning to kickstart your metabolism and hydrate your body after hours of sleep.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">2</div>
+                    <h3>Practice Deep Breathing</h3>
+                    <p>Take 5 minutes each day for deep breathing exercises to reduce stress and improve mental clarity.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">3</div>
+                    <h3>Move Every Hour</h3>
+                    <p>Set reminders to stand and move for at least 2 minutes every hour to combat the effects of prolonged sitting.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <h3>Eat the Rainbow</h3>
+                    <p>Include colorful fruits and vegetables in your meals to ensure you're getting a variety of nutrients and antioxidants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Wellness?</h2>
+                <p>Get personalized wellness advice and start your journey to a healthier, happier you.</p>
+                <div class="cta-buttons">
+                    <a href="login.html" class="btn btn-secondary">Get Started</a>
+                    <a href="contact.html" class="btn btn-outline-white">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AweSome</h3>
+                    <p>Your partner in wellness and habit tracking since 2025.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="workouts.html">Workouts</a></li>
+                        <li><a href="wellness.html">Wellness</a></li>
+                        <li><a href="tracking.html">Tracking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <address>
+                        <p>Block 8, Gaborone</p>
+                        <p>Phone: +267 76819115</p>
+                        <p>Email: dferdrick10@gmail.com</p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AweSome. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
