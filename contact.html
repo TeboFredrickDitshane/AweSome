@@ -4,41 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - AweSome</title>
+    <meta name="description" content="Get in touch with the AweSome team. We're here to help you on your wellness journey.">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html" class="logo">AweSome</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>AweSome</h2>
             </div>
-            <nav class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="workouts.html" class="nav-link">Workouts</a>
-                <a href="wellness.html" class="nav-link">Wellness</a>
-                <a href="tracking.html" class="nav-link">Tracking</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link active">Contact</a>
-            </nav>
-            <div class="nav-actions">
-                <a href="login.html" class="btn btn-login">Login</a>
-                <a href="login.html" class="btn btn-signup">Sign Up</a>
-                <button class="mobile-toggle" id="mobileToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="workouts.html" class="nav-link">Workouts</a>
+                </li>
+                <li class="nav-item">
+                    <a href="wellness.html" class="nav-link">Wellness</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tracking.html" class="nav-link">Tracking</a>
+                </li>
+                <li class="nav-item">
+                    <a href="community.html" class="nav-link">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login">Login</button>
+                <button class="btn-signup">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
             <h1>Contact Us</h1>
-            <p>Get in touch with our team. We're here to help you on your wellness journey.</p>
+            <p>We're here to help you on your wellness journey</p>
         </div>
     </section>
 
@@ -47,19 +64,10 @@
         <div class="container">
             <div class="contact-content">
                 <div class="contact-info">
-                    <h2>Get In Touch</h2>
+                    <h2>Get in Touch</h2>
                     <p>Have questions about AweSome? Need support with your wellness journey? We'd love to hear from you!</p>
                     
                     <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Address</h3>
-                                <p>Block 8, Gaborone<br>Botswana</p>
-                            </div>
-                        </div>
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
@@ -69,6 +77,7 @@
                                 <p>+267 76819115</p>
                             </div>
                         </div>
+                        
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-envelope"></i>
@@ -78,55 +87,57 @@
                                 <p>dferdrick10@gmail.com</p>
                             </div>
                         </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Address</h3>
+                                <p>Block 8, Gaborone<br>Botswana</p>
+                            </div>
+                        </div>
+                        
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
                             <div class="contact-text">
-                                <h3>Business Hours</h3>
+                                <h3>Support Hours</h3>
                                 <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 4:00 PM</p>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="social-contact">
                         <h3>Follow Us</h3>
                         <div class="social-links">
-                            <a href="#" class="social-link">
-                                <i class="fab fa-facebook"></i>
-                                <span>Facebook</span>
-                            </a>
-                            <a href="#" class="social-link">
-                                <i class="fab fa-instagram"></i>
-                                <span>Instagram</span>
-                            </a>
-                            <a href="#" class="social-link">
-                                <i class="fab fa-twitter"></i>
-                                <span>Twitter</span>
-                            </a>
-                            <a href="#" class="social-link">
-                                <i class="fab fa-linkedin"></i>
-                                <span>LinkedIn</span>
-                            </a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="contact-form">
-                    <h2>Send Us a Message</h2>
+                    <h2>Send us a Message</h2>
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
+                        
                         <div class="form-group">
                             <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
+                        
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
                             <input type="tel" id="phone" name="phone">
                         </div>
+                        
                         <div class="form-group">
                             <label for="subject">Subject *</label>
                             <select id="subject" name="subject" required>
@@ -134,19 +145,17 @@
                                 <option value="general">General Inquiry</option>
                                 <option value="support">Technical Support</option>
                                 <option value="billing">Billing Question</option>
-                                <option value="partnership">Partnership</option>
                                 <option value="feedback">Feedback</option>
+                                <option value="partnership">Partnership</option>
                             </select>
                         </div>
+                        
                         <div class="form-group">
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
                         </div>
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="newsletter" name="newsletter">
-                            <label for="newsletter">Subscribe to our newsletter for wellness tips and updates</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        
+                        <button type="submit" class="btn-primary">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -160,41 +169,32 @@
             <div class="faq-grid">
                 <div class="faq-item">
                     <h3>How do I get started with AweSome?</h3>
-                    <p>Simply sign up for a free account, set your wellness goals, and start tracking your habits. Our onboarding process will guide you through everything you need to know.</p>
+                    <p>Simply sign up for a free account and complete our wellness assessment. We'll create a personalized plan just for you!</p>
                 </div>
+                
                 <div class="faq-item">
-                    <h3>Is AweSome free to use?</h3>
-                    <p>We offer both free and premium plans. The free plan includes basic habit tracking and access to our workout library. Premium plans include advanced analytics and personalized coaching.</p>
+                    <h3>Is AweSome suitable for beginners?</h3>
+                    <p>Our platform is designed for all fitness levels, from complete beginners to advanced athletes.</p>
                 </div>
+                
                 <div class="faq-item">
-                    <h3>Can I sync AweSome with other fitness apps?</h3>
-                    <p>Yes! AweSome integrates with popular fitness trackers and health apps to provide a comprehensive view of your wellness journey.</p>
+                    <h3>Can I track my progress?</h3>
+                    <p>Yes! Our comprehensive tracking system monitors your workouts, habits, and overall wellness journey.</p>
                 </div>
+                
                 <div class="faq-item">
-                    <h3>How do I reset my password?</h3>
-                    <p>Click on "Forgot Password" on the login page, enter your email address, and we'll send you instructions to reset your password.</p>
+                    <h3>Is there a mobile app?</h3>
+                    <p>Our mobile app is coming soon! For now, our website is fully responsive and works great on all devices.</p>
                 </div>
+                
                 <div class="faq-item">
-                    <h3>Do you offer customer support?</h3>
-                    <p>Our support team is available Monday through Friday to help with any questions or issues you may have.</p>
+                    <h3>How much does AweSome cost?</h3>
+                    <p>We offer both free and premium plans. Start with our free plan and upgrade when you're ready for more features.</p>
                 </div>
+                
                 <div class="faq-item">
                     <h3>Can I cancel my subscription anytime?</h3>
-                    <p>Yes, you can cancel your premium subscription at any time. Your account will remain active until the end of your current billing period.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Start Your Wellness Journey?</h2>
-                <p>Join thousands of others who have transformed their lives with AweSome.</p>
-                <div class="cta-buttons">
-                    <a href="login.html" class="btn btn-secondary">Get Started</a>
-                    <a href="about.html" class="btn btn-outline-white">Learn More</a>
+                    <p>Yes, you can cancel your subscription at any time. No long-term commitments or cancellation fees.</p>
                 </div>
             </div>
         </div>
@@ -206,20 +206,21 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>AweSome</h3>
-                    <p>Your partner in wellness and habit tracking since 2025.</p>
+                    <p>Your wellness journey starts here. Transform your life with personalized guidance and community support.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
                         <li><a href="workouts.html">Workouts</a></li>
                         <li><a href="wellness.html">Wellness</a></li>
                         <li><a href="tracking.html">Tracking</a></li>
+                        <li><a href="community.html">Community</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -232,12 +233,12 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <address>
-                        <p>Block 8, Gaborone</p>
-                        <p>Phone: +267 76819115</p>
-                        <p>Email: dferdrick10@gmail.com</p>
-                    </address>
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +267 76819115</p>
+                        <p><i class="fas fa-envelope"></i> dferdrick10@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Block 8, Gaborone</p>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
