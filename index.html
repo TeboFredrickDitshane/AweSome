@@ -3,194 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - AweSome</title>
-    <meta name="description" content="Get in touch with the AweSome team. We're here to help you on your wellness journey.">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>AweSome - Your Fitness & Wellness Companion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <div class="logo">
-                <a href="index.html">
-                    <h1>Awe<span>Some</span></h1>
-                </a>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="workouts.html">Workouts</a></li>
-                    <li><a href="wellness.html">Wellness</a></li>
-                    <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+            <a class="navbar-brand" href="index.html">AweSome</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wellness.html">Wellness</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
                 </ul>
-                <div class="auth-buttons">
-                    <a href="login.html" class="btn btn-login">Login</a>
-                    <a href="login.html#register" class="btn btn-register">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold text-white">Transform Your Fitness Journey</h1>
+                    <p class="lead text-white">Personalized workout plans, nutrition guides, and wellness advice - anytime, anywhere.</p>
+                    <div class="d-flex gap-3">
+                        <a href="login.html" class="btn btn-primary btn-lg">Get Started</a>
+                        <a href="workouts.html" class="btn btn-outline-light btn-lg">Explore Workouts</a>
+                    </div>
                 </div>
-                <div class="mobile-menu">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                    <div class="line3"></div>
-                </div>
-            </nav>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h2 class="welcome-text">Welcome to <span class="typing">AweSome</span></h2>
-                    <p class="tagline">Your personal companion for a healthier, happier life</p>
-                    <div class="hero-buttons">
-                        <a href="dashboard.html" class="btn btn-primary">Start Tracking</a>
-                        <a href="about.html" class="btn btn-secondary">Learn More</a>
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-dumbbell fa-3x text-primary"></i>
+                        </div>
+                        <h3>Workout Plans</h3>
+                        <p>Customized routines for all fitness levels with video demonstrations.</p>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Wellness+Journey" alt="Person enjoying wellness activities" class="img-responsive">
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-utensils fa-3x text-primary"></i>
+                        </div>
+                        <h3>Nutrition Guides</h3>
+                        <p>Meal plans and recipes tailored to your fitness goals.</p>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="features">
-            <div class="container">
-                <h2>Transform Your Life With Us</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <h3>Track Habits</h3>
-                        <p>Monitor your daily habits and build consistency for lasting change.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-dumbbell"></i>
-                        </div>
-                        <h3>Workout Routines</h3>
-                        <p>Access personalized workout plans tailored to your fitness level.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-brain"></i>
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-heartbeat fa-3x text-primary"></i>
                         </div>
                         <h3>Wellness Advice</h3>
-                        <p>Expert guidance on nutrition, mental health, and balanced living.</p>
+                        <p>Mental health and lifestyle tips for holistic well-being.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="our-story">
-            <div class="container">
-                <div class="story-content">
-                    <h2>Our Story</h2>
-                    <p>Founded in 2025, AweSome began with a simple mission: make wellness accessible to everyone. Our founder, tired of complicated fitness apps and conflicting wellness advice, created a platform that simplifies the journey to better health.</p>
-                    <p>What started as a personal project has grown into a community of like-minded individuals supporting each other's wellness journeys.</p>
-                    <a href="about.html" class="btn btn-tertiary">Read More</a>
-                </div>
-                <div class="story-image">
-                    <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Our+Story" alt="AweSome founder" class="img-responsive">
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonials">
-            <div class="container">
-                <h2>What Our Users Say</h2>
-                <div class="testimonial-slider">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"AweSome has completely transformed my approach to wellness. The habit tracking feature keeps me accountable every day!"</p>
-                            <div class="testimonial-author">
-                                <h4>Sarah M.</h4>
-                                <p>Member since 2025</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"The workout routines are excellent and adaptable to my busy schedule. I've seen real progress in just weeks!"</p>
-                            <div class="testimonial-author">
-                                <h4>David K.</h4>
-                                <p>Member since 2025</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"I appreciate how the wellness advice section breaks down complex topics into actionable steps. It's made healthy living simpler."</p>
-                            <div class="testimonial-author">
-                                <h4>Michelle T.</h4>
-                                <p>Member since 2025</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-controls">
-                    <button id="prev-testimonial" aria-label="Previous testimonial">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="testimonial-indicators"></div>
-                    <button id="next-testimonial" aria-label="Next testimonial">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta">
-            <div class="container">
-                <h2>Ready to Start Your Journey?</h2>
-                <p>Join thousands of users transforming their lives with AweSome</p>
-                <a href="login.html#register" class="btn btn-cta">Sign Up Now</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
+    <!-- Popular Workouts -->
+    <section class="py-5 bg-light">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h2>Awe<span>Some</span></h2>
-                    <p>Your wellness journey starts here</p>
+            <h2 class="text-center mb-5">Popular Workouts</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card workout-card">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" class="card-img-top" alt="HIIT Workout">
+                        <div class="card-body">
+                            <h5 class="card-title">HIIT Burn</h5>
+                            <p class="card-text">30-minute high intensity interval training for maximum fat burn.</p>
+                            <a href="workouts.html" class="btn btn-sm btn-outline-primary">View Workout</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="workouts.html">Workouts</a></li>
-                        <li><a href="wellness.html">Wellness</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                <div class="col-md-4">
+                    <div class="card workout-card">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b" class="card-img-top" alt="Yoga">
+                        <div class="card-body">
+                            <h5 class="card-title">Morning Yoga Flow</h5>
+                            <p class="card-text">Gentle yoga sequence to energize your morning.</p>
+                            <a href="workouts.html" class="btn btn-sm btn-outline-primary">View Workout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card workout-card">
+                        <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c" class="card-img-top" alt="Strength Training">
+                        <div class="card-body">
+                            <h5 class="card-title">Strength Builder</h5>
+                            <p class="card-text">Full-body strength workout using bodyweight or equipment.</p>
+                            <a href="workouts.html" class="btn btn-sm btn-outline-primary">View Workout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="workouts.html" class="btn btn-primary">View All Workouts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Members Say</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="testimonial-card text-center p-4">
+                                    <img src="https://randomuser.me/api/portraits/women/32.jpg" class="rounded-circle mb-3" width="80" alt="User">
+                                    <p class="mb-3">"AweSome has completely transformed my fitness routine. The midnight workouts saved me during finals week!"</p>
+                                    <h5>Sarah J.</h5>
+                                    <div class="stars text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-card text-center p-4">
+                                    <img src="https://randomuser.me/api/portraits/men/45.jpg" class="rounded-circle mb-3" width="80" alt="User">
+                                    <p class="mb-3">"As a beginner, I was intimidated by gyms. The guided workouts made it so easy to start at home."</p>
+                                    <h5>Michael T.</h5>
+                                    <div class="stars text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-card text-center p-4">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle mb-3" width="80" alt="User">
+                                    <p class="mb-3">"The nutrition guides helped me lose 15 pounds while still enjoying my meals. Highly recommend!"</p>
+                                    <h5>Jessica L.</h5>
+                                    <div class="stars text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h3>Join Our Fitness Community</h3>
+                    <p class="mb-0">Get weekly workout tips, nutrition advice, and exclusive offers.</p>
+                </div>
+                <div class="col-lg-6">
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address" required>
+                            <button class="btn btn-dark" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AweSome</h5>
+                    <p>Your 24/7 fitness and wellness companion.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="about.html" class="text-white">About</a></li>
+                        <li><a href="workouts.html" class="text-white">Workouts</a></li>
+                        <li><a href="wellness.html" class="text-white">Wellness</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Block 8, Gaborone</p>
-                    <p><i class="fas fa-phone"></i> +267 76819115</p>
-                    <p><i class="fas fa-envelope"></i> dferdrick10@gmail.com</p>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="dashboard.html" class="text-white">Dashboard</a></li>
+                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                        <li><a href="login.html" class="text-white">Login</a></li>
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                    </ul>
                 </div>
-                <div class="footer-social">
-                    <h3>Follow Us</h3>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
+                <div class="col-md-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Fitness St, Wellness City</li>
+                        <li><i class="fas fa-phone me-2"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@awesomefitness.com</li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AweSome. All rights reserved.</p>
+            <hr class="my-4 bg-secondary">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 AweSome Fitness. All rights reserved.</p>
             </div>
         </div>
     </footer>
-<script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
