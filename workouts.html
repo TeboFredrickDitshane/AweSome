@@ -4,262 +4,261 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workout Routines - AweSome</title>
+    <meta name="description" content="Discover effective workout routines tailored for your fitness level and goals.">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <header>
         <div class="container">
-            <div class="nav-brand">
-                <a href="index.html" class="logo">AweSome</a>
+            <div class="logo">
+                <a href="index.html">
+                    <h1>Awe<span>Some</span></h1>
+                </a>
             </div>
-            <nav class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="workouts.html" class="nav-link active">Workouts</a>
-                <a href="wellness.html" class="nav-link">Wellness</a>
-                <a href="tracking.html" class="nav-link">Tracking</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="workouts.html" class="active">Workouts</a></li>
+                    <li><a href="wellness.html">Wellness</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-login">Login</a>
+                    <a href="login.html#register" class="btn btn-register">Sign Up</a>
+                </div>
+                <div class="mobile-menu">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
             </nav>
-            <div class="nav-actions">
-                <a href="login.html" class="btn btn-login">Login</a>
-                <a href="login.html" class="btn btn-signup">Sign Up</a>
-                <button class="mobile-toggle" id="mobileToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
         </div>
     </header>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div class="container">
-            <h1>Workout Routines</h1>
-            <p>Discover effective workout routines tailored to your fitness level and goals.</p>
-        </div>
-    </section>
+    <main>
+        <section class="page-banner">
+            <div class="container">
+                <h1>Workout Routines</h1>
+                <p>Discover effective workouts designed for every fitness level</p>
+            </div>
+        </section>
 
-    <!-- Workout Categories -->
-    <section class="workouts-section">
-        <div class="container">
-            <div class="section-controls">
-                <h2>Browse Workouts</h2>
-                <div class="workout-tabs">
-                    <button class="tab-btn active" data-tab="all">All</button>
-                    <button class="tab-btn" data-tab="beginner">Beginner</button>
-                    <button class="tab-btn" data-tab="intermediate">Intermediate</button>
-                    <button class="tab-btn" data-tab="advanced">Advanced</button>
+        <section class="workout-filters">
+            <div class="container">
+                <h2>Find Your Perfect Workout</h2>
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <label for="level">Fitness Level</label>
+                        <select id="level" name="level">
+                            <option value="all">All Levels</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="duration">Duration</label>
+                        <select id="duration" name="duration">
+                            <option value="all">Any Duration</option>
+                            <option value="short">Short (< 15 min)</option>
+                            <option value="medium">Medium (15-30 min)</option>
+                            <option value="long">Long (30+ min)</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="type">Workout Type</label>
+                        <select id="type" name="type">
+                            <option value="all">All Types</option>
+                            <option value="strength">Strength</option>
+                            <option value="cardio">Cardio</option>
+                            <option value="flexibility">Flexibility</option>
+                            <option value="hiit">HIIT</option>
+                            <option value="yoga">Yoga</option>
+                        </select>
+                    </div>
+                    <button id="filter-button" class="btn btn-primary">Apply Filters</button>
                 </div>
             </div>
+        </section>
 
-            <div class="workouts-grid" id="workoutsGrid">
-                <!-- Workout Card 1 -->
-                <div class="workout-card" data-level="beginner">
-                    <div class="workout-image">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=200&fit=crop" alt="Full Body Workout" />
+        <section class="workout-routines">
+            <div class="container">
+                <div class="routines-grid">
+                    <div class="routine-card" data-level="beginner" data-duration="short" data-type="cardio">
+                        <div class="routine-image">
+                            <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Quick+Cardio" alt="Person doing cardio exercises">
+                            <div class="routine-badge">Beginner</div>
+                        </div>
+                        <div class="routine-content">
+                            <h3>Quick Morning Cardio</h3>
+                            <p class="routine-meta"><i class="far fa-clock"></i> 10 minutes | <i class="fas fa-fire"></i> 100 calories</p>
+                            <p>A simple but effective cardio routine to start your day with energy and focus.</p>
+                            <button class="btn btn-outline view-routine" data-id="routine1">View Details</button>
+                        </div>
                     </div>
-                    <div class="workout-content">
-                        <div class="workout-header">
-                            <span class="workout-level beginner">Beginner</span>
-                            <span class="workout-duration"><i class="fas fa-clock"></i> 30 min</span>
+                    
+                    <div class="routine-card" data-level="intermediate" data-duration="medium" data-type="strength">
+                        <div class="routine-image">
+                            <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Full+Body+Strength" alt="Person lifting weights">
+                            <div class="routine-badge">Intermediate</div>
                         </div>
-                        <h3>Full Body Workout</h3>
-                        <p>A complete workout targeting all major muscle groups.</p>
-                        <div class="workout-stats">
-                            <span><i class="fas fa-fire"></i> 350 calories</span>
-                            <span><i class="fas fa-chart-bar"></i> Strength & Cardio</span>
+                        <div class="routine-content">
+                            <h3>Full Body Strength Builder</h3>
+                            <p class="routine-meta"><i class="far fa-clock"></i> 25 minutes | <i class="fas fa-fire"></i> 220 calories</p>
+                            <p>Target all major muscle groups with this comprehensive strength workout.</p>
+                            <button class="btn btn-outline view-routine" data-id="routine2">View Details</button>
                         </div>
-                        <button class="btn btn-primary workout-btn">View Workout</button>
                     </div>
-                </div>
-
-                <!-- Workout Card 2 -->
-                <div class="workout-card" data-level="intermediate">
-                    <div class="workout-image">
-                        <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=400&h=200&fit=crop" alt="HIIT Challenge" />
+                    
+                    <div class="routine-card" data-level="beginner" data-duration="medium" data-type="flexibility">
+                        <div class="routine-image">
+                            <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Flexibility+Routine" alt="Person stretching">
+                            <div class="routine-badge">Beginner</div>
+                        </div>
+                        <div class="routine-content">
+                            <h3>Total Body Flexibility</h3>
+                            <p class="routine-meta"><i class="far fa-clock"></i> 20 minutes | <i class="fas fa-fire"></i> 80 calories</p>
+                            <p>Improve your range of motion and prevent injuries with these essential stretches.</p>
+                            <button class="btn btn-outline view-routine" data-id="routine3">View Details</button>
+                        </div>
                     </div>
-                    <div class="workout-content">
-                        <div class="workout-header">
-                            <span class="workout-level intermediate">Intermediate</span>
-                            <span class="workout-duration"><i class="fas fa-clock"></i> 20 min</span>
+                    
+                    <div class="routine-card" data-level="advanced" data-duration="long" data-type="hiit">
+                        <div class="routine-image">
+                            <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=HIIT+Workout" alt="Person doing high-intensity exercise">
+                            <div class="routine-badge">Advanced</div>
                         </div>
-                        <h3>HIIT Challenge</h3>
-                        <p>High-intensity interval training for maximum calorie burn.</p>
-                        <div class="workout-stats">
-                            <span><i class="fas fa-fire"></i> 400 calories</span>
-                            <span><i class="fas fa-chart-bar"></i> Cardio</span>
+                        <div class="routine-content">
+                            <h3>Ultimate HIIT Challenge</h3>
+                            <p class="routine-meta"><i class="far fa-clock"></i> 35 minutes | <i class="fas fa-fire"></i> 400 calories</p>
+                            <p>Push your limits with this high-intensity interval training workout for maximum results.</p>
+                            <button class="btn btn-outline view-routine" data-id="routine4">View Details</button>
                         </div>
-                        <button class="btn btn-primary workout-btn">View Workout</button>
                     </div>
-                </div>
-
-                <!-- Workout Card 3 -->
-                <div class="workout-card" data-level="all">
-                    <div class="workout-image">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=200&fit=crop" alt="Yoga Flow" />
+                    
+                    <div class="routine-card" data-level="intermediate" data-duration="medium" data-type="yoga">
+                        <div class="routine-image">
+                            <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Yoga+Flow" alt="Person in yoga pose">
+                            <div class="routine-badge">Intermediate</div>
+                        </div>
+                        <div class="routine-content">
+                            <h3>Energizing Yoga Flow</h3>
+                            <p class="routine-meta"><i class="far fa-clock"></i> 25 minutes | <i class="fas fa-fire"></i> 150 calories</p>
+                            <p>Find balance between strength and flexibility with this dynamic yoga sequence.</p>
+                            <button class="btn btn-outline view-routine" data-id="routine5">View Details</button>
+                        </div>
                     </div>
-                    <div class="workout-content">
-                        <div class="workout-header">
-                            <span class="workout-level all-levels">All Levels</span>
-                            <span class="workout-duration"><i class="fas fa-clock"></i> 45 min</span>
+                    
+                    <div class="routine-card" data-level="beginner" data-duration="short" data-type="strength">
+                        <div class="routine-image">
+                            <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Core+Workout" alt="Person doing core exercises">
+                            <div class="routine-badge">Beginner</div>
                         </div>
-                        <h3>Yoga Flow</h3>
-                        <p>Gentle yoga flow to improve flexibility and reduce stress.</p>
-                        <div class="workout-stats">
-                            <span><i class="fas fa-fire"></i> 200 calories</span>
-                            <span><i class="fas fa-chart-bar"></i> Flexibility & Balance</span>
+                        <div class="routine-content">
+                            <h3>Core Strength Essentials</h3>
+                            <p class="routine-meta"><i class="far fa-clock"></i> 15 minutes | <i class="fas fa-fire"></i> 120 calories</p>
+                            <p>Build a strong foundation with these essential core-strengthening exercises.</p>
+                            <button class="btn btn-outline view-routine" data-id="routine6">View Details</button>
                         </div>
-                        <button class="btn btn-primary workout-btn">View Workout</button>
-                    </div>
-                </div>
-
-                <!-- Workout Card 4 -->
-                <div class="workout-card" data-level="intermediate">
-                    <div class="workout-image">
-                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=200&fit=crop" alt="Core Strength" />
-                    </div>
-                    <div class="workout-content">
-                        <div class="workout-header">
-                            <span class="workout-level intermediate">Intermediate</span>
-                            <span class="workout-duration"><i class="fas fa-clock"></i> 25 min</span>
-                        </div>
-                        <h3>Core Strength</h3>
-                        <p>Build a strong core with this targeted workout routine.</p>
-                        <div class="workout-stats">
-                            <span><i class="fas fa-fire"></i> 250 calories</span>
-                            <span><i class="fas fa-chart-bar"></i> Strength</span>
-                        </div>
-                        <button class="btn btn-primary workout-btn">View Workout</button>
-                    </div>
-                </div>
-
-                <!-- Workout Card 5 -->
-                <div class="workout-card" data-level="advanced">
-                    <div class="workout-image">
-                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=200&fit=crop" alt="Upper Body Focus" />
-                    </div>
-                    <div class="workout-content">
-                        <div class="workout-header">
-                            <span class="workout-level advanced">Advanced</span>
-                            <span class="workout-duration"><i class="fas fa-clock"></i> 40 min</span>
-                        </div>
-                        <h3>Upper Body Focus</h3>
-                        <p>Build strength in your arms, shoulders, and back.</p>
-                        <div class="workout-stats">
-                            <span><i class="fas fa-fire"></i> 300 calories</span>
-                            <span><i class="fas fa-chart-bar"></i> Strength</span>
-                        </div>
-                        <button class="btn btn-primary workout-btn">View Workout</button>
-                    </div>
-                </div>
-
-                <!-- Workout Card 6 -->
-                <div class="workout-card" data-level="beginner">
-                    <div class="workout-image">
-                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=200&fit=crop" alt="Lower Body Blast" />
-                    </div>
-                    <div class="workout-content">
-                        <div class="workout-header">
-                            <span class="workout-level beginner">Beginner</span>
-                            <span class="workout-duration"><i class="fas fa-clock"></i> 35 min</span>
-                        </div>
-                        <h3>Lower Body Blast</h3>
-                        <p>Strengthen your legs and glutes with this targeted routine.</p>
-                        <div class="workout-stats">
-                            <span><i class="fas fa-fire"></i> 320 calories</span>
-                            <span><i class="fas fa-chart-bar"></i> Strength</span>
-                        </div>
-                        <button class="btn btn-primary workout-btn">View Workout</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Featured Workout -->
-    <section class="featured-workout">
-        <div class="container">
-            <h2>Featured Workout</h2>
-            <div class="featured-content">
-                <div class="featured-image">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop" alt="30-Day Fitness Challenge" />
-                    <div class="featured-overlay">
-                        <span class="featured-badge">New Challenge</span>
-                        <h3>30-Day Fitness Challenge</h3>
-                        <p>Transform your body and mind with our comprehensive 30-day program.</p>
-                        <button class="btn btn-primary">Start Challenge</button>
+        <div id="routine-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div id="routine-details"></div>
+            </div>
+        </div>
+
+        <section class="workout-tips">
+            <div class="container">
+                <div class="tips-content">
+                    <h2>Workout Tips for Success</h2>
+                    <div class="tips-list">
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Stay Hydrated</h3>
+                                <p>Drink water before, during, and after your workout to maintain performance and aid recovery.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-heart-pulse"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Listen to Your Body</h3>
+                                <p>Challenge yourself, but respect your limits. Pain is different from discomfort.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Prioritize Recovery</h3>
+                                <p>Rest days are as important as workout days. Allow your muscles time to repair and grow.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="featured-details">
-                    <h3>What You'll Get</h3>
-                    <ul class="benefits-list">
-                        <li><i class="fas fa-check-circle"></i> 30 days of structured workouts</li>
-                        <li><i class="fas fa-check-circle"></i> Nutrition guidance and meal plans</li>
-                        <li><i class="fas fa-check-circle"></i> Progress tracking tools</li>
-                        <li><i class="fas fa-check-circle"></i> Community support and motivation</li>
-                        <li><i class="fas fa-check-circle"></i> Expert tips and modifications</li>
-                    </ul>
-                    <button class="btn btn-primary">Learn More</button>
+                <div class="tips-image">
+                    <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Workout+Tips" alt="Person hydrating after workout" class="img-responsive">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Start Your Fitness Journey?</h2>
-                <p>Sign up today to access all our workout routines and start tracking your progress.</p>
-                <div class="cta-buttons">
-                    <a href="login.html" class="btn btn-secondary">Sign Up Now</a>
-                    <a href="contact.html" class="btn btn-outline-white">Contact Us</a>
-                </div>
+        <section class="cta">
+            <div class="container">
+                <h2>Get Personalized Workout Plans</h2>
+                <p>Sign up to access personalized routines tailored to your goals and preferences</p>
+                <a href="login.html#register" class="btn btn-cta">Create Account</a>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>AweSome</h3>
-                    <p>Your partner in wellness and habit tracking since 2025.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+                <div class="footer-logo">
+                    <h2>Awe<span>Some</span></h2>
+                    <p>Your wellness journey starts here</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="workouts.html">Workouts</a></li>
                         <li><a href="wellness.html">Wellness</a></li>
-                        <li><a href="tracking.html">Tracking</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <address>
-                        <p>Block 8, Gaborone</p>
-                        <p>Phone: +267 76819115</p>
-                        <p>Email: dferdrick10@gmail.com</p>
-                    </address>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Block 8, Gaborone</p>
+                    <p><i class="fas fa-phone"></i> +267 76819115</p>
+                    <p><i class="fas fa-envelope"></i> dferdrick10@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
