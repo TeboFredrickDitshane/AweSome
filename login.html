@@ -3,251 +3,538 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Sign Up - AweSome</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>Login - AweSome Fitness</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f9fafb;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #1f2937;
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            fill: #3b82f6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        .nav-links a.active {
+            color: #60a5fa;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .login-wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Card Styles */
+        .login-card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .brand-icon {
+            background-color: #2563eb;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .brand-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .card-content {
+            padding: 0 2rem 2rem;
+        }
+
+        /* Social Login Buttons */
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background: white;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .social-btn:hover {
+            background-color: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .social-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Separator */
+        .separator {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #e5e7eb;
+        }
+
+        .separator span {
+            background: white;
+            padding: 0 0.5rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+            position: relative;
+            display: block;
+            text-align: center;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #3b82f6;
+        }
+
+        .checkbox-group label {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .forgot-link {
+            font-size: 0.875rem;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .forgot-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .signup-link a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-link a:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        /* Features Section */
+        .features {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            background-color: #2563eb;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .feature h3 {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature p {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main-container {
+                padding: 2rem 1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading .submit-btn {
+            background-color: #9ca3af;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html" class="logo">AweSome</a>
+        <div class="nav-container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24">
+                    <path d="M17.5 3C19.43 3 21 4.57 21 6.5C21 8.43 19.43 10 17.5 10C16.36 10 15.37 9.45 14.78 8.58L12 11.36L9.22 8.58C8.63 9.45 7.64 10 6.5 10C4.57 10 3 8.43 3 6.5C3 4.57 4.57 3 6.5 3C7.64 3 8.63 3.55 9.22 4.42L12 7.2L14.78 4.42C15.37 3.55 16.36 3 17.5 3M6.5 5C5.67 5 5 5.67 5 6.5C5 7.33 5.67 8 6.5 8C7.33 8 8 7.33 8 6.5C8 5.67 7.33 5 6.5 5M17.5 5C16.67 5 16 5.67 16 6.5C16 7.33 16.67 8 17.5 8C18.33 8 19 7.33 19 6.5C19 5.67 18.33 5 17.5 5M12 13.5L9 16.5L12 19.5L15 16.5L12 13.5Z"/>
+                </svg>
+                <span>AweSome</span>
             </div>
-            <nav class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="workouts.html" class="nav-link">Workouts</a>
-                <a href="wellness.html" class="nav-link">Wellness</a>
-                <a href="tracking.html" class="nav-link">Tracking</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/workouts">Workouts</a></li>
+                    <li><a href="/nutrition">Nutrition</a></li>
+                    <li><a href="/login" class="active">Login</a></li>
+                </ul>
             </nav>
-            <div class="nav-actions">
-                <a href="login.html" class="btn btn-login">Login</a>
-                <a href="login.html" class="btn btn-signup">Sign Up</a>
-                <button class="mobile-toggle" id="mobileToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
         </div>
     </header>
 
-    <!-- Auth Section -->
-    <section class="auth-section">
-        <div class="container">
-            <div class="auth-container">
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="login">Login</button>
-                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="login-wrapper">
+            <div class="login-card">
+                <div class="card-header">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17.5 3C19.43 3 21 4.57 21 6.5C21 8.43 19.43 10 17.5 10C16.36 10 15.37 9.45 14.78 8.58L12 11.36L9.22 8.58C8.63 9.45 7.64 10 6.5 10C4.57 10 3 8.43 3 6.5C3 4.57 4.57 3 6.5 3C7.64 3 8.63 3.55 9.22 4.42L12 7.2L14.78 4.42C15.37 3.55 16.36 3 17.5 3M6.5 5C5.67 5 5 5.67 5 6.5C5 7.33 5.67 8 6.5 8C7.33 8 8 7.33 8 6.5C8 5.67 7.33 5 6.5 5M17.5 5C16.67 5 16 5.67 16 6.5C16 7.33 16.67 8 17.5 8C18.33 8 19 7.33 19 6.5C19 5.67 18.33 5 17.5 5M12 13.5L9 16.5L12 19.5L15 16.5L12 13.5Z"/>
+                        </svg>
+                    </div>
+                    <h1 class="card-title">Welcome Back</h1>
+                    <p class="card-description">Sign in to continue your fitness journey</p>
                 </div>
 
-                <!-- Login Form -->
-                <div class="auth-form active" id="loginForm">
-                    <h2>Welcome Back!</h2>
-                    <p>Sign in to continue your wellness journey</p>
-                    
-                    <form>
-                        <div class="form-group">
-                            <label for="loginEmail">Email Address</label>
-                            <input type="email" id="loginEmail" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="loginPassword">Password</label>
-                            <input type="password" id="loginPassword" name="password" required>
-                        </div>
-                        <div class="form-options">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="remember">
-                                <span class="checkmark"></span>
-                                Remember me
-                            </label>
-                            <a href="#" class="forgot-password">Forgot Password?</a>
-                        </div>
-                        <button type="submit" class="btn btn-primary auth-btn">Login</button>
-                    </form>
-
-                    <div class="auth-divider">
-                        <span>or continue with</span>
-                    </div>
-
-                    <div class="social-auth">
-                        <button class="btn btn-social google">
-                            <i class="fab fa-google"></i>
-                            Google
+                <div class="card-content">
+                    <!-- Social Login -->
+                    <div class="social-buttons">
+                        <button class="social-btn" onclick="handleSocialLogin('google')">
+                            <svg viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                            Continue with Google
                         </button>
-                        <button class="btn btn-social facebook">
-                            <i class="fab fa-facebook"></i>
-                            Facebook
+                        <button class="social-btn" onclick="handleSocialLogin('apple')">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+                            </svg>
+                            Continue with Apple
                         </button>
                     </div>
-                </div>
 
-                <!-- Sign Up Form -->
-                <div class="auth-form" id="signupForm">
-                    <h2>Join AweSome!</h2>
-                    <p>Create your account and start your wellness journey today</p>
-                    
-                    <form>
+                    <div class="separator">
+                        <span>or</span>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" class="form-input" required>
+                        </div>
+
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" id="firstName" name="firstName" required>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">Remember me</label>
                             </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" required>
-                            </div>
+                            <a href="/forgot-password" class="forgot-link">Forgot password?</a>
                         </div>
-                        <div class="form-group">
-                            <label for="signupEmail">Email Address</label>
-                            <input type="email" id="signupEmail" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="signupPassword">Password</label>
-                            <input type="password" id="signupPassword" name="password" required>
-                            <small class="password-hint">Must be at least 8 characters long</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" id="confirmPassword" name="confirmPassword" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="goals">Primary Wellness Goal</label>
-                            <select id="goals" name="goals" required>
-                                <option value="">Select your main goal</option>
-                                <option value="weight-loss">Weight Loss</option>
-                                <option value="muscle-gain">Muscle Gain</option>
-                                <option value="general-fitness">General Fitness</option>
-                                <option value="stress-reduction">Stress Reduction</option>
-                                <option value="better-sleep">Better Sleep</option>
-                                <option value="nutrition">Improved Nutrition</option>
-                            </select>
-                        </div>
-                        <div class="form-options">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="terms" required>
-                                <span class="checkmark"></span>
-                                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                            </label>
-                        </div>
-                        <div class="form-options">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="newsletter">
-                                <span class="checkmark"></span>
-                                Subscribe to our newsletter for wellness tips
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-secondary auth-btn">Create Account</button>
+
+                        <button type="submit" class="submit-btn">Sign In</button>
                     </form>
 
-                    <div class="auth-divider">
-                        <span>or sign up with</span>
-                    </div>
-
-                    <div class="social-auth">
-                        <button class="btn btn-social google">
-                            <i class="fab fa-google"></i>
-                            Google
-                        </button>
-                        <button class="btn btn-social facebook">
-                            <i class="fab fa-facebook"></i>
-                            Facebook
-                        </button>
+                    <div class="signup-link">
+                        Don't have an account? <a href="/signup">Sign up for free</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Benefits Sidebar -->
-            <div class="auth-benefits">
-                <h3>Why Choose AweSome?</h3>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
+            <!-- Features Section -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17.5 3C19.43 3 21 4.57 21 6.5C21 8.43 19.43 10 17.5 10C16.36 10 15.37 9.45 14.78 8.58L12 11.36L9.22 8.58C8.63 9.45 7.64 10 6.5 10C4.57 10 3 8.43 3 6.5C3 4.57 4.57 3 6.5 3C7.64 3 8.63 3.55 9.22 4.42L12 7.2L14.78 4.42C15.37 3.55 16.36 3 17.5 3M6.5 5C5.67 5 5 5.67 5 6.5C5 7.33 5.67 8 6.5 8C7.33 8 8 7.33 8 6.5C8 5.67 7.33 5 6.5 5M17.5 5C16.67 5 16 5.67 16 6.5C16 7.33 16.67 8 17.5 8C18.33 8 19 7.33 19 6.5C19 5.67 18.33 5 17.5 5M12 13.5L9 16.5L12 19.5L15 16.5L12 13.5Z"/>
+                        </svg>
                     </div>
-                    <div class="benefit-text">
-                        <h4>Track Your Progress</h4>
-                        <p>Monitor your habits and see your improvement over time</p>
-                    </div>
+                    <h3>Workout Plans</h3>
+                    <p>Customized routines for all fitness levels</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
+
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                        </svg>
                     </div>
-                    <div class="benefit-text">
-                        <h4>Join Our Community</h4>
-                        <p>Connect with like-minded individuals on their wellness journey</p>
-                    </div>
+                    <h3>Nutrition Guides</h3>
+                    <p>Meal plans tailored to your goals</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-dumbbell"></i>
+
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"/>
+                        </svg>
                     </div>
-                    <div class="benefit-text">
-                        <h4>Expert Workouts</h4>
-                        <p>Access professionally designed workout routines</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="benefit-text">
-                        <h4>Wellness Guidance</h4>
-                        <p>Get expert advice on nutrition, sleep, and mental health</p>
-                    </div>
+                    <h3>Wellness Advice</h3>
+                    <p>Mental health and lifestyle tips</p>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>AweSome</h3>
-                    <p>Your partner in wellness and habit tracking since 2025.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="workouts.html">Workouts</a></li>
-                        <li><a href="wellness.html">Wellness</a></li>
-                        <li><a href="tracking.html">Tracking</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <address>
-                        <p>Block 8, Gaborone</p>
-                        <p>Phone: +267 76819115</p>
-                        <p>Email: dferdrick10@gmail.com</p>
-                    </address>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AweSome. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <script>
+        // Form validation and submission
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
 
-    <script src="script.js"></script>
+            // Add loading state
+            form.classList.add('loading');
+
+            // Simulate API call
+            setTimeout(() => {
+                // Remove loading state
+                form.classList.remove('loading');
+                
+                // Here you would typically make an API call to your authentication service
+                console.log('Login attempt:', { email, password, remember });
+                
+                // For demo purposes, show success message
+                alert('Login functionality would be implemented here!');
+                
+                // Redirect to dashboard or home page
+                // window.location.href = '/dashboard';
+            }, 1500);
+        }
+
+        // Social login handlers
+        function handleSocialLogin(provider) {
+            console.log(`${provider} login clicked`);
+            // Here you would integrate with OAuth providers
+            alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login would be implemented here!`);
+        }
+
+        // Form validation
+        document.getElementById('email').addEventListener('input', function(e) {
+            const email = e.target.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (email && !emailRegex.test(email)) {
+                e.target.style.borderColor = '#ef4444';
+            } else {
+                e.target.style.borderColor = '#d1d5db';
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            
+            if (password && password.length < 6) {
+                e.target.style.borderColor = '#ef4444';
+            } else {
+                e.target.style.borderColor = '#d1d5db';
+            }
+        });
+
+        // Mobile menu toggle (if you want to add mobile navigation)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
 </body>
 </html>
