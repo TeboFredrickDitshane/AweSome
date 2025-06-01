@@ -12,7 +12,7 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #000000;
   background-color: #fff;
 }
 
@@ -57,7 +57,7 @@ body {
 
 .nav-link {
   text-decoration: none;
-  color: #333;
+  color: #000000;
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
@@ -125,7 +125,7 @@ body {
 .bar {
   width: 25px;
   height: 3px;
-  background: #333;
+  background: #000000;
   margin: 3px 0;
   transition: 0.3s;
 }
@@ -193,7 +193,7 @@ body {
 
 .btn-primary {
   background: white;
-  color: #1e3a8a;
+  color: #000000;
   border: none;
   padding: 1rem 2rem;
   border-radius: 50px;
@@ -222,7 +222,7 @@ body {
 
 .btn-secondary:hover {
   background: white;
-  color: #1e3a8a;
+  color: #000000;
   transform: translateY(-3px);
 }
 
@@ -328,7 +328,7 @@ body {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 3rem;
 }
 
@@ -371,8 +371,12 @@ body {
 .feature-card h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: #000000;
 }
 
 /* Story Section */
@@ -391,8 +395,12 @@ body {
 .story h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 2rem;
+}
+
+.story p {
+  color: #000000;
 }
 
 .story-intro {
@@ -412,7 +420,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #1e3a8a;
+  color: #000000;
   font-weight: 600;
 }
 
@@ -478,7 +486,7 @@ body {
 
 .filter-btn {
   background: white;
-  color: #1e3a8a;
+  color: #000000;
   border: 2px solid #1e3a8a;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
@@ -529,8 +537,12 @@ body {
 .workout-content h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.workout-content p {
+  color: #000000;
 }
 
 .workout-details {
@@ -544,7 +556,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #666;
+  color: #000000;
   font-size: 0.9rem;
 }
 
@@ -568,7 +580,7 @@ body {
 
 .tab-btn {
   background: white;
-  color: #1e3a8a;
+  color: #000000;
   border: 2px solid #1e3a8a;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
@@ -641,8 +653,12 @@ body {
 .wellness-card h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.wellness-card p {
+  color: #000000;
 }
 
 .wellness-card ul {
@@ -652,7 +668,7 @@ body {
 
 .wellness-card li {
   padding: 0.5rem 0;
-  color: #666;
+  color: #000000;
   position: relative;
   padding-left: 1.5rem;
 }
@@ -708,8 +724,12 @@ body {
 .stat-info h3 {
   font-size: 2rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 0.5rem;
+}
+
+.stat-info p {
+  color: #000000;
 }
 
 /* Habit Tracker */
@@ -728,7 +748,7 @@ body {
 .tracker-header h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
 }
 
 .habits-list {
@@ -774,12 +794,12 @@ body {
 .habit-details h3 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 0.5rem;
 }
 
 .habit-details p {
-  color: #666;
+  color: #000000;
   font-size: 0.9rem;
 }
 
@@ -791,7 +811,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1e3a8a;
+  color: #000000;
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -863,7 +883,7 @@ body {
 .chart-card h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -904,6 +924,7 @@ body {
   justify-content: center;
   font-weight: 600;
   font-size: 0.9rem;
+  color: #000000;
 }
 
 .calendar-day.completed {
@@ -957,12 +978,16 @@ body {
 .goal-header h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
 }
 
 .goal-deadline {
-  color: #666;
+  color: #000000;
   font-size: 0.9rem;
+}
+
+.goal-card p {
+  color: #000000;
 }
 
 .goal-progress {
@@ -1020,8 +1045,12 @@ body {
 .stat-item h3 {
   font-size: 2rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+  color: #000000;
 }
 
 .community-feed {
@@ -1039,7 +1068,7 @@ body {
 .feed-header h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
 }
 
 .feed-content {
@@ -1082,18 +1111,19 @@ body {
 
 .user-info h4 {
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 0.25rem;
 }
 
 .user-info span {
-  color: #666;
+  color: #000000;
   font-size: 0.9rem;
 }
 
 .post-content p {
   margin-bottom: 1rem;
   line-height: 1.6;
+  color: #000000;
 }
 
 .post-image {
@@ -1127,7 +1157,7 @@ body {
 .action-btn {
   background: none;
   border: none;
-  color: #666;
+  color: #000000;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1183,8 +1213,12 @@ body {
 .group-card h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.group-card p {
+  color: #000000;
 }
 
 .group-stats {
@@ -1192,7 +1226,7 @@ body {
   justify-content: space-between;
   margin: 1rem 0;
   font-size: 0.9rem;
-  color: #666;
+  color: #000000;
 }
 
 .group-stats span {
@@ -1242,8 +1276,12 @@ body {
 .story-content h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.story-content p {
+  color: #000000;
 }
 
 .story-author {
@@ -1268,8 +1306,12 @@ body {
 .mission h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 2rem;
+}
+
+.mission p {
+  color: #000000;
 }
 
 .mission-values {
@@ -1293,8 +1335,12 @@ body {
 .value-item h3 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 0.5rem;
+}
+
+.value-item p {
+  color: #000000;
 }
 
 .team {
@@ -1338,8 +1384,12 @@ body {
 .team-member h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 0.5rem;
+}
+
+.team-member p {
+  color: #000000;
 }
 
 .member-role {
@@ -1401,13 +1451,13 @@ body {
 .stat-number {
   font-size: 3rem;
   font-weight: 800;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 0.5rem;
   display: block;
 }
 
 .stat-label {
-  color: #666;
+  color: #000000;
   font-weight: 500;
 }
 
@@ -1482,8 +1532,12 @@ body {
 .timeline-content h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.timeline-content p {
+  color: #000000;
 }
 
 /* Contact Page */
@@ -1501,8 +1555,12 @@ body {
 .contact-info h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 2rem;
+}
+
+.contact-info p {
+  color: #000000;
 }
 
 .contact-details {
@@ -1531,19 +1589,19 @@ body {
 .contact-text h3 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 0.5rem;
 }
 
 .contact-text p {
-  color: #666;
+  color: #000000;
   margin: 0;
 }
 
 .social-contact h3 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
 }
 
@@ -1557,7 +1615,7 @@ body {
 .contact-form h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 2rem;
 }
 
@@ -1568,7 +1626,7 @@ body {
 .form-group label {
   display: block;
   font-weight: 600;
-  color: #333;
+  color: #000000;
   margin-bottom: 0.5rem;
 }
 
@@ -1581,6 +1639,7 @@ body {
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  color: #000000;
 }
 
 .form-group input:focus,
@@ -1623,8 +1682,12 @@ body {
 .faq-item h3 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.faq-item p {
+  color: #000000;
 }
 
 /* Workout Tips */
@@ -1662,8 +1725,12 @@ body {
 .tip-card h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.tip-card p {
+  color: #000000;
 }
 
 /* Footer */
@@ -2076,13 +2143,13 @@ body {
 
   .hero {
     background: none;
-    color: #333;
+    color: #000000;
     padding: 2rem 0;
   }
 
   .page-header {
     background: none;
-    color: #333;
+    color: #000000;
     padding: 2rem 0;
   }
 }
