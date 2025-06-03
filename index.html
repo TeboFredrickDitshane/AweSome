@@ -14,8 +14,106 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Enhanced animations and effects */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-content {
+            animation: slideInLeft 1s ease-out;
+        }
+        
+        .hero-widget {
+            animation: slideInRight 1s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(var(--bs-primary-rgb), 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
+            }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 300px;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
 </head>
 <body>
+    <!-- Notification Toast -->
+    <div id="notification" class="notification">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            <span id="notificationMessage">Welcome to AweSome!</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
@@ -49,7 +147,10 @@
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary ms-2" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                        <a class="btn btn-outline-light me-2" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary btn-pulse" href="signup.html">Sign Up Free</a>
                     </li>
                 </ul>
             </div>
@@ -88,12 +189,19 @@
                             </div>
                         </div>
                         <div class="hero-buttons">
-                            <a href="#workouts" class="btn btn-primary btn-lg me-3">
+                            <a href="signup.html" class="btn btn-primary btn-lg me-3">
                                 <i class="fas fa-play me-2"></i>Start Free Trial
                             </a>
                             <a href="#services" class="btn btn-outline-light btn-lg">
                                 <i class="fas fa-video me-2"></i>Watch Demo
                             </a>
+                        </div>
+                        <div class="mt-4">
+                            <small class="text-light">
+                                <i class="fas fa-check text-success me-2"></i>No credit card required
+                                <i class="fas fa-check text-success me-2 ms-3"></i>Cancel anytime
+                                <i class="fas fa-check text-success me-2 ms-3"></i>24/7 support
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -125,7 +233,7 @@
                                         <div class="progress-bar bg-success" style="width: 80%"></div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary w-100">View Dashboard</button>
+                                <a href="dashboard.html" class="btn btn-primary w-100">View Dashboard</a>
                             </div>
                         </div>
                     </div>
@@ -138,7 +246,7 @@
     <section id="features" class="py-5 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
                     <span class="badge bg-primary mb-3">Why Choose AweSome</span>
                     <h2 class="display-5 fw-bold mb-4">Everything You Need to Succeed</h2>
                     <p class="lead text-muted">
@@ -148,7 +256,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="feature-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="feature-icon mb-3">
@@ -162,7 +270,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="feature-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="feature-icon mb-3">
@@ -176,7 +284,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="feature-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="feature-icon mb-3">
@@ -189,7 +297,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="feature-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="feature-icon mb-3">
@@ -203,7 +311,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="feature-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="feature-icon mb-3">
@@ -217,7 +325,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="feature-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="feature-icon mb-3">
@@ -239,7 +347,7 @@
     <section id="workouts" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
                     <span class="badge bg-primary mb-3">Popular Workouts</span>
                     <h2 class="display-5 fw-bold mb-4">Start with These Fan-Favorites</h2>
                     <p class="lead text-muted">
@@ -251,7 +359,7 @@
             <!-- Workout Filters -->
             <div class="row mb-4">
                 <div class="col-12">
-                    <div class="workout-filters text-center">
+                    <div class="workout-filters text-center fade-in">
                         <button class="btn btn-outline-primary active me-2 mb-2" data-filter="all">All Workouts</button>
                         <button class="btn btn-outline-primary me-2 mb-2" data-filter="beginner">Beginner</button>
                         <button class="btn btn-outline-primary me-2 mb-2" data-filter="intermediate">Intermediate</button>
@@ -265,6 +373,12 @@
             <div class="row g-4" id="workoutGrid">
                 <!-- Workout cards will be populated by JavaScript -->
             </div>
+            
+            <div class="text-center mt-5 fade-in">
+                <a href="signup.html" class="btn btn-primary btn-lg">
+                    <i class="fas fa-plus me-2"></i>Access All Workouts
+                </a>
+            </div>
         </div>
     </section>
 
@@ -272,7 +386,7 @@
     <section id="nutrition" class="py-5 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
                     <span class="badge bg-success mb-3">Nutrition Guidance</span>
                     <h2 class="display-5 fw-bold mb-4">Fuel Your Success</h2>
                     <p class="lead text-muted">
@@ -281,7 +395,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="nutrition-card card h-100 border-0 shadow-sm">
                         <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=250&fit=crop" class="card-img-top" alt="Meal Planning">
                         <div class="card-body">
@@ -291,11 +405,11 @@
                                 Quick, budget-friendly meals perfect for busy student life. 
                                 Prep once, eat all week!
                             </p>
-                            <a href="#" class="btn btn-outline-success">View Recipes</a>
+                            <a href="signup.html" class="btn btn-outline-success">View Recipes</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="nutrition-card card h-100 border-0 shadow-sm">
                         <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop" class="card-img-top" alt="Healthy Smoothies">
                         <div class="card-body">
@@ -304,11 +418,11 @@
                             <p class="card-text text-muted">
                                 Perfect pre or post-workout nutrition that takes less than 5 minutes to prepare.
                             </p>
-                            <a href="#" class="btn btn-outline-success">Get Recipes</a>
+                            <a href="signup.html" class="btn btn-outline-success">Get Recipes</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="nutrition-card card h-100 border-0 shadow-sm">
                         <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=250&fit=crop" class="card-img-top" alt="Healthy Snacks">
                         <div class="card-body">
@@ -317,7 +431,7 @@
                             <p class="card-text text-muted">
                                 Brain-boosting snacks to keep you energized during those late-night study sessions.
                             </p>
-                            <a href="#" class="btn btn-outline-success">Discover More</a>
+                            <a href="signup.html" class="btn btn-outline-success">Discover More</a>
                         </div>
                     </div>
                 </div>
@@ -329,7 +443,7 @@
     <section id="wellness" class="py-5">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6 fade-in">
                     <span class="badge bg-info mb-3">Mental Wellness</span>
                     <h2 class="display-5 fw-bold mb-4">Your Mind Matters Too</h2>
                     <p class="lead text-muted mb-4">
@@ -365,9 +479,9 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-info btn-lg">Explore Wellness</a>
+                    <a href="signup.html" class="btn btn-info btn-lg">Explore Wellness</a>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 fade-in">
                     <div class="wellness-image">
                         <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop" 
                              class="img-fluid rounded shadow" alt="Wellness and Meditation">
@@ -381,7 +495,7 @@
     <section id="blog" class="py-5 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
                     <span class="badge bg-warning mb-3">Latest Articles</span>
                     <h2 class="display-5 fw-bold mb-4">Expert Advice & Tips</h2>
                     <p class="lead text-muted">
@@ -392,8 +506,8 @@
             <div class="row g-4" id="blogGrid">
                 <!-- Blog posts will be populated by JavaScript -->
             </div>
-            <div class="text-center mt-5">
-                <a href="#" class="btn btn-outline-warning btn-lg">View All Articles</a>
+            <div class="text-center mt-5 fade-in">
+                <a href="signup.html" class="btn btn-outline-warning btn-lg">View All Articles</a>
             </div>
         </div>
     </section>
@@ -402,7 +516,7 @@
     <section id="services" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
                     <span class="badge bg-purple mb-3">Our Services</span>
                     <h2 class="display-5 fw-bold mb-4">Personalized Coaching</h2>
                     <p class="lead text-muted">
@@ -411,7 +525,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="service-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="service-icon mb-3">
@@ -425,11 +539,11 @@
                                 <span class="h4 fw-bold text-purple">$29</span>
                                 <span class="text-muted">/session</span>
                             </div>
-                            <a href="#" class="btn btn-purple w-100">Book Session</a>
+                            <a href="signup.html" class="btn btn-purple w-100">Book Session</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="service-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="service-icon mb-3">
@@ -443,11 +557,11 @@
                                 <span class="h4 fw-bold text-purple">$39</span>
                                 <span class="text-muted">/consultation</span>
                             </div>
-                            <a href="#" class="btn btn-purple w-100">Get Started</a>
+                            <a href="signup.html" class="btn btn-purple w-100">Get Started</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="service-card card h-100 border-0 shadow-sm">
                         <div class="card-body text-center p-4">
                             <div class="service-icon mb-3">
@@ -461,7 +575,7 @@
                                 <span class="h4 fw-bold text-purple">$15</span>
                                 <span class="text-muted">/class</span>
                             </div>
-                            <a href="#" class="btn btn-purple w-100">Join Class</a>
+                            <a href="signup.html" class="btn btn-purple w-100">Join Class</a>
                         </div>
                     </div>
                 </div>
@@ -473,7 +587,7 @@
     <section id="testimonials" class="py-5 bg-dark text-white">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
                     <span class="badge bg-primary mb-3">Success Stories</span>
                     <h2 class="display-5 fw-bold mb-4">What Our Users Say</h2>
                     <p class="lead text-light">
@@ -482,7 +596,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="testimonial-card card bg-transparent border-light h-100">
                         <div class="card-body text-center">
                             <div class="testimonial-avatar mb-3">
@@ -505,7 +619,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="testimonial-card card bg-transparent border-light h-100">
                         <div class="card-body text-center">
                             <div class="testimonial-avatar mb-3">
@@ -528,7 +642,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 fade-in">
                     <div class="testimonial-card card bg-transparent border-light h-100">
                         <div class="card-body text-center">
                             <div class="testimonial-avatar mb-3">
@@ -559,14 +673,14 @@
     <section id="newsletter" class="py-5 bg-primary text-white">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6 fade-in">
                     <h3 class="fw-bold mb-3">Stay Motivated with Weekly Tips</h3>
                     <p class="mb-0">
                         Get exclusive workout routines, study-friendly nutrition tips, and wellness advice 
                         delivered to your inbox every week.
                     </p>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 fade-in">
                     <form id="newsletterForm" class="d-flex gap-2">
                         <input type="email" class="form-control" placeholder="Enter your email" required>
                         <button type="submit" class="btn btn-light text-primary fw-bold">Subscribe</button>
@@ -583,7 +697,7 @@
     <section id="contact" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
                     <span class="badge bg-success mb-3">Get in Touch</span>
                     <h2 class="display-5 fw-bold mb-4">Contact Us</h2>
                     <p class="lead text-muted">
@@ -592,7 +706,7 @@
                 </div>
             </div>
             <div class="row g-5">
-                <div class="col-lg-6">
+                <div class="col-lg-6 fade-in">
                     <div class="contact-info">
                         <div class="contact-item d-flex align-items-center mb-4">
                             <div class="contact-icon me-3">
@@ -632,7 +746,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 fade-in">
                     <form id="contactForm" class="contact-form">
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -707,10 +821,19 @@
                 <div class="col-lg-2 col-md-6">
                     <h6 class="fw-bold mb-3">Services</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Personal Training</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Nutrition Coaching</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Group Classes</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Wellness Programs</a></li>
+                        <li><a href="signup.html" class="text-light text-decoration-none">Personal Training</a></li>
+                        <li><a href="signup.html" class="text-light text-decoration-none">Nutrition Coaching</a></li>
+                        <li><a href="signup.html" class="text-light text-decoration-none">Group Classes</a></li>
+                        <li><a href="signup.html" class="text-light text-decoration-none">Wellness Programs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Account</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="login.html" class="text-light text-decoration-none">Login</a></li>
+                        <li><a href="signup.html" class="text-light text-decoration-none">Sign Up</a></li>
+                        <li><a href="dashboard.html" class="text-light text-decoration-none">Dashboard</a></li>
+                        <li><a href="forgot-password.html" class="text-light text-decoration-none">Reset Password</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6">
@@ -720,15 +843,6 @@
                         <li><a href="#contact" class="text-light text-decoration-none">Contact Us</a></li>
                         <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
                         <li><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="fw-bold mb-3">Resources</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Student Discounts</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Mobile App</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">API Documentation</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Community Forum</a></li>
                     </ul>
                 </div>
             </div>
@@ -744,41 +858,73 @@
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Login to AweSome</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginEmail" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="loginPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginPassword" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember me</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                    </form>
-                    <div class="text-center mt-3">
-                        <p class="mb-0">Don't have an account? <a href="#" class="text-primary">Sign up here</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
+    
+    <script>
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Show welcome notification
+        setTimeout(() => {
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }, 1000);
+
+        // Enhanced form submissions with feedback
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Show success notification
+            showNotification('Thanks for subscribing! Check your email for confirmation.', 'success');
+            this.reset();
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success notification
+            showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+            this.reset();
+        });
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const messageEl = document.getElementById('notificationMessage');
+            const alertEl = notification.querySelector('.alert');
+            
+            messageEl.textContent = message;
+            alertEl.className = `alert alert-${type} alert-dismissible fade show`;
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
