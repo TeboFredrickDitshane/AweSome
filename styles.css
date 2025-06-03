@@ -608,3 +608,292 @@ footer {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Page-specific styles */
+.page-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 4rem 0 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0;
+}
+
+/* Workouts page specific */
+.workout-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+}
+
+.workout-stats {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.workout-stat {
+  text-align: center;
+  color: white;
+}
+
+.workout-stat h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* Nutrition page specific */
+.nutrition-hero {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+}
+
+.recipe-card {
+  transition: var(--transition);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-lg);
+}
+
+.recipe-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+}
+
+.meal-planning-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Wellness page specific */
+.wellness-hero {
+  background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+}
+
+.stress-checker {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.breathing-exercise {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.breathing-circle {
+  width: 200px;
+  height: 200px;
+  border: 4px solid var(--primary-color);
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 4s ease-in-out;
+}
+
+.breathing-circle.inhale {
+  transform: scale(1.3);
+}
+
+.breathing-circle.exhale {
+  transform: scale(1);
+}
+
+/* Blog page specific */
+.blog-hero {
+  background: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+}
+
+.search-bar {
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+.featured-article {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Enhanced navigation for multi-page */
+.navbar-nav .nav-link.active {
+  color: var(--primary-color) !important;
+  font-weight: 600;
+}
+
+.navbar-nav .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+/* Filter buttons enhancement */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.filter-buttons .btn {
+  border-radius: 25px;
+  font-weight: 500;
+  transition: var(--transition);
+  min-width: 100px;
+}
+
+/* Enhanced cards */
+.enhanced-card {
+  transition: var(--transition);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.enhanced-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--box-shadow-lg);
+}
+
+.enhanced-card .card-img-top {
+  height: 250px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.enhanced-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+/* Progress indicators */
+.progress-ring {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.progress-ring circle {
+  fill: transparent;
+  stroke: var(--primary-color);
+  stroke-width: 8;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+
+/* Interactive elements */
+.interactive-element {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.interactive-element:hover {
+  transform: scale(1.02);
+}
+
+/* Page transitions */
+.page-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.page-transition.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile enhancements */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .filter-buttons {
+    justify-content: flex-start;
+  }
+
+  .breathing-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .workout-stats .row > div {
+    margin-bottom: 1rem;
+  }
+}
