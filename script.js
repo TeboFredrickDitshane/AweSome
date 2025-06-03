@@ -1,120 +1,449 @@
-/**
- * AweSome Wellness Platform - Enhanced JavaScript
- * Comprehensive functionality for wellness platform
- */
+// AweSome Fitness Website JavaScript
 
-// Global variables and state
-let typingInterval
-const currentTypingSpeed = 80
-const isTypingAnimationRunning = false
-const currentStoryIndex = 0
-let storyInterval
-
-// Application state
-const AppState = {
-  currentSection: "home",
-  isMenuOpen: false,
-  activeFilters: {
-    programs: "all",
-    nutrition: "meal-plans",
-  },
-  user: {
-    preferences: {},
-    progress: {},
-  },
-}
-
-// Declare gtag variable
-const gtag =
-  window.gtag ||
-  (() => {
-    window.gtag = window.gtag || []
-    window.gtag.push(arguments)
-  })
-
-// DOM Content Loaded Event Listener
+// Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  initializeApp()
+  // Initialize all components
+  initNavigation()
+  initHeroAnimations()
+  initWorkoutFilters()
+  initBlogSection()
+  initForms()
+  initScrollAnimations()
+  initCounters()
+  initMobileOptimizations()
 })
 
-/**
- * Initialize the application
- */
-function initializeApp() {
-  initMobileMenu()
-  initTypingAnimation()
-  initScrollAnimations()
-  initWorkoutFilters()
-  initWellnessTabs()
-  initHabitTracker()
-  initContactForm()
-  initProgressCircles()
-  initSmoothScrolling()
-  initTooltips()
-  initLazyLoading()
-}
+// Navigation functionality
+function initNavigation() {
+  const navbar = document.querySelector(".navbar")
+  const navLinks = document.querySelectorAll(".nav-link")
 
-// Mobile Menu Toggle
-function initMobileMenu() {
-  const hamburger = document.querySelector(".hamburger")
-  const navMenu = document.querySelector(".nav-menu")
-
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active")
-      navMenu.classList.toggle("active")
-    })
-
-    // Close menu when clicking on a link
-    document.querySelectorAll(".nav-link").forEach((link) => {
-      link.addEventListener("click", () => {
-        hamburger.classList.remove("active")
-        navMenu.classList.remove("active")
-      })
-    })
-  }
-}
-
-// Typing Animation
-function initTypingAnimation() {
-  const typingText = document.getElementById("typingText")
-  if (!typingText) return
-
-  const messages = ["Welcome to AweSome", "Your Wellness Journey", "Transform Your Life", "Build Healthy Habits"]
-
-  let messageIndex = 0
-  let charIndex = 0
-  let isDeleting = false
-
-  function typeMessage() {
-    const currentMessage = messages[messageIndex]
-
-    if (isDeleting) {
-      typingText.textContent = currentMessage.substring(0, charIndex - 1)
-      charIndex--
+  // Navbar scroll effect
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled")
     } else {
-      typingText.textContent = currentMessage.substring(0, charIndex + 1)
-      charIndex++
+      navbar.classList.remove("scrolled")
     }
+  })
 
-    let typeSpeed = isDeleting ? 50 : 100
+  // Smooth scrolling for navigation links
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const href = this.getAttribute("href")
+      if (href.startsWith("#")) {
+        e.preventDefault()
+        const target = document.querySelector(href)
+        if (target) {
+          const offsetTop = target.offsetTop - 80
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          })
+        }
+      }
+    })
+  })
 
-    if (!isDeleting && charIndex === currentMessage.length) {
-      typeSpeed = 2000
-      isDeleting = true
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false
-      messageIndex = (messageIndex + 1) % messages.length
-      typeSpeed = 500
-    }
-
-    setTimeout(typeMessage, typeSpeed)
-  }
-
-  typeMessage()
+  // Active navigation highlighting
+  window.addEventListener("scroll", updateActiveNavigation)
 }
 
-// Scroll Animations
+function updateActiveNavigation() {
+  const sections = document.querySelectorAll("section[id]")
+  const navLinks = document.querySelectorAll(".nav-link")
+
+  let current = ""
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 100
+    const sectionHeight = section.clientHeight
+    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id")
+    }
+  })
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active")
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active")
+    }
+  })
+}
+
+// Hero section animations
+function initHeroAnimations() {
+  // Animate hero content on load
+  const heroContent = document.querySelector(".hero-content")
+  const heroWidget = document.querySelector(".hero-widget")
+
+  if (heroContent) {
+    heroContent.classList.add("fade-in-up")
+  }
+
+  if (heroWidget) {
+    setTimeout(() => {
+      heroWidget.classList.add("fade-in-up")
+    }, 300)
+  }
+
+  // Progress bar animations in hero widget
+  const progressBars = document.querySelectorAll(".hero-widget .progress-bar")
+  progressBars.forEach((bar, index) => {
+    setTimeout(
+      () => {
+        const width = bar.style.width
+        bar.style.width = "0%"
+        setTimeout(() => {
+          bar.style.width = width
+          bar.style.transition = "width 1s ease-in-out"
+        }, 100)
+      },
+      500 + index * 200,
+    )
+  })
+}
+
+// Workout filtering system
+function initWorkoutFilters() {
+  const workoutData = [
+    {
+      id: 1,
+      title: "HIIT Fat Burner",
+      duration: "25 min",
+      calories: "300-400 cal",
+      level: "intermediate",
+      category: "hiit",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop",
+      description: "High-intensity interval training to torch calories and boost metabolism.",
+    },
+    {
+      id: 2,
+      title: "Morning Yoga Flow",
+      duration: "30 min",
+      calories: "150-200 cal",
+      level: "beginner",
+      category: "yoga",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=250&fit=crop",
+      description: "Gentle yoga flow to start your day with energy and mindfulness.",
+    },
+    {
+      id: 3,
+      title: "Strength Builder Pro",
+      duration: "45 min",
+      calories: "350-450 cal",
+      level: "advanced",
+      category: "strength",
+      image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=250&fit=crop",
+      description: "Advanced strength training for serious muscle building.",
+    },
+    {
+      id: 4,
+      title: "Beginner Full Body",
+      duration: "20 min",
+      calories: "200-250 cal",
+      level: "beginner",
+      category: "strength",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop",
+      description: "Perfect introduction to strength training for beginners.",
+    },
+    {
+      id: 5,
+      title: "Power HIIT",
+      duration: "15 min",
+      calories: "250-300 cal",
+      level: "advanced",
+      category: "hiit",
+      image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=250&fit=crop",
+      description: "Intense 15-minute HIIT session for maximum results.",
+    },
+    {
+      id: 6,
+      title: "Evening Yoga",
+      duration: "25 min",
+      calories: "120-150 cal",
+      level: "beginner",
+      category: "yoga",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=250&fit=crop",
+      description: "Relaxing yoga session to unwind after a busy day.",
+    },
+  ]
+
+  const workoutGrid = document.getElementById("workoutGrid")
+  const filterButtons = document.querySelectorAll(".workout-filters .btn")
+
+  // Render workouts
+  function renderWorkouts(workouts) {
+    workoutGrid.innerHTML = ""
+    workouts.forEach((workout) => {
+      const workoutCard = createWorkoutCard(workout)
+      workoutGrid.appendChild(workoutCard)
+    })
+
+    // Add animation to cards
+    const cards = workoutGrid.querySelectorAll(".workout-card")
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add("fade-in-up")
+      }, index * 100)
+    })
+  }
+
+  // Create workout card element
+  function createWorkoutCard(workout) {
+    const col = document.createElement("div")
+    col.className = "col-md-6 col-lg-4"
+
+    const difficultyClass = `difficulty-${workout.level}`
+
+    col.innerHTML = `
+            <div class="workout-card card h-100 border-0 shadow-sm">
+                <div class="position-relative">
+                    <img src="${workout.image}" class="card-img-top" alt="${workout.title}">
+                    <span class="badge ${difficultyClass} workout-badge">${workout.level.charAt(0).toUpperCase() + workout.level.slice(1)}</span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">${workout.title}</h5>
+                    <p class="card-text text-muted">${workout.description}</p>
+                    <div class="d-flex justify-content-between text-muted mb-3">
+                        <small><i class="fas fa-clock me-1"></i>${workout.duration}</small>
+                        <small><i class="fas fa-fire me-1"></i>${workout.calories}</small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary flex-fill">Start Workout</button>
+                        <button class="btn btn-outline-primary">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `
+
+    return col
+  }
+
+  // Filter functionality
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Update active button
+      filterButtons.forEach((btn) => btn.classList.remove("active"))
+      this.classList.add("active")
+
+      const filter = this.getAttribute("data-filter")
+      let filteredWorkouts = workoutData
+
+      if (filter !== "all") {
+        filteredWorkouts = workoutData.filter((workout) => workout.level === filter || workout.category === filter)
+      }
+
+      renderWorkouts(filteredWorkouts)
+    })
+  })
+
+  // Initial render
+  renderWorkouts(workoutData)
+}
+
+// Blog section functionality
+function initBlogSection() {
+  const blogData = [
+    {
+      id: 1,
+      title: "10 Quick Workouts for Busy Students",
+      excerpt: "Maximize your fitness with these time-efficient exercises perfect for dorm rooms and tight schedules.",
+      author: "Dr. Sarah Johnson",
+      date: "2025-01-15",
+      readTime: "5 min read",
+      category: "Fitness",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop",
+    },
+    {
+      id: 2,
+      title: "Nutrition on a Student Budget",
+      excerpt: "Eat healthy without breaking the bank. Practical tips for affordable, nutritious meals.",
+      author: "Mike Chen",
+      date: "2025-01-12",
+      readTime: "7 min read",
+      category: "Nutrition",
+      image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=250&fit=crop",
+    },
+    {
+      id: 3,
+      title: "Managing Stress During Finals",
+      excerpt: "Evidence-based strategies to stay calm and focused during the most stressful time of the semester.",
+      author: "Dr. Emma Wilson",
+      date: "2025-01-10",
+      readTime: "6 min read",
+      category: "Wellness",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=250&fit=crop",
+    },
+  ]
+
+  const blogGrid = document.getElementById("blogGrid")
+
+  function renderBlogPosts() {
+    blogGrid.innerHTML = ""
+    blogData.forEach((post) => {
+      const blogCard = createBlogCard(post)
+      blogGrid.appendChild(blogCard)
+    })
+  }
+
+  function createBlogCard(post) {
+    const col = document.createElement("div")
+    col.className = "col-md-6 col-lg-4"
+
+    const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+
+    col.innerHTML = `
+            <article class="blog-card card h-100 border-0 shadow-sm">
+                <img src="${post.image}" class="card-img-top" alt="${post.title}">
+                <div class="card-body">
+                    <span class="badge bg-warning mb-2">${post.category}</span>
+                    <h5 class="card-title">${post.title}</h5>
+                    <p class="card-text text-muted">${post.excerpt}</p>
+                    <div class="blog-meta d-flex justify-content-between align-items-center">
+                        <small class="text-muted">By ${post.author}</small>
+                        <small class="text-muted">${post.readTime}</small>
+                    </div>
+                    <div class="blog-meta mt-2">
+                        <small class="text-muted">${formattedDate}</small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="#" class="btn btn-outline-warning w-100">Read More</a>
+                </div>
+            </article>
+        `
+
+    return col
+  }
+
+  renderBlogPosts()
+}
+
+// Form handling
+function initForms() {
+  // Newsletter form
+  const newsletterForm = document.getElementById("newsletterForm")
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function (e) {
+      e.preventDefault()
+      const email = this.querySelector('input[type="email"]').value
+      const button = this.querySelector('button[type="submit"]')
+
+      // Show loading state
+      const originalText = button.textContent
+      button.innerHTML = '<span class="loading"></span> Subscribing...'
+      button.disabled = true
+
+      // Simulate API call
+      setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-check me-2"></i>Subscribed!'
+        button.classList.remove("btn-light")
+        button.classList.add("btn-success")
+
+        // Reset form
+        this.reset()
+
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          button.textContent = originalText
+          button.classList.remove("btn-success")
+          button.classList.add("btn-light")
+          button.disabled = false
+        }, 3000)
+
+        // Show success message
+        showNotification("Successfully subscribed to newsletter!", "success")
+      }, 2000)
+    })
+  }
+
+  // Contact form
+  const contactForm = document.getElementById("contactForm")
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault()
+      const button = this.querySelector('button[type="submit"]')
+
+      // Show loading state
+      const originalText = button.innerHTML
+      button.innerHTML = '<span class="loading"></span> Sending...'
+      button.disabled = true
+
+      // Simulate API call
+      setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!'
+        button.classList.remove("btn-primary")
+        button.classList.add("btn-success")
+
+        // Reset form
+        this.reset()
+
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          button.innerHTML = originalText
+          button.classList.remove("btn-success")
+          button.classList.add("btn-primary")
+          button.disabled = false
+        }, 3000)
+
+        // Show success message
+        showNotification("Message sent successfully! We'll get back to you soon.", "success")
+      }, 2000)
+    })
+  }
+
+  // Login form
+  const loginForm = document.getElementById("loginForm")
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault()
+      const email = this.querySelector("#loginEmail").value
+      const password = this.querySelector("#loginPassword").value
+      const button = this.querySelector('button[type="submit"]')
+
+      // Show loading state
+      const originalText = button.textContent
+      button.innerHTML = '<span class="loading"></span> Logging in...'
+      button.disabled = true
+
+      // Simulate authentication
+      setTimeout(() => {
+        if (email && password) {
+          button.innerHTML = '<i class="fas fa-check me-2"></i>Welcome!'
+          button.classList.remove("btn-primary")
+          button.classList.add("btn-success")
+
+          // Close modal and show success
+          setTimeout(() => {
+            const loginModal = document.getElementById("loginModal")
+            const modal = bootstrap.Modal.getInstance(loginModal)
+            modal.hide()
+            showNotification("Successfully logged in!", "success")
+
+            // Reset form and button
+            this.reset()
+            button.textContent = originalText
+            button.classList.remove("btn-success")
+            button.classList.add("btn-primary")
+            button.disabled = false
+          }, 1500)
+        } else {
+          button.textContent = originalText
+          button.disabled = false
+          showNotification("Please fill in all fields", "error")
+        }
+      }, 1500)
+    })
+  }
+}
+
+// Scroll animations
 function initScrollAnimations() {
   const observerOptions = {
     threshold: 0.1,
@@ -124,444 +453,265 @@ function initScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("animated")
+        entry.target.classList.add("fade-in-up")
+        observer.unobserve(entry.target)
       }
     })
   }, observerOptions)
 
   // Observe elements for animation
-  document
-    .querySelectorAll(
-      ".feature-card, .workout-card, .wellness-card, .stat-card, .habit-item, .post-card, .group-card, .story-card, .team-member, .faq-item, .tip-card",
-    )
-    .forEach((el) => {
-      el.classList.add("animate-on-scroll")
-      observer.observe(el)
-    })
+  const animateElements = document.querySelectorAll(".feature-card, .nutrition-card, .service-card, .testimonial-card")
+  animateElements.forEach((el) => {
+    observer.observe(el)
+  })
 }
 
-// Workout Filters
-function initWorkoutFilters() {
-  const filterButtons = document.querySelectorAll(".filter-btn")
-  const workoutCards = document.querySelectorAll(".workout-card")
+// Counter animations
+function initCounters() {
+  const counters = document.querySelectorAll("[data-count]")
 
-  if (filterButtons.length === 0) return
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target)
+          counterObserver.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.5 },
+  )
 
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const category = this.getAttribute("data-category")
+  counters.forEach((counter) => {
+    counterObserver.observe(counter)
+  })
+}
 
-      // Update active button
-      filterButtons.forEach((btn) => btn.classList.remove("active"))
-      this.classList.add("active")
+function animateCounter(element) {
+  const target = Number.parseInt(element.getAttribute("data-count"))
+  const duration = 2000
+  const step = target / (duration / 16)
+  let current = 0
 
-      // Filter workout cards
-      workoutCards.forEach((card) => {
-        const cardCategory = card.getAttribute("data-category")
+  const timer = setInterval(() => {
+    current += step
+    if (current >= target) {
+      current = target
+      clearInterval(timer)
+    }
 
-        if (category === "all" || cardCategory === category) {
-          card.style.display = "block"
-          card.style.animation = "slideInUp 0.5s ease"
-        } else {
-          card.style.display = "none"
+    if (target >= 1000) {
+      element.textContent = (current / 1000).toFixed(1) + "K+"
+    } else {
+      element.textContent = Math.floor(current) + "+"
+    }
+  }, 16)
+}
+
+// Mobile optimizations
+function initMobileOptimizations() {
+  // Touch-friendly interactions
+  if ("ontouchstart" in window) {
+    document.body.classList.add("touch-device")
+
+    // Add touch feedback to buttons
+    const buttons = document.querySelectorAll(".btn")
+    buttons.forEach((button) => {
+      button.addEventListener("touchstart", function () {
+        this.style.transform = "scale(0.95)"
+      })
+
+      button.addEventListener("touchend", function () {
+        this.style.transform = ""
+      })
+    })
+  }
+
+  // Optimize images for mobile
+  const images = document.querySelectorAll("img")
+  images.forEach((img) => {
+    img.addEventListener("load", function () {
+      this.style.opacity = "1"
+    })
+
+    // Lazy loading fallback for older browsers
+    if ("IntersectionObserver" in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target
+            if (img.dataset.src) {
+              img.src = img.dataset.src
+              img.removeAttribute("data-src")
+            }
+            imageObserver.unobserve(img)
+          }
+        })
+      })
+
+      if (img.dataset.src) {
+        imageObserver.observe(img)
+      }
+    }
+  })
+
+  // Mobile menu enhancements
+  const navbarToggler = document.querySelector(".navbar-toggler")
+  const navbarCollapse = document.querySelector(".navbar-collapse")
+
+  if (navbarToggler && navbarCollapse) {
+    // Close mobile menu when clicking on a link
+    const navLinks = navbarCollapse.querySelectorAll(".nav-link")
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth < 992) {
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: false,
+          })
+          bsCollapse.hide()
         }
       })
     })
-  })
-}
-
-// Wellness Tabs
-function initWellnessTabs() {
-  const tabButtons = document.querySelectorAll(".tab-btn")
-  const tabContents = document.querySelectorAll(".tab-content")
-
-  if (tabButtons.length === 0) return
-
-  tabButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const targetTab = this.getAttribute("data-tab")
-
-      // Update active button
-      tabButtons.forEach((btn) => btn.classList.remove("active"))
-      this.classList.add("active")
-
-      // Show/hide tab content
-      tabContents.forEach((content) => {
-        content.classList.remove("active")
-        if (content.id === targetTab) {
-          content.classList.add("active")
-        }
-      })
-    })
-  })
-}
-
-// Habit Tracker
-function initHabitTracker() {
-  const incrementBtns = document.querySelectorAll(".btn-increment")
-  const decrementBtns = document.querySelectorAll(".btn-decrement")
-  const completeBtns = document.querySelectorAll(".btn-complete")
-
-  // Increment buttons
-  incrementBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const habitItem = this.closest(".habit-item")
-      const progressCircle = habitItem.querySelector(".progress-circle")
-      const progressText = progressCircle.querySelector("span")
-
-      // Simple increment logic (you can make this more sophisticated)
-      if (progressText.textContent.includes("/")) {
-        const [current, total] = progressText.textContent.split("/").map(Number)
-        if (current < total) {
-          const newCurrent = current + 1
-          progressText.textContent = `${newCurrent}/${total}`
-          updateProgressCircle(progressCircle, (newCurrent / total) * 100)
-        }
-      }
-    })
-  })
-
-  // Decrement buttons
-  decrementBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const habitItem = this.closest(".habit-item")
-      const progressCircle = habitItem.querySelector(".progress-circle")
-      const progressText = progressCircle.querySelector("span")
-
-      if (progressText.textContent.includes("/")) {
-        const [current, total] = progressText.textContent.split("/").map(Number)
-        if (current > 0) {
-          const newCurrent = current - 1
-          progressText.textContent = `${newCurrent}/${total}`
-          updateProgressCircle(progressCircle, (newCurrent / total) * 100)
-        }
-      }
-    })
-  })
-
-  // Complete buttons
-  completeBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      if (this.classList.contains("completed")) return
-
-      const habitItem = this.closest(".habit-item")
-      const progressCircle = habitItem.querySelector(".progress-circle")
-      const progressText = progressCircle.querySelector("span")
-
-      progressText.textContent = "✓"
-      updateProgressCircle(progressCircle, 100)
-      this.classList.add("completed")
-      this.textContent = "Completed"
-
-      // Add celebration effect
-      this.style.animation = "pulse 0.5s ease"
-    })
-  })
-}
-
-// Update Progress Circle
-function updateProgressCircle(circle, percentage) {
-  const degrees = (percentage / 100) * 360
-  circle.style.background = `conic-gradient(#3b82f6 ${degrees}deg, #e5e7eb ${degrees}deg)`
-}
-
-// Initialize Progress Circles
-function initProgressCircles() {
-  document.querySelectorAll(".progress-circle").forEach((circle) => {
-    const progress = circle.getAttribute("data-progress")
-    if (progress) {
-      updateProgressCircle(circle, Number.parseInt(progress))
-    }
-  })
-}
-
-// Contact Form
-function initContactForm() {
-  const contactForm = document.getElementById("contactForm")
-
-  if (!contactForm) return
-
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault()
-
-    // Get form data
-    const formData = new FormData(this)
-    const data = Object.fromEntries(formData)
-
-    // Validate form
-    if (validateContactForm(data)) {
-      // Simulate form submission
-      submitContactForm(data)
-    }
-  })
-}
-
-function validateContactForm(data) {
-  let isValid = true
-  const errors = []
-
-  // Clear previous errors
-  document.querySelectorAll(".error-message").forEach((error) => error.remove())
-
-  // Validate required fields
-  if (!data.name.trim()) {
-    showFieldError("name", "Name is required")
-    isValid = false
   }
-
-  if (!data.email.trim()) {
-    showFieldError("email", "Email is required")
-    isValid = false
-  } else if (!isValidEmail(data.email)) {
-    showFieldError("email", "Please enter a valid email address")
-    isValid = false
-  }
-
-  if (!data.subject) {
-    showFieldError("subject", "Please select a subject")
-    isValid = false
-  }
-
-  if (!data.message.trim()) {
-    showFieldError("message", "Message is required")
-    isValid = false
-  }
-
-  return isValid
 }
 
-function showFieldError(fieldName, message) {
-  const field = document.getElementById(fieldName)
-  const errorElement = document.createElement("span")
-  errorElement.className = "error-message"
-  errorElement.style.color = "#ef4444"
-  errorElement.style.fontSize = "0.875rem"
-  errorElement.style.marginTop = "0.25rem"
-  errorElement.style.display = "block"
-  errorElement.textContent = message
+// Utility functions
+function showNotification(message, type = "info") {
+  // Create notification element
+  const notification = document.createElement("div")
+  notification.className = `alert alert-${type === "error" ? "danger" : type} alert-dismissible fade show position-fixed`
+  notification.style.cssText = "top: 20px; right: 20px; z-index: 9999; min-width: 300px;"
 
-  field.parentNode.appendChild(errorElement)
-  field.style.borderColor = "#ef4444"
-}
-
-function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
-}
-
-function submitContactForm(data) {
-  const submitBtn = document.querySelector('#contactForm button[type="submit"]')
-  const originalText = submitBtn.textContent
-
-  // Show loading state
-  submitBtn.textContent = "Sending..."
-  submitBtn.disabled = true
-  submitBtn.classList.add("loading")
-
-  // Simulate API call
-  setTimeout(() => {
-    // Reset button
-    submitBtn.textContent = originalText
-    submitBtn.disabled = false
-    submitBtn.classList.remove("loading")
-
-    // Show success message
-    showSuccessMessage("Thank you! Your message has been sent successfully. We'll get back to you soon!")
-
-    // Reset form
-    document.getElementById("contactForm").reset()
-
-    // Clear any error styling
-    document.querySelectorAll("input, select, textarea").forEach((field) => {
-      field.style.borderColor = "#e5e7eb"
-    })
-  }, 2000)
-}
-
-function showSuccessMessage(message) {
-  const successDiv = document.createElement("div")
-  successDiv.className = "success-message"
-  successDiv.style.cssText = `
-        background: #d1fae5;
-        color: #065f46;
-        padding: 1rem;
-        border-radius: 8px;
-        margin-top: 1rem;
-        border: 1px solid #a7f3d0;
+  notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     `
-  successDiv.textContent = message
 
-  const form = document.getElementById("contactForm")
-  form.appendChild(successDiv)
+  document.body.appendChild(notification)
 
-  // Remove success message after 5 seconds
+  // Auto-remove after 5 seconds
   setTimeout(() => {
-    successDiv.remove()
+    if (notification.parentNode) {
+      notification.remove()
+    }
   }, 5000)
 }
 
-// Smooth Scrolling
-function initSmoothScrolling() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-      const target = document.querySelector(this.getAttribute("href"))
+// Performance optimizations
+function debounce(func, wait) {
+  let timeout
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
 
-      if (target) {
-        const headerHeight = document.querySelector(".navbar").offsetHeight
-        const targetPosition = target.offsetTop - headerHeight - 20
+// Optimized scroll handler
+const optimizedScrollHandler = debounce(() => {
+  updateActiveNavigation()
+}, 10)
 
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        })
-      }
-    })
+window.addEventListener("scroll", optimizedScrollHandler)
+
+// Service Worker registration for PWA capabilities
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((registration) => {
+        console.log("ServiceWorker registration successful")
+      })
+      .catch((err) => {
+        console.log("ServiceWorker registration failed")
+      })
   })
 }
 
-// Interactive Button Effects
+// Error handling
+window.addEventListener("error", (e) => {
+  console.error("JavaScript error:", e.error)
+  // You could send this to an error tracking service
+})
+
+// Analytics tracking (placeholder)
+function trackEvent(category, action, label) {
+  // Placeholder for analytics tracking
+  console.log("Event tracked:", { category, action, label })
+
+  // Example: Google Analytics 4
+  // gtag('event', action, {
+  //     event_category: category,
+  //     event_label: label
+  // });
+}
+
+// Track button clicks
 document.addEventListener("click", (e) => {
-  if (e.target.matches(".btn-primary, .btn-secondary, .btn-login, .btn-signup")) {
-    createRippleEffect(e)
+  if (e.target.matches(".btn")) {
+    const buttonText = e.target.textContent.trim()
+    trackEvent("Button", "Click", buttonText)
   }
 })
 
-function createRippleEffect(e) {
-  const button = e.target
-  const ripple = document.createElement("span")
-  const rect = button.getBoundingClientRect()
-  const size = Math.max(rect.width, rect.height)
-  const x = e.clientX - rect.left - size / 2
-  const y = e.clientY - rect.top - size / 2
+// Accessibility improvements
+function initAccessibility() {
+  // Skip to main content link
+  const skipLink = document.createElement("a")
+  skipLink.href = "#main"
+  skipLink.textContent = "Skip to main content"
+  skipLink.className = "sr-only sr-only-focusable btn btn-primary position-absolute"
+  skipLink.style.cssText = "top: 10px; left: 10px; z-index: 10000;"
+  document.body.insertBefore(skipLink, document.body.firstChild)
 
-  ripple.style.cssText = `
-        position: absolute;
-        width: ${size}px;
-        height: ${size}px;
-        left: ${x}px;
-        top: ${y}px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-        pointer-events: none;
-    `
-
-  // Add ripple animation if not exists
-  if (!document.querySelector("#ripple-styles")) {
-    const style = document.createElement("style")
-    style.id = "ripple-styles"
-    style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `
-    document.head.appendChild(style)
+  // Add main landmark
+  const mainContent = document.querySelector("#home")
+  if (mainContent) {
+    mainContent.setAttribute("role", "main")
+    mainContent.id = "main"
   }
 
-  button.style.position = "relative"
-  button.style.overflow = "hidden"
-  button.appendChild(ripple)
-
-  setTimeout(() => {
-    ripple.remove()
-  }, 600)
-}
-
-// Navbar scroll effect
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar")
-  if (window.scrollY > 100) {
-    navbar.style.background = "rgba(255, 255, 255, 0.98)"
-    navbar.style.backdropFilter = "blur(20px)"
-  } else {
-    navbar.style.background = "rgba(255, 255, 255, 0.95)"
-    navbar.style.backdropFilter = "blur(10px)"
-  }
-})
-
-// Add loading animation to page transitions
-window.addEventListener("beforeunload", () => {
-  document.body.style.opacity = "0.8"
-  document.body.style.transition = "opacity 0.3s ease"
-})
-
-// Initialize tooltips for interactive elements
-function initTooltips() {
-  const tooltipElements = document.querySelectorAll("[data-tooltip]")
-
-  tooltipElements.forEach((element) => {
-    element.addEventListener("mouseenter", function () {
-      const tooltip = document.createElement("div")
-      tooltip.className = "tooltip"
-      tooltip.textContent = this.getAttribute("data-tooltip")
-      tooltip.style.cssText = `
-                position: absolute;
-                background: #333;
-                color: white;
-                padding: 0.5rem;
-                border-radius: 4px;
-                font-size: 0.875rem;
-                z-index: 1000;
-                pointer-events: none;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            `
-
-      document.body.appendChild(tooltip)
-
-      const rect = this.getBoundingClientRect()
-      tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px"
-      tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + "px"
-
-      setTimeout(() => (tooltip.style.opacity = "1"), 10)
-
-      this.addEventListener(
-        "mouseleave",
-        () => {
-          tooltip.remove()
-        },
-        { once: true },
-      )
-    })
-  })
-}
-
-// Performance optimization: Lazy load images
-function initLazyLoading() {
-  const images = document.querySelectorAll("img[data-src]")
-
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target
-        img.src = img.dataset.src
-        img.classList.remove("lazy")
-        observer.unobserve(img)
+  // Improve focus management for modals
+  const modals = document.querySelectorAll(".modal")
+  modals.forEach((modal) => {
+    modal.addEventListener("shown.bs.modal", function () {
+      const firstInput = this.querySelector("input, button, select, textarea")
+      if (firstInput) {
+        firstInput.focus()
       }
     })
   })
 
-  images.forEach((img) => imageObserver.observe(img))
+  // Add ARIA labels to interactive elements
+  const buttons = document.querySelectorAll("button:not([aria-label]):not([aria-labelledby])")
+  buttons.forEach((button) => {
+    if (!button.textContent.trim()) {
+      const icon = button.querySelector("i")
+      if (icon) {
+        const iconClass = icon.className
+        if (iconClass.includes("heart")) {
+          button.setAttribute("aria-label", "Add to favorites")
+        } else if (iconClass.includes("play")) {
+          button.setAttribute("aria-label", "Play video")
+        }
+      }
+    }
+  })
 }
 
-// Add page visibility API for performance
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    // Pause animations when page is not visible
-    document.querySelectorAll(".floating-card").forEach((card) => {
-      card.style.animationPlayState = "paused"
-    })
-  } else {
-    // Resume animations when page becomes visible
-    document.querySelectorAll(".floating-card").forEach((card) => {
-      card.style.animationPlayState = "running"
-    })
-  }
-})
+// Initialize accessibility features
+initAccessibility()
 
-console.log("AweSome Wellness Platform initialized successfully! 🎉")
+// Export functions for testing
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    initNavigation,
+    initWorkoutFilters,
+    initForms,
+    showNotification,
+    debounce,
+  }
+}
