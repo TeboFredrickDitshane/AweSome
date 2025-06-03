@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - AweSome Fitness & Wellness</title>
-    <meta name="description" content="Your personalized fitness dashboard with workout tracking, nutrition plans, and wellness insights.">
+    <meta name="description" content="Your personalized AweSome fitness dashboard with workout tracking, progress analytics, and wellness insights.">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,92 +12,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Dashboard specific styles -->
+    <!-- Dashboard-specific styles -->
     <style>
-        .dashboard-sidebar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 280px;
-            z-index: 1000;
-            transition: transform 0.3s ease;
+        .dashboard-header {
+            background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 70px;
         }
         
         .dashboard-content {
-            margin-left: 280px;
-            min-height: 100vh;
+            padding: 2rem 0;
             background-color: #f8f9fa;
-            transition: margin-left 0.3s ease;
-        }
-        
-        .sidebar-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .sidebar-nav {
-            padding: 1rem 0;
-        }
-        
-        .nav-item {
-            margin: 0.25rem 1rem;
-        }
-        
-        .nav-link {
-            color: rgba(255, 255, 255, 0.8) !important;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: white !important;
-            transform: translateX(5px);
-        }
-        
-        .nav-link i {
-            width: 20px;
-            margin-right: 0.75rem;
-        }
-        
-        .dashboard-header {
-            background: white;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            justify-content: between;
-            align-items: center;
-        }
-        
-        .dashboard-main {
-            padding: 2rem;
+            min-height: calc(100vh - 200px);
         }
         
         .stat-card {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: var(--border-radius);
+            border: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
         }
         
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
         .stat-icon {
             width: 60px;
             height: 60px;
-            border-radius: 1rem;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -105,46 +54,131 @@
             color: white;
         }
         
+        .stat-icon.primary { background: linear-gradient(135deg, #007bff, #0056b3); }
+        .stat-icon.success { background: linear-gradient(135deg, #28a745, #1e7e34); }
+        .stat-icon.warning { background: linear-gradient(135deg, #ffc107, #e0a800); }
+        .stat-icon.info { background: linear-gradient(135deg, #17a2b8, #138496); }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        
+        .workout-item {
+            border-left: 4px solid #007bff;
+            transition: all 0.3s ease;
+        }
+        
+        .workout-item:hover {
+            border-left-color: #28a745;
+            background-color: #f8f9fa;
+        }
+        
+        .habit-tracker {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .habit-day {
+            aspect-ratio: 1;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .habit-day.completed {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .habit-day.missed {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .habit-day.today {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .habit-day.future {
+            background-color: #e9ecef;
+            color: #6c757d;
+        }
+        
+        .quick-action-btn {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-action-btn:hover {
+            transform: scale(1.1);
+        }
+        
         .progress-ring {
             width: 120px;
             height: 120px;
-            position: relative;
         }
         
-        .progress-ring svg {
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
-        
-        .progress-ring circle {
-            fill: none;
-            stroke-width: 8;
-        }
-        
-        .progress-ring .bg {
+        .progress-ring-circle {
             stroke: #e9ecef;
+            stroke-width: 8;
+            fill: transparent;
+            r: 52;
+            cx: 60;
+            cy: 60;
         }
         
-        .progress-ring .progress {
+        .progress-ring-fill {
             stroke: #007bff;
-            stroke-linecap: round;
-            transition: stroke-dasharray 0.5s ease;
+            stroke-width: 8;
+            fill: transparent;
+            r: 52;
+            cx: 60;
+            cy: 60;
+            stroke-dasharray: 326.73;
+            stroke-dashoffset: 326.73;
+            transition: stroke-dashoffset 0.5s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 60px 60px;
         }
         
-        .progress-text {
+        .progress-ring-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            height: fit-content;
         }
         
         .activity-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #e9ecef;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
             transition: background-color 0.3s ease;
         }
         
@@ -152,456 +186,474 @@
             background-color: #f8f9fa;
         }
         
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-        
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 1rem;
-        }
-        
-        .welcome-banner {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .sidebar-toggle {
-            display: none;
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            font-size: 1.25rem;
+        .activity-time {
+            font-size: 0.75rem;
+            color: #6c757d;
         }
         
         @media (max-width: 768px) {
-            .dashboard-sidebar {
-                transform: translateX(-100%);
+            .dashboard-header {
+                padding: 1rem 0;
             }
             
-            .dashboard-sidebar.show {
-                transform: translateX(0);
+            .chart-container {
+                height: 250px;
             }
             
-            .dashboard-content {
-                margin-left: 0;
+            .habit-tracker {
+                gap: 0.25rem;
             }
             
-            .sidebar-toggle {
-                display: block;
-            }
-            
-            .dashboard-main {
-                padding: 1rem;
+            .stat-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Sidebar Toggle Button (Mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Sidebar -->
-    <nav class="dashboard-sidebar" id="sidebar">
-        <div class="sidebar-header text-white">
-            <h4 class="fw-bold mb-0">
-                <i class="fas fa-heart me-2"></i>AweSome
-            </h4>
-            <small class="opacity-75">Fitness Dashboard</small>
-        </div>
-        
-        <ul class="sidebar-nav nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="#dashboard" data-section="dashboard">
-                    <i class="fas fa-tachometer-alt"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#workouts" data-section="workouts">
-                    <i class="fas fa-dumbbell"></i>
-                    My Workouts
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#nutrition" data-section="nutrition">
-                    <i class="fas fa-apple-alt"></i>
-                    Nutrition Plan
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#progress" data-section="progress">
-                    <i class="fas fa-chart-line"></i>
-                    Progress Tracking
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#wellness" data-section="wellness">
-                    <i class="fas fa-leaf"></i>
-                    Wellness
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#community" data-section="community">
-                    <i class="fas fa-users"></i>
-                    Community
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#settings" data-section="settings">
-                    <i class="fas fa-cog"></i>
-                    Settings
-                </a>
-            </li>
-        </ul>
-        
-        <div class="mt-auto p-3">
-            <div class="d-grid">
-                <a href="index.html" class="btn btn-outline-light btn-sm">
-                    <i class="fas fa-sign-out-alt me-2"></i>Logout
-                </a>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-heart text-primary me-2"></i>AweSome
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="workouts.html">Workouts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nutrition.html">Nutrition</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="progress.html">Progress</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.html">Community</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" 
+                                 class="rounded-circle me-2" width="32" height="32" alt="Profile">
+                            John Doe
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="dashboard-content">
-        <!-- Header -->
-        <header class="dashboard-header">
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <div>
-                    <h5 class="mb-0">Welcome back, <span id="userName">John</span>! 👋</h5>
-                    <small class="text-muted">Ready for today's workout?</small>
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="fw-bold mb-2">Good morning, John! 👋</h1>
+                    <p class="mb-0 opacity-75">Ready to crush your fitness goals today?</p>
                 </div>
-                <div class="d-flex align-items-center gap-3">
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge bg-danger">3</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">New workout available</a></li>
-                            <li><a class="dropdown-item" href="#">Weekly progress report</a></li>
-                            <li><a class="dropdown-item" href="#">Community challenge</a></li>
-                        </ul>
+                <div class="col-md-4 text-md-end">
+                    <div class="position-relative d-inline-block">
+                        <svg class="progress-ring">
+                            <circle class="progress-ring-circle"></circle>
+                            <circle class="progress-ring-fill" id="dailyProgressRing"></circle>
+                        </svg>
+                        <div class="progress-ring-text" id="dailyProgressText">75%</div>
                     </div>
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user-circle me-2"></i>Profile
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#settings">Account Settings</a></li>
-                            <li><a class="dropdown-item" href="#profile">Edit Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="index.html">Logout</a></li>
-                        </ul>
+                    <div class="mt-2">
+                        <small class="opacity-75">Daily Goal Progress</small>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </section>
 
-        <!-- Main Dashboard Content -->
-        <main class="dashboard-main">
-            <!-- Welcome Banner (shown for new users) -->
-            <div class="welcome-banner" id="welcomeBanner" style="display: none;">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <h3 class="fw-bold mb-2">🎉 Welcome to AweSome!</h3>
-                        <p class="mb-3">Your fitness journey starts here. We've created a personalized plan just for you based on your goals and fitness level.</p>
-                        <button class="btn btn-light" onclick="startOnboarding()">
-                            <i class="fas fa-play me-2"></i>Take the Tour
-                        </button>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <i class="fas fa-rocket" style="font-size: 4rem; opacity: 0.7;"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dashboard Section -->
-            <div class="dashboard-section" id="dashboardSection">
+    <!-- Dashboard Content -->
+    <section class="dashboard-content">
+        <div class="container">
+            <div class="row g-4">
                 <!-- Stats Cards -->
-                <div class="row g-4 mb-4">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="stat-card">
-                            <div class="d-flex align-items-center">
-                                <div class="stat-icon bg-primary me-3">
-                                    <i class="fas fa-fire"></i>
-                                </div>
-                                <div>
-                                    <h3 class="fw-bold mb-0" data-count="1247">0</h3>
-                                    <small class="text-muted">Calories Burned</small>
-                                    <div class="text-success small">
-                                        <i class="fas fa-arrow-up"></i> +12% this week
+                <div class="col-lg-8">
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card stat-card">
+                                <div class="card-body text-center">
+                                    <div class="stat-icon primary mb-3">
+                                        <i class="fas fa-fire"></i>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="stat-card">
-                            <div class="d-flex align-items-center">
-                                <div class="stat-icon bg-success me-3">
-                                    <i class="fas fa-dumbbell"></i>
-                                </div>
-                                <div>
-                                    <h3 class="fw-bold mb-0" data-count="23">0</h3>
-                                    <small class="text-muted">Workouts Completed</small>
-                                    <div class="text-success small">
-                                        <i class="fas fa-arrow-up"></i> +3 this week
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="stat-card">
-                            <div class="d-flex align-items-center">
-                                <div class="stat-icon bg-warning me-3">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div>
-                                    <h3 class="fw-bold mb-0" data-count="18">0</h3>
-                                    <small class="text-muted">Active Hours</small>
-                                    <div class="text-success small">
-                                        <i class="fas fa-arrow-up"></i> +2.5 hrs
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="stat-card">
-                            <div class="d-flex align-items-center">
-                                <div class="stat-icon bg-info me-3">
-                                    <i class="fas fa-trophy"></i>
-                                </div>
-                                <div>
-                                    <h3 class="fw-bold mb-0" data-count="7">0</h3>
+                                    <h3 class="fw-bold mb-1" id="currentStreak">12</h3>
                                     <small class="text-muted">Day Streak</small>
-                                    <div class="text-success small">
-                                        <i class="fas fa-fire"></i> Keep it up!
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Main Dashboard Content -->
-                <div class="row g-4">
-                    <!-- Today's Workout -->
-                    <div class="col-lg-8">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-white border-0">
-                                <h5 class="card-title mb-0">
-                                    <i class="fas fa-play-circle text-primary me-2"></i>Today's Workout
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-8">
-                                        <h4 class="fw-bold mb-2">Upper Body Strength</h4>
-                                        <p class="text-muted mb-3">Focus on building upper body strength with compound movements</p>
-                                        <div class="d-flex gap-4 mb-3">
-                                            <div class="text-center">
-                                                <div class="fw-bold">45 min</div>
-                                                <small class="text-muted">Duration</small>
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="fw-bold">Intermediate</div>
-                                                <small class="text-muted">Level</small>
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="fw-bold">350-450</div>
-                                                <small class="text-muted">Calories</small>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary">
-                                            <i class="fas fa-play me-2"></i>Start Workout
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=200&h=150&fit=crop" 
-                                             class="img-fluid rounded" alt="Workout">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Progress Ring -->
-                    <div class="col-lg-4">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-white border-0">
-                                <h5 class="card-title mb-0">
-                                    <i class="fas fa-target text-success me-2"></i>Weekly Goal
-                                </h5>
-                            </div>
-                            <div class="card-body text-center">
-                                <div class="progress-ring mx-auto mb-3">
-                                    <svg>
-                                        <circle class="bg" cx="60" cy="60" r="52"></circle>
-                                        <circle class="progress" cx="60" cy="60" r="52" 
-                                                stroke-dasharray="327" stroke-dashoffset="98"></circle>
-                                    </svg>
-                                    <div class="progress-text">
-                                        <div class="h4 fw-bold text-primary">70%</div>
-                                        <small class="text-muted">Complete</small>
-                                    </div>
-                                </div>
-                                <p class="mb-2">4 of 5 workouts completed</p>
-                                <small class="text-muted">1 more workout to reach your weekly goal!</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="row g-4 mt-2">
-                    <div class="col-lg-6">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-white border-0">
-                                <h5 class="card-title mb-0">
-                                    <i class="fas fa-history text-info me-2"></i>Recent Activity
-                                </h5>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="activity-item">
-                                    <div class="activity-icon bg-success text-white">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card stat-card">
+                                <div class="card-body text-center">
+                                    <div class="stat-icon success mb-3">
                                         <i class="fas fa-dumbbell"></i>
                                     </div>
-                                    <div class="flex-grow-1">
-                                        <div class="fw-semibold">Completed HIIT Workout</div>
-                                        <small class="text-muted">2 hours ago • 25 minutes • 320 calories</small>
-                                    </div>
+                                    <h3 class="fw-bold mb-1" id="weeklyWorkouts">4</h3>
+                                    <small class="text-muted">This Week</small>
                                 </div>
-                                <div class="activity-item">
-                                    <div class="activity-icon bg-primary text-white">
-                                        <i class="fas fa-apple-alt"></i>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <div class="fw-semibold">Logged Healthy Breakfast</div>
-                                        <small class="text-muted">5 hours ago • 450 calories • High protein</small>
-                                    </div>
-                                </div>
-                                <div class="activity-item">
-                                    <div class="activity-icon bg-warning text-white">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card stat-card">
+                                <div class="card-body text-center">
+                                    <div class="stat-icon warning mb-3">
                                         <i class="fas fa-trophy"></i>
                                     </div>
-                                    <div class="flex-grow-1">
-                                        <div class="fw-semibold">Earned "Week Warrior" Badge</div>
-                                        <small class="text-muted">Yesterday • 7-day workout streak</small>
-                                    </div>
+                                    <h3 class="fw-bold mb-1" id="monthlyGoals">8</h3>
+                                    <small class="text-muted">Goals Met</small>
                                 </div>
-                                <div class="activity-item">
-                                    <div class="activity-icon bg-info text-white">
-                                        <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card stat-card">
+                                <div class="card-body text-center">
+                                    <div class="stat-icon info mb-3">
+                                        <i class="fas fa-chart-line"></i>
                                     </div>
-                                    <div class="flex-grow-1">
-                                        <div class="fw-semibold">Completed Wellness Check-in</div>
-                                        <small class="text-muted">2 days ago • Stress level: Low</small>
-                                    </div>
+                                    <h3 class="fw-bold mb-1" id="caloriesBurned">2,450</h3>
+                                    <small class="text-muted">Calories Burned</small>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Quick Actions -->
-                    <div class="col-lg-6">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-white border-0">
-                                <h5 class="card-title mb-0">
-                                    <i class="fas fa-bolt text-warning me-2"></i>Quick Actions
-                                </h5>
+                    <!-- Weekly Progress Chart -->
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Weekly Activity</h5>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <input type="radio" class="btn-check" name="chartPeriod" id="week" checked>
+                                <label class="btn btn-outline-primary" for="week">Week</label>
+                                <input type="radio" class="btn-check" name="chartPeriod" id="month">
+                                <label class="btn btn-outline-primary" for="month">Month</label>
                             </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-6">
-                                        <button class="btn btn-outline-primary w-100 p-3">
-                                            <i class="fas fa-play d-block mb-2"></i>
-                                            <small>Start Workout</small>
-                                        </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="activityChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Today's Workouts -->
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Today's Workouts</h5>
+                            <a href="workouts.html" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus me-1"></i>Add Workout
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div id="todayWorkouts">
+                                <div class="workout-item p-3 bg-light rounded mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1">Morning HIIT Session</h6>
+                                            <small class="text-muted">
+                                                <i class="fas fa-clock me-1"></i>25 minutes
+                                                <i class="fas fa-fire ms-3 me-1"></i>320 calories
+                                            </small>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-success me-2">Completed</span>
+                                            <button class="btn btn-outline-primary btn-sm">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-6">
-                                        <button class="btn btn-outline-success w-100 p-3">
-                                            <i class="fas fa-utensils d-block mb-2"></i>
-                                            <small>Log Meal</small>
-                                        </button>
-                                    </div>
-                                    <div class="col-6">
-                                        <button class="btn btn-outline-info w-100 p-3">
-                                            <i class="fas fa-chart-line d-block mb-2"></i>
-                                            <small>View Progress</small>
-                                        </button>
-                                    </div>
-                                    <div class="col-6">
-                                        <button class="btn btn-outline-warning w-100 p-3">
-                                            <i class="fas fa-users d-block mb-2"></i>
-                                            <small>Join Challenge</small>
-                                        </button>
+                                </div>
+                                <div class="workout-item p-3 bg-light rounded mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1">Evening Yoga Flow</h6>
+                                            <small class="text-muted">
+                                                <i class="fas fa-clock me-1"></i>30 minutes
+                                                <i class="fas fa-heart ms-3 me-1"></i>Relaxation
+                                            </small>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-warning me-2">Scheduled</span>
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Other Sections (Hidden by default) -->
-            <div class="dashboard-section d-none" id="workoutsSection">
-                <h2 class="mb-4">My Workouts</h2>
-                <p class="text-muted">Your personalized workout library and schedule.</p>
-                <!-- Workout content would go here -->
-            </div>
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Quick Actions -->
+                    <div class="sidebar mb-4">
+                        <h6 class="fw-bold mb-3">Quick Actions</h6>
+                        <div class="row g-3">
+                            <div class="col-4 text-center">
+                                <button class="quick-action-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#workoutModal">
+                                    <i class="fas fa-dumbbell"></i>
+                                </button>
+                                <small class="d-block mt-1">Start Workout</small>
+                            </div>
+                            <div class="col-4 text-center">
+                                <button class="quick-action-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#nutritionModal">
+                                    <i class="fas fa-apple-alt"></i>
+                                </button>
+                                <small class="d-block mt-1">Log Meal</small>
+                            </div>
+                            <div class="col-4 text-center">
+                                <button class="quick-action-btn btn btn-info" data-bs-toggle="modal" data-bs-target="#habitModal">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <small class="d-block mt-1">Track Habit</small>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="dashboard-section d-none" id="nutritionSection">
-                <h2 class="mb-4">Nutrition Plan</h2>
-                <p class="text-muted">Your personalized meal plans and nutrition tracking.</p>
-                <!-- Nutrition content would go here -->
-            </div>
+                    <!-- Habit Tracker -->
+                    <div class="sidebar mb-4">
+                        <h6 class="fw-bold mb-3">Weekly Habits</h6>
+                        <div class="habit-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">Water Intake</span>
+                                <span class="text-muted">6/8 glasses</span>
+                            </div>
+                            <div class="habit-tracker">
+                                <div class="habit-day completed">M</div>
+                                <div class="habit-day completed">T</div>
+                                <div class="habit-day completed">W</div>
+                                <div class="habit-day completed">T</div>
+                                <div class="habit-day completed">F</div>
+                                <div class="habit-day today">S</div>
+                                <div class="habit-day future">S</div>
+                            </div>
+                        </div>
+                        <div class="habit-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">Exercise</span>
+                                <span class="text-muted">4/5 days</span>
+                            </div>
+                            <div class="habit-tracker">
+                                <div class="habit-day completed">M</div>
+                                <div class="habit-day completed">T</div>
+                                <div class="habit-day missed">W</div>
+                                <div class="habit-day completed">T</div>
+                                <div class="habit-day completed">F</div>
+                                <div class="habit-day today">S</div>
+                                <div class="habit-day future">S</div>
+                            </div>
+                        </div>
+                        <div class="habit-item">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">Sleep 8hrs</span>
+                                <span class="text-muted">5/7 days</span>
+                            </div>
+                            <div class="habit-tracker">
+                                <div class="habit-day completed">M</div>
+                                <div class="habit-day missed">T</div>
+                                <div class="habit-day completed">W</div>
+                                <div class="habit-day completed">T</div>
+                                <div class="habit-day missed">F</div>
+                                <div class="habit-day today">S</div>
+                                <div class="habit-day future">S</div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="dashboard-section d-none" id="progressSection">
-                <h2 class="mb-4">Progress Tracking</h2>
-                <p class="text-muted">Track your fitness journey with detailed analytics.</p>
-                <!-- Progress content would go here -->
+                    <!-- Recent Activity -->
+                    <div class="sidebar">
+                        <h6 class="fw-bold mb-3">Recent Activity</h6>
+                        <div class="activity-item">
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="fas fa-dumbbell text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-medium">Completed HIIT workout</div>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="fas fa-apple-alt text-success"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-medium">Logged breakfast</div>
+                                    <div class="activity-time">4 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="fas fa-medal text-warning"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-medium">Earned "Week Warrior" badge</div>
+                                    <div class="activity-time">Yesterday</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="fas fa-users text-info"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-medium">Joined group challenge</div>
+                                    <div class="activity-time">2 days ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="dashboard-section d-none" id="wellnessSection">
-                <h2 class="mb-4">Wellness</h2>
-                <p class="text-muted">Mental health resources and wellness tracking.</p>
-                <!-- Wellness content would go here -->
+    <!-- Quick Workout Modal -->
+    <div class="modal fade" id="workoutModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Quick Workout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="card text-center workout-quick-card">
+                                <div class="card-body">
+                                    <i class="fas fa-fire text-danger fs-1 mb-2"></i>
+                                    <h6>HIIT Blast</h6>
+                                    <small class="text-muted">15 min</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card text-center workout-quick-card">
+                                <div class="card-body">
+                                    <i class="fas fa-leaf text-success fs-1 mb-2"></i>
+                                    <h6>Yoga Flow</h6>
+                                    <small class="text-muted">20 min</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card text-center workout-quick-card">
+                                <div class="card-body">
+                                    <i class="fas fa-dumbbell text-primary fs-1 mb-2"></i>
+                                    <h6>Strength</h6>
+                                    <small class="text-muted">30 min</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card text-center workout-quick-card">
+                                <div class="card-body">
+                                    <i class="fas fa-running text-warning fs-1 mb-2"></i>
+                                    <h6>Cardio Run</h6>
+                                    <small class="text-muted">25 min</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="dashboard-section d-none" id="communitySection">
-                <h2 class="mb-4">Community</h2>
-                <p class="text-muted">Connect with other fitness enthusiasts.</p>
-                <!-- Community content would go here -->
+    <!-- Nutrition Modal -->
+    <div class="modal fade" id="nutritionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Log Meal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Meal Type</label>
+                            <select class="form-select">
+                                <option>Breakfast</option>
+                                <option>Lunch</option>
+                                <option>Dinner</option>
+                                <option>Snack</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Food Item</label>
+                            <input type="text" class="form-control" placeholder="Search for food...">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Calories</label>
+                            <input type="number" class="form-control" placeholder="Enter calories">
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Log Meal</button>
+                    </form>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="dashboard-section d-none" id="settingsSection">
-                <h2 class="mb-4">Settings</h2>
-                <p class="text-muted">Manage your account and preferences.</p>
-                <!-- Settings content would go here -->
+    <!-- Habit Modal -->
+    <div class="modal fade" id="habitModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Track Habit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group">
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-tint text-primary me-2"></i>
+                                Drink 8 glasses of water
+                            </div>
+                            <button class="btn btn-outline-success btn-sm">Mark Done</button>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-book text-warning me-2"></i>
+                                Read for 30 minutes
+                            </div>
+                            <button class="btn btn-outline-success btn-sm">Mark Done</button>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-moon text-info me-2"></i>
+                                Sleep 8 hours
+                            </div>
+                            <button class="btn btn-outline-success btn-sm">Mark Done</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </main>
+        </div>
     </div>
 
     <!-- Bootstrap 5 JS -->
@@ -609,131 +661,226 @@
     <!-- Custom JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if user is coming from signup
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('welcome') === 'true') {
-                document.getElementById('welcomeBanner').style.display = 'block';
-            }
-            
-            // Sidebar navigation
-            const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
-            const sections = document.querySelectorAll('.dashboard-section');
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all links
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    // Add active class to clicked link
-                    this.classList.add('active');
-                    
-                    // Hide all sections
-                    sections.forEach(section => section.classList.add('d-none'));
-                    
-                    // Show selected section
-                    const sectionId = this.getAttribute('data-section') + 'Section';
-                    const targetSection = document.getElementById(sectionId);
-                    if (targetSection) {
-                        targetSection.classList.remove('d-none');
-                    }
-                    
-                    // Close sidebar on mobile
-                    if (window.innerWidth <= 768) {
-                        document.getElementById('sidebar').classList.remove('show');
-                    }
-                });
+            // Navigation scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             });
             
-            // Sidebar toggle for mobile
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebar = document.getElementById('sidebar');
+            // Initialize progress ring
+            const progressRing = document.getElementById('dailyProgressRing');
+            const progressText = document.getElementById('dailyProgressText');
+            const progress = 75; // 75% completion
             
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('show');
-            });
+            const circumference = 2 * Math.PI * 52;
+            const offset = circumference - (progress / 100) * circumference;
+            progressRing.style.strokeDashoffset = offset;
             
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-                        sidebar.classList.remove('show');
+            // Initialize activity chart
+            const ctx = document.getElementById('activityChart').getContext('2d');
+            const activityChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Workouts',
+                            data: [1, 2, 1, 2, 1, 0, 1],
+                            borderColor: '#007bff',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Calories Burned',
+                            data: [320, 450, 280, 520, 380, 0, 290],
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 3,
+                            title: {
+                                display: true,
+                                text: 'Workouts'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            beginAtZero: true,
+                            max: 600,
+                            title: {
+                                display: true,
+                                text: 'Calories'
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
                     }
                 }
             });
             
-            // Animate counters
+            // Chart period toggle
+            const chartPeriodInputs = document.querySelectorAll('input[name="chartPeriod"]');
+            chartPeriodInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.value === 'week') {
+                        activityChart.data.labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                        activityChart.data.datasets[0].data = [1, 2, 1, 2, 1, 0, 1];
+                        activityChart.data.datasets[1].data = [320, 450, 280, 520, 380, 0, 290];
+                    } else {
+                        activityChart.data.labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+                        activityChart.data.datasets[0].data = [8, 6, 9, 7];
+                        activityChart.data.datasets[1].data = [2400, 1800, 2700, 2100];
+                    }
+                    activityChart.update();
+                });
+            });
+            
+            // Quick action cards hover effect
+            const quickCards = document.querySelectorAll('.workout-quick-card');
+            quickCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Add selection effect
+                    quickCards.forEach(c => c.classList.remove('border-primary'));
+                    this.classList.add('border-primary');
+                    
+                    // Close modal and start workout (simulation)
+                    setTimeout(() => {
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('workoutModal'));
+                        modal.hide();
+                        showNotification('Workout started! Good luck! 💪', 'success');
+                    }, 500);
+                });
+            });
+            
+            // Habit tracker interactions
+            const habitDays = document.querySelectorAll('.habit-day');
+            habitDays.forEach(day => {
+                if (!day.classList.contains('future')) {
+                    day.addEventListener('click', function() {
+                        if (this.classList.contains('completed')) {
+                            this.classList.remove('completed');
+                            this.classList.add('missed');
+                        } else if (this.classList.contains('missed')) {
+                            this.classList.add('completed');
+                            this.classList.remove('missed');
+                        } else if (this.classList.contains('today')) {
+                            this.classList.add('completed');
+                            showNotification('Great job! Habit completed for today! 🎉', 'success');
+                        }
+                    });
+                }
+            });
+            
+            // Modal form submissions
+            const nutritionForm = document.querySelector('#nutritionModal form');
+            if (nutritionForm) {
+                nutritionForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('nutritionModal'));
+                    modal.hide();
+                    showNotification('Meal logged successfully! 🍎', 'success');
+                    this.reset();
+                });
+            }
+            
+            // Habit tracking buttons
+            const habitButtons = document.querySelectorAll('#habitModal .btn-outline-success');
+            habitButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-check"></i> Done';
+                    this.classList.remove('btn-outline-success');
+                    this.classList.add('btn-success');
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('habitModal'));
+                        modal.hide();
+                        showNotification('Habit tracked! Keep up the great work! ✨', 'success');
+                        
+                        // Reset button state when modal is hidden
+                        modal._element.addEventListener('hidden.bs.modal', () => {
+                            this.innerHTML = 'Mark Done';
+                            this.classList.remove('btn-success');
+                            this.classList.add('btn-outline-success');
+                            this.disabled = false;
+                        }, { once: true });
+                    }, 1000);
+                });
+            });
+            
+            // Animate counters on page load
             animateCounters();
             
-            // Initialize progress ring
-            initProgressRing();
-        });
-
-        function animateCounters() {
-            const counters = document.querySelectorAll('[data-count]');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2000;
-                const step = target / (duration / 16);
-                let current = 0;
+            function animateCounters() {
+                const counters = [
+                    { element: document.getElementById('currentStreak'), target: 12 },
+                    { element: document.getElementById('weeklyWorkouts'), target: 4 },
+                    { element: document.getElementById('monthlyGoals'), target: 8 },
+                    { element: document.getElementById('caloriesBurned'), target: 2450 }
+                ];
                 
-                const timer = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
+                counters.forEach(counter => {
+                    let current = 0;
+                    const increment = counter.target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= counter.target) {
+                            current = counter.target;
+                            clearInterval(timer);
+                        }
+                        
+                        if (counter.target > 1000) {
+                            counter.element.textContent = Math.floor(current).toLocaleString();
+                        } else {
+                            counter.element.textContent = Math.floor(current);
+                        }
+                    }, 30);
+                });
+            }
+            
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+                notification.style.cssText = 'top: 80px; right: 20px; z-index: 9999; min-width: 300px;';
+                
+                notification.innerHTML = `
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
                     }
-                    counter.textContent = Math.floor(current);
-                }, 16);
-            });
-        }
-
-        function initProgressRing() {
-            const progressCircle = document.querySelector('.progress-ring .progress');
-            const radius = 52;
-            const circumference = 2 * Math.PI * radius;
-            const progress = 70; // 70% complete
-            
-            progressCircle.style.strokeDasharray = circumference;
-            progressCircle.style.strokeDashoffset = circumference - (progress / 100) * circumference;
-        }
-
-        function startOnboarding() {
-            // Hide welcome banner
-            document.getElementById('welcomeBanner').style.display = 'none';
-            
-            // Show onboarding tour (placeholder)
-            alert('Welcome tour would start here! This would guide users through the dashboard features.');
-        }
+                }, 5000);
+            }
+        });
     </script>
 </body>
 </html>
-
-This completes the comprehensive AweSome fitness website with all three requested pages:
-
-### Key Features Implemented:
-
-**Signup Page:**
-- Multi-step registration process
-- Real-time password strength validation
-- Social media signup options
-- Fitness goal and level selection
-- Terms and conditions acceptance
-
-**Forgot Password Page:**
-- Email validation and reset instructions
-- Success confirmation with resend functionality
-- Timer-based resend prevention
-- Additional help and support options
-
-**Dashboard Page:**
-- Responsive sidebar navigation
-- Real-time statistics with animated counters
-- Progress tracking with visual indicators
-- Recent activity feed
-- Quick action buttons
-- Welcome banner for new users
-- Mobile-optimized design
-
-All pages maintain consistent branding with the main AweSome website and include proper navigation, accessibility features, and responsive design for all device sizes.
