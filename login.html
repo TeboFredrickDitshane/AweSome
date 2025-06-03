@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AweSome Fitness & Wellness</title>
+    <meta name="description" content="Login to your AweSome account to access personalized workouts, nutrition plans, and wellness resources.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Login-specific styles -->
+    <style>
+        .login-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem 0;
+        }
+        
+        .login-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .login-body {
+            padding: 2rem;
+        }
+        
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .login-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .form-floating {
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-login-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .social-login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-facebook {
+            background-color: #3b5998;
+        }
+        
+        .btn-google {
+            background-color: #db4437;
+        }
+        
+        .btn-apple {
+            background-color: #000000;
+        }
+        
+        .login-footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6c757d;
+            z-index: 10;
+        }
+        
+        @media (max-width: 768px) {
+            .login-card {
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-heart text-primary me-2"></i>AweSome
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#workouts">Workouts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#nutrition">Nutrition</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#wellness">Wellness</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2" href="signup.html">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="login-card card border-0">
+                        <div class="login-header">
+                            <div class="login-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h2 class="fw-bold mb-2">Welcome Back!</h2>
+                            <p class="mb-0">Sign in to access your personalized fitness journey</p>
+                        </div>
+                        <div class="login-body">
+                            <form id="loginForm" novalidate>
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                                    <label for="email">Email address</label>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email address.
+                                    </div>
+                                </div>
+                                <div class="form-floating position-relative">
+                                    <input type="password" class="form-control" id="password" placeholder="Password" required minlength="8">
+                                    <label for="password">Password</label>
+                                    <span class="password-toggle" id="passwordToggle">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <div class="invalid-feedback">
+                                        Password must be at least 8 characters.
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                    <a href="forgot-password.html" class="text-primary text-decoration-none">Forgot password?</a>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                                </button>
+                            </form>
+                            
+                            <div class="text-center my-4">
+                                <span class="text-muted">Or login with</span>
+                            </div>
+                            
+                            <div class="social-login">
+                                <a href="#" class="social-login-btn btn-facebook" aria-label="Login with Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-login-btn btn-google" aria-label="Login with Google">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                                <a href="#" class="social-login-btn btn-apple" aria-label="Login with Apple">
+                                    <i class="fab fa-apple"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="login-footer">
+                            <p class="mb-0">Don't have an account? <a href="signup.html" class="text-primary fw-bold">Sign up</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-4">
+                        <h4 class="fw-bold">
+                            <i class="fas fa-heart text-primary me-2"></i>AweSome
+                        </h4>
+                        <p class="text-light">
+                            Your 24/7 fitness and wellness companion. Perfect for busy students and professionals 
+                            who need flexible, effective fitness solutions.
+                        </p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="index.html#workouts" class="text-light text-decoration-none">Workouts</a></li>
+                        <li><a href="index.html#nutrition" class="text-light text-decoration-none">Nutrition</a></li>
+                        <li><a href="index.html#wellness" class="text-light text-decoration-none">Wellness</a></li>
+                        <li><a href="index.html#blog" class="text-light text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Help Center</a></li>
+                        <li><a href="index.html#contact" class="text-light text-decoration-none">Contact Us</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h6 class="fw-bold mb-3">Newsletter</h6>
+                    <p class="text-light mb-3">Subscribe to get updates on new features and promotions</p>
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0 text-light">&copy; 2025 AweSome. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0 text-light">Made with ❤️ for students and fitness enthusiasts</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Password visibility toggle
+            const passwordToggle = document.getElementById('passwordToggle');
+            const passwordInput = document.getElementById('password');
+            
+            if (passwordToggle && passwordInput) {
+                passwordToggle.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    
+                    // Toggle eye icon
+                    const eyeIcon = this.querySelector('i');
+                    eyeIcon.classList.toggle('fa-eye');
+                    eyeIcon.classList.toggle('fa-eye-slash');
+                });
+            }
+            
+            // Form validation
+            const form = document.getElementById('loginForm');
+            
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        // Show loading state on button
+                        const button = form.querySelector('button[type="submit"]');
+                        const originalText = button.innerHTML;
+                        button.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Logging in...';
+                        button.disabled = true;
+                        
+                        // Simulate login (replace with actual login logic)
+                        setTimeout(() => {
+                            // Redirect to dashboard or show error
+                            window.location.href = 'dashboard.html';
+                            
+                            // Reset button (in case login fails)
+                            button.innerHTML = originalText;
+                            button.disabled = false;
+                        }, 2000);
+                    }
+                    
+                    form.classList.add('was-validated');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
