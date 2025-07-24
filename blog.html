@@ -3,482 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - AweSome Fitness</title>
-    <meta name="description" content="Latest fitness tips, nutrition advice, and wellness insights from our expert team.">
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
+    <title>Health & Fitness Blog - FitLife Wellness</title>
     <link rel="stylesheet" href="styles.css">
-    
-    <style>
-        .blog-hero {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-            padding: 120px 0 80px;
-            color: #333;
-        }
-        
-        .blog-card {
-            transition: all 0.3s ease;
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        
-        .blog-category {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 2;
-        }
-        
-        .blog-date {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        .featured-post {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .author-info {
-            display: flex;
-            align-items: center;
-            margin-top: 15px;
-        }
-        
-        .author-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .search-box {
-            background: white;
-            border-radius: 50px;
-            padding: 10px 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fas fa-heart text-primary me-2"></i>AweSome
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat fa-2x" style="color: #2ecc71;"></i>
+                <h1>Fit<span>Life</span></h1>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="workouts.html">Workouts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="nutrition.html">Nutrition</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="wellness.html">Wellness</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light me-2" href="login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="signup.html">Sign Up</a>
-                    </li>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="feedback.html">Contact</a></li>
                 </ul>
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="blog-hero">
+    <!-- Blog Hero -->
+    <section class="hero blog-hero">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-4 fw-bold mb-4">Expert Fitness & Wellness Insights</h1>
-                    <p class="lead mb-4">
-                        Stay updated with the latest research, tips, and trends in fitness, nutrition, 
-                        and mental wellness from our team of certified experts.
-                    </p>
-                    <div class="search-box d-inline-flex align-items-center mb-4">
-                        <input type="text" class="form-control border-0" placeholder="Search articles..." id="searchInput">
-                        <button class="btn btn-primary ms-2" onclick="searchArticles()">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <div class="row text-center">
-                        <div class="col-6 col-md-3">
-                            <h4 class="fw-bold text-primary">100+</h4>
-                            <small>Expert Articles</small>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <h4 class="fw-bold text-primary">Weekly</h4>
-                            <small>New Content</small>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <h4 class="fw-bold text-primary">5min</h4>
-                            <small>Average Read</small>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <h4 class="fw-bold text-primary">Expert</h4>
-                            <small>Authors</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h2>FitLife Wellness Blog</h2>
+            <p>Expert advice, workout tips, and nutrition guidance for your health journey</p>
         </div>
     </section>
 
-    <!-- Featured Post -->
-    <section class="py-5">
+    <!-- Blog Content -->
+    <section class="section blog">
         <div class="container">
-            <div class="featured-post fade-in">
-                <div class="row align-items-center">
-                    <div class="col-lg-8">
-                        <span class="badge bg-light text-dark mb-3">Featured Article</span>
-                        <h2 class="fw-bold mb-3">The Science of Midnight Workouts: Why Late-Night Exercise Works</h2>
-                        <p class="lead mb-4">
-                            Discover why exercising late at night might actually be perfect for your circadian rhythm 
-                            and how to optimize your midnight workout routine for maximum benefits.
-                        </p>
-                        <div class="author-info">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&h=80&fit=crop&crop=face" 
-                                 class="author-avatar" alt="Dr. Sarah Johnson">
-                            <div>
-                                <h6 class="mb-0">Dr. Sarah Johnson</h6>
-                                <small>Exercise Physiologist • 5 min read</small>
+            <div class="blog-container">
+                <div class="blog-content">
+                    <!-- Featured Post -->
+                    <div class="featured-post">
+                        <div class="post-img">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Strength Training">
+                        </div>
+                        <div class="post-content">
+                            <span class="post-category">Workout Tips</span>
+                            <h2>The Ultimate Guide to Strength Training for Beginners</h2>
+                            <div class="post-meta">
+                                <span><i class="far fa-user"></i> Alex Johnson</span>
+                                <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <p>Starting a strength training program can be intimidating, but it's one of the most effective ways to transform your body and boost your metabolism. In this comprehensive guide, we'll cover everything you need to know to get started with strength training...</p>
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Posts Grid -->
+                    <div class="blog-grid">
+                        <div class="blog-card">
+                            <div class="post-img">
+                                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80" alt="Meal Prep">
+                            </div>
+                            <div class="post-content">
+                                <span class="post-category">Nutrition</span>
+                                <h3>7-Day Meal Prep Plan for Weight Loss</h3>
+                                <div class="post-meta">
+                                    <span><i class="far fa-user"></i> Maria Garcia</span>
+                                    <span><i class="far fa-calendar"></i> June 10, 2023</span>
+                                </div>
+                                <p>Struggling to eat healthy throughout the week? Our dietitian shares a simple 7-day meal prep plan that will keep you on track with your weight loss goals...</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <div class="post-img">
+                                <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Recovery">
+                            </div>
+                            <div class="post-content">
+                                <span class="post-category">Recovery</span>
+                                <h3>Why Recovery Days Are Essential for Progress</h3>
+                                <div class="post-meta">
+                                    <span><i class="far fa-user"></i> Sarah Williams</span>
+                                    <span><i class="far fa-calendar"></i> June 5, 2023</span>
+                                </div>
+                                <p>Many fitness enthusiasts underestimate the importance of recovery. Learn why taking rest days is crucial for muscle growth, injury prevention, and long-term progress...</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <div class="post-img">
+                                <img src="https://images.unsplash.com/photo-1549060279-7e168fce7090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Group Fitness">
+                            </div>
+                            <div class="post-content">
+                                <span class="post-category">Fitness</span>
+                                <h3>5 Benefits of Group Fitness Classes</h3>
+                                <div class="post-meta">
+                                    <span><i class="far fa-user"></i> David Chen</span>
+                                    <span><i class="far fa-calendar"></i> May 28, 2023</span>
+                                </div>
+                                <p>Group fitness classes offer more than just a workout. Discover the physical, mental, and social benefits that make group training an effective fitness solution...</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <div class="post-img">
+                                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2120&q=80" alt="Yoga">
+                            </div>
+                            <div class="post-content">
+                                <span class="post-category">Mindfulness</span>
+                                <h3>Morning Yoga Routine for Stress Relief</h3>
+                                <div class="post-meta">
+                                    <span><i class="far fa-user"></i> David Chen</span>
+                                    <span><i class="far fa-calendar"></i> May 20, 2023</span>
+                                </div>
+                                <p>Start your day with intention and calm with this 20-minute yoga sequence designed to reduce stress and increase mindfulness throughout your day...</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 text-center">
-                        <a href="signup.html" class="btn btn-light btn-lg">
-                            <i class="fas fa-book-open me-2"></i>Read Full Article
-                        </a>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#" class="page-btn active">1</a>
+                        <a href="#" class="page-btn">2</a>
+                        <a href="#" class="page-btn">3</a>
+                        <a href="#" class="page-btn next">Next <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Categories -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center mb-5 fade-in">
-                    <h2 class="display-5 fw-bold mb-4">Browse by Category</h2>
-                    <div class="blog-categories">
-                        <button class="btn btn-outline-primary active me-2 mb-2 filter-btn" data-filter="all">All Articles</button>
-                        <button class="btn btn-outline-primary me-2 mb-2 filter-btn" data-filter="fitness">Fitness</button>
-                        <button class="btn btn-outline-primary me-2 mb-2 filter-btn" data-filter="nutrition">Nutrition</button>
-                        <button class="btn btn-outline-primary me-2 mb-2 filter-btn" data-filter="wellness">Wellness</button>
-                        <button class="btn btn-outline-primary me-2 mb-2 filter-btn" data-filter="student-life">Student Life</button>
-                        <button class="btn btn-outline-primary me-2 mb-2 filter-btn" data-filter="research">Research</button>
+                
+                <!-- Sidebar -->
+                <div class="blog-sidebar">
+                    <div class="sidebar-widget">
+                        <h3>Search</h3>
+                        <div class="search-box">
+                            <input type="text" placeholder="Search articles...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Blog Grid -->
-            <div class="row g-4" id="blogGrid">
-                <!-- Blog posts will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Signup -->
-    <section class="py-5 bg-primary text-white">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 fade-in">
-                    <h3 class="fw-bold mb-3">Never Miss an Update</h3>
-                    <p class="mb-0">
-                        Get the latest fitness tips, nutrition advice, and wellness insights delivered 
-                        straight to your inbox every week.
-                    </p>
-                </div>
-                <div class="col-lg-6 fade-in">
-                    <form class="d-flex gap-2">
-                        <input type="email" class="form-control" placeholder="Enter your email" required>
-                        <button type="submit" class="btn btn-light text-primary fw-bold">Subscribe</button>
-                    </form>
-                    <small class="text-light mt-2 d-block">
-                        Join 10,000+ readers. No spam, unsubscribe anytime.
-                    </small>
+                    
+                    <div class="sidebar-widget">
+                        <h3>Categories</h3>
+                        <ul class="categories">
+                            <li><a href="#">Workout Tips <span>(12)</span></a></li>
+                            <li><a href="#">Nutrition <span>(8)</span></a></li>
+                            <li><a href="#">Mindfulness <span>(5)</span></a></li>
+                            <li><a href="#">Recovery <span>(7)</span></a></li>
+                            <li><a href="#">Success Stories <span>(10)</span></a></li>
+                            <li><a href="#">Healthy Recipes <span>(15)</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3>Popular Posts</h3>
+                        <div class="popular-post">
+                            <div class="post-img">
+                                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="HIIT">
+                            </div>
+                            <div class="post-content">
+                                <h4>HIIT vs. Steady-State Cardio: Which is Better?</h4>
+                                <span>May 15, 2023</span>
+                            </div>
+                        </div>
+                        
+                        <div class="popular-post">
+                            <div class="post-img">
+                                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80" alt="Nutrition">
+                            </div>
+                            <div class="post-content">
+                                <h4>10 Superfoods You Should Add to Your Diet</h4>
+                                <span>April 28, 2023</span>
+                            </div>
+                        </div>
+                        
+                        <div class="popular-post">
+                            <div class="post-img">
+                                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Sleep">
+                            </div>
+                            <div class="post-content">
+                                <h4>The Connection Between Sleep and Weight Loss</h4>
+                                <span>April 15, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3>Subscribe</h3>
+                        <p>Get the latest fitness tips and exclusive offers delivered to your inbox.</p>
+                        <form class="subscribe-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="btn">Subscribe</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-5">
+    <footer>
         <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="footer-brand mb-4">
-                        <h4 class="fw-bold">
-                            <i class="fas fa-heart text-primary me-2"></i>AweSome
-                        </h4>
-                        <p class="text-light">
-                            Your 24/7 fitness and wellness companion. Perfect for busy students and professionals.
-                        </p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-heartbeat fa-2x" style="color: #2ecc71;"></i>
+                        <h1>Fit<span>Life</span></h1>
+                    </div>
+                    <p>Your journey to a healthier, happier life begins here. We provide comprehensive fitness and wellness programs tailored to your individual needs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="fw-bold mb-3">Pages</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
-                        <li><a href="workouts.html" class="text-light text-decoration-none">Workouts</a></li>
-                        <li><a href="nutrition.html" class="text-light text-decoration-none">Nutrition</a></li>
-                        <li><a href="wellness.html" class="text-light text-decoration-none">Wellness</a></li>
-                        <li><a href="blog.html" class="text-light text-decoration-none">Blog</a></li>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="feedback.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="fw-bold mb-3">Account</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="login.html" class="text-light text-decoration-none">Login</a></li>
-                        <li><a href="signup.html" class="text-light text-decoration-none">Sign Up</a></li>
-                        <li><a href="dashboard.html" class="text-light text-decoration-none">Dashboard</a></li>
-                        <li><a href="forgot-password.html" class="text-light text-decoration-none">Reset Password</a></li>
+                
+                <div class="footer-col">
+                    <h3>Our Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Personal Training</a></li>
+                        <li><a href="services.html">Group Classes</a></li>
+                        <li><a href="services.html">Yoga & Meditation</a></li>
+                        <li><a href="services.html">Nutrition Coaching</a></li>
+                        <li><a href="services.html">Online Coaching</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4">
-                    <h6 class="fw-bold mb-3">Contact Info</h6>
-                    <p class="text-light mb-1"><i class="fas fa-envelope me-2"></i>dferdrick10@gmail.com</p>
-                    <p class="text-light mb-1"><i class="fas fa-phone me-2"></i>+267 76819115</p>
-                    <p class="text-light"><i class="fas fa-map-marker-alt me-2"></i>Block 8, Gaborone, Botswana</p>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Wellness St, Fitness City</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@fitlife.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 6am - 10pm</li>
+                        <li><i class="fas fa-clock"></i> Sat-Sun: 8am - 8pm</li>
+                    </ul>
                 </div>
             </div>
-            <hr class="my-4">
-            <div class="text-center">
-                <p class="mb-0 text-light">&copy; 2025 AweSome. All rights reserved.</p>
+            
+            <div class="copyright">
+                <p>&copy; 2023 FitLife Wellness Center. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for your health</p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Blog posts data
-        const blogPosts = [
-            {
-                id: 1,
-                title: "5 Quick Workouts for Busy Students",
-                category: "fitness",
-                author: "Mike Chen",
-                date: "Jan 15, 2025",
-                readTime: "4 min read",
-                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop",
-                excerpt: "Maximize your fitness with these time-efficient workouts designed for hectic student schedules."
-            },
-            {
-                id: 2,
-                title: "Brain Foods: Nutrition for Academic Success",
-                category: "nutrition",
-                author: "Dr. Emma Wilson",
-                date: "Jan 12, 2025",
-                readTime: "6 min read",
-                image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=250&fit=crop",
-                excerpt: "Discover which foods can boost cognitive function and help you excel in your studies."
-            },
-            {
-                id: 3,
-                title: "Managing Exam Stress: A Wellness Guide",
-                category: "wellness",
-                author: "Dr. Sarah Johnson",
-                date: "Jan 10, 2025",
-                readTime: "5 min read",
-                image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=250&fit=crop",
-                excerpt: "Evidence-based strategies to manage stress and maintain mental health during exam periods."
-            },
-            {
-                id: 4,
-                title: "Dorm Room Workouts: No Equipment Needed",
-                category: "fitness",
-                author: "Alex Rodriguez",
-                date: "Jan 8, 2025",
-                readTime: "3 min read",
-                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop",
-                excerpt: "Effective exercises you can do in your dorm room without any equipment."
-            },
-            {
-                id: 5,
-                title: "Budget-Friendly Meal Prep for Students",
-                category: "nutrition",
-                author: "Lisa Park",
-                date: "Jan 5, 2025",
-                readTime: "7 min read",
-                image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=250&fit=crop",
-                excerpt: "Save money and eat healthy with these student-friendly meal prep strategies."
-            },
-            {
-                id: 6,
-                title: "The Science of Sleep and Academic Performance",
-                category: "research",
-                author: "Dr. James Kim",
-                date: "Jan 3, 2025",
-                readTime: "8 min read",
-                image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=250&fit=crop",
-                excerpt: "Latest research on how sleep quality affects learning, memory, and academic success."
-            }
-        ];
-
-        // Render blog posts
-        function renderBlogPosts(postsToShow = blogPosts) {
-            const grid = document.getElementById('blogGrid');
-            grid.innerHTML = '';
-
-            postsToShow.forEach(post => {
-                const blogCard = `
-                    <div class="col-md-6 col-lg-4 fade-in blog-item" data-category="${post.category}">
-                        <div class="blog-card card h-100 shadow-sm">
-                            <div class="position-relative">
-                                <img src="${post.image}" class="card-img-top" alt="${post.title}">
-                                <span class="blog-category badge bg-${getCategoryColor(post.category)}">${post.category}</span>
-                                <span class="blog-date">${post.date}</span>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">${post.title}</h5>
-                                <p class="card-text text-muted">${post.excerpt}</p>
-                                <div class="author-info">
-                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" 
-                                         class="author-avatar" alt="${post.author}">
-                                    <div>
-                                        <h6 class="mb-0">${post.author}</h6>
-                                        <small class="text-muted">${post.readTime}</small>
-                                    </div>
-                                </div>
-                                <a href="signup.html" class="btn btn-outline-primary mt-3">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                grid.innerHTML += blogCard;
-            });
-
-            // Re-observe new elements
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        function getCategoryColor(category) {
-            const colors = {
-                'fitness': 'primary',
-                'nutrition': 'success',
-                'wellness': 'info',
-                'student-life': 'warning',
-                'research': 'secondary'
-            };
-            return colors[category] || 'primary';
-        }
-
-        // Filter functionality
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Update active button
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                // Filter posts
-                const filter = this.dataset.filter;
-                let filteredPosts = blogPosts;
-
-                if (filter !== 'all') {
-                    filteredPosts = blogPosts.filter(post => post.category === filter);
-                }
-
-                renderBlogPosts(filteredPosts);
-            });
-        });
-
-        // Search functionality
-        function searchArticles() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filteredPosts = blogPosts.filter(post => 
-                post.title.toLowerCase().includes(searchTerm) ||
-                post.excerpt.toLowerCase().includes(searchTerm) ||
-                post.category.toLowerCase().includes(searchTerm)
-            );
-            renderBlogPosts(filteredPosts);
-        }
-
-        // Search on Enter key
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchArticles();
-            }
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            renderBlogPosts();
-            
-            // Observe fade-in elements
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
