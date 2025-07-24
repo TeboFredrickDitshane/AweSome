@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - FitLife Wellness</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat fa-2x" style="color: #2ecc71;"></i>
+                <h1>Fit<span>Life</span></h1>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="feedback.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Services Hero -->
+    <section class="hero services-hero">
+        <div class="container">
+            <h2>Our Fitness & Wellness Services</h2>
+            <p>Comprehensive programs designed for every fitness level and goal</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Offerings</h2>
+                <p>Explore our range of fitness and wellness services</p>
+            </div>
+            
+            <div class="services-tabs">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="training">Personal Training</button>
+                    <button class="tab-btn" data-tab="group">Group Classes</button>
+                    <button class="tab-btn" data-tab="nutrition">Nutrition Coaching</button>
+                    <button class="tab-btn" data-tab="recovery">Recovery & Therapy</button>
+                </div>
+                
+                <div class="tab-content active" id="training">
+                    <div class="service-detail">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Personal Training">
+                        </div>
+                        <div class="service-info">
+                            <h3>Personal Training</h3>
+                            <p>Our certified personal trainers create customized workout programs tailored to your specific goals, fitness level, and preferences. Whether you're training for a specific event, looking to lose weight, or simply wanting to improve your overall fitness, we'll design a program just for you.</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> One-on-one coaching sessions</li>
+                                <li><i class="fas fa-check-circle"></i> Goal-specific programming</li>
+                                <li><i class="fas fa-check-circle"></i> Progress tracking and adjustments</li>
+                                <li><i class="fas fa-check-circle"></i> Form correction and injury prevention</li>
+                                <li><i class="fas fa-check-circle"></i> Nutritional guidance integration</li>
+                            </ul>
+                            <a href="feedback.html" class="btn">Book a Consultation</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="group">
+                    <div class="service-detail">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1549060279-7e168fce7090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Group Classes">
+                        </div>
+                        <div class="service-info">
+                            <h3>Group Fitness Classes</h3>
+                            <p>Join our vibrant community with classes designed for all fitness levels. Our group classes offer motivation, camaraderie, and expert instruction in a fun, energetic environment. With a variety of class types throughout the day, you'll always find something that fits your schedule.</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> HIIT & Cardio Blast</li>
+                                <li><i class="fas fa-check-circle"></i> Strength & Conditioning</li>
+                                <li><i class="fas fa-check-circle"></i> Yoga & Pilates</li>
+                                <li><i class="fas fa-check-circle"></i> Dance Fitness</li>
+                                <li><i class="fas fa-check-circle"></i> Senior Fitness Programs</li>
+                                <li><i class="fas fa-check-circle"></i> Prenatal & Postnatal Classes</li>
+                            </ul>
+                            <a href="feedback.html" class="btn">View Class Schedule</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="nutrition">
+                    <div class="service-detail">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80" alt="Nutrition Coaching">
+                        </div>
+                        <div class="service-info">
+                            <h3>Nutrition Coaching</h3>
+                            <p>Our registered dietitians provide science-based nutrition guidance tailored to your lifestyle, preferences, and health goals. We don't believe in one-size-fits-all diets but instead focus on sustainable eating patterns that fuel your body and support your fitness journey.</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Personalized meal planning</li>
+                                <li><i class="fas fa-check-circle"></i> Body composition analysis</li>
+                                <li><i class="fas fa-check-circle"></i> Supplement guidance</li>
+                                <li><i class="fas fa-check-circle"></i> Grocery store tours</li>
+                                <li><i class="fas fa-check-circle"></i> Cooking demonstrations</li>
+                                <li><i class="fas fa-check-circle"></i> Special dietary needs (vegan, gluten-free, etc.)</li>
+                            </ul>
+                            <a href="feedback.html" class="btn">Schedule Nutrition Consultation</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="recovery">
+                    <div class="service-detail">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Recovery & Therapy">
+                        </div>
+                        <div class="service-info">
+                            <h3>Recovery & Therapy</h3>
+                            <p>Optimize your body's recovery with our specialized services designed to reduce soreness, improve mobility, and enhance performance. Our recovery specialists use evidence-based techniques to help you feel your best and prevent injuries.</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Sports massage therapy</li>
+                                <li><i class="fas fa-check-circle"></i> Cryotherapy</li>
+                                <li><i class="fas fa-check-circle"></i> Infrared sauna</li>
+                                <li><i class="fas fa-check-circle"></i> Compression therapy</li>
+                                <li><i class="fas fa-check-circle"></i> Physical therapy</li>
+                                <li><i class="fas fa-check-circle"></i> Mobility assessments</li>
+                            </ul>
+                            <a href="feedback.html" class="btn">Book Recovery Session</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Membership Options</h2>
+                <p>Flexible plans to fit your lifestyle and budget</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$59<span>/month</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Access to all group classes</li>
+                        <li><i class="fas fa-check"></i> Gym access during staffed hours</li>
+                        <li><i class="fas fa-check"></i> Basic fitness assessment</li>
+                        <li><i class="fas fa-times"></i> Personal training sessions</li>
+                        <li><i class="fas fa-times"></i> Nutrition consultation</li>
+                    </ul>
+                    <a href="feedback.html" class="btn">Get Started</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-tag">Most Popular</div>
+                    <h3>Premium</h3>
+                    <div class="price">$99<span>/month</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> All Basic features</li>
+                        <li><i class="fas fa-check"></i> 2 personal training sessions/month</li>
+                        <li><i class="fas fa-check"></i> Nutrition consultation (quarterly)</li>
+                        <li><i class="fas fa-check"></i> Recovery session (monthly)</li>
+                        <li><i class="fas fa-check"></i> 24/7 gym access</li>
+                    </ul>
+                    <a href="feedback.html" class="btn">Get Started</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Elite</h3>
+                    <div class="price">$199<span>/month</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> All Premium features</li>
+                        <li><i class="fas fa-check"></i> Unlimited personal training</li>
+                        <li><i class="fas fa-check"></i> Monthly nutrition coaching</li>
+                        <li><i class="fas fa-check"></i> Bi-weekly recovery sessions</li>
+                        <li><i class="fas fa-check"></i> Priority class booking</li>
+                    </ul>
+                    <a href="feedback.html" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-heartbeat fa-2x" style="color: #2ecc71;"></i>
+                        <h1>Fit<span>Life</span></h1>
+                    </div>
+                    <p>Your journey to a healthier, happier life begins here. We provide comprehensive fitness and wellness programs tailored to your individual needs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="feedback.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Our Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Personal Training</a></li>
+                        <li><a href="services.html">Group Classes</a></li>
+                        <li><a href="services.html">Yoga & Meditation</a></li>
+                        <li><a href="services.html">Nutrition Coaching</a></li>
+                        <li><a href="services.html">Online Coaching</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Wellness St, Fitness City</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@fitlife.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 6am - 10pm</li>
+                        <li><i class="fas fa-clock"></i> Sat-Sun: 8am - 8pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 FitLife Wellness Center. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for your health</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
