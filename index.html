@@ -3,580 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AweSome - Your 24/7 Fitness & Wellness Companion</title>
-    <meta name="description" content="Get workout advice anytime, anywhere. Perfect for busy students and fitness enthusiasts seeking personalized fitness plans and wellness guidance.">
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
+    <title>FitLife - Your Journey to Wellness</title>
     <link rel="stylesheet" href="styles.css">
-    
-    <style>
-        /* Enhanced animations and effects */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .hero-content {
-            animation: slideInLeft 1s ease-out;
-        }
-        
-        .hero-widget {
-            animation: slideInRight 1s ease-out;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: scale(1.05);
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(var(--bs-primary-rgb), 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
-            }
-        }
-        
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            min-width: 300px;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Notification Toast -->
-    <div id="notification" class="notification">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle me-2"></i>
-            <span id="notificationMessage">Welcome to AweSome!</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#home">
-                <i class="fas fa-heart text-primary me-2"></i>AweSome
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#workouts.html">Workouts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#nutrition.html">Nutrition</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#wellness.html">Wellness</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light me-2" href="login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary btn-pulse" href="signup.html">Sign Up Free</a>
-                    </li>
-                </ul>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat fa-2x" style="color: #2ecc71;"></i>
+                <h1>Fit<span>Life</span></h1>
             </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="feedback.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-overlay"></div>
+    <section class="hero">
         <div class="container">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-6">
-                    <div class="hero-content text-white">
-                        <span class="badge bg-primary mb-3 fs-6">🚀 Your 24/7 Fitness Companion</span>
-                        <h1 class="display-4 fw-bold mb-4">
-                            Workout Advice at <span class="text-primary">Midnight?</span> We've Got You!
-                        </h1>
-                        <p class="lead mb-4">
-                            Perfect for busy students and professionals. Get personalized workout plans, nutrition guides, 
-                            and wellness advice anytime, anywhere. No more waiting for gym hours!
-                        </p>
-                        <div class="hero-stats mb-4">
-                            <div class="row text-center">
-                                <div class="col-4">
-                                    <h3 class="fw-bold text-primary" data-count="10000">0</h3>
-                                    <small>Active Users</small>
-                                </div>
-                                <div class="col-4">
-                                    <h3 class="fw-bold text-primary" data-count="500">0</h3>
-                                    <small>Workouts</small>
-                                </div>
-                                <div class="col-4">
-                                    <h3 class="fw-bold text-primary">4.9★</h3>
-                                    <small>Rating</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hero-buttons">
-                            <a href="signup.html" class="btn btn-primary btn-lg me-3">
-                                <i class="fas fa-play me-2"></i>Start Free Trial
-                            </a>
-                            <a href="#services" class="btn btn-outline-light btn-lg">
-                                <i class="fas fa-video me-2"></i>Watch Demo
-                            </a>
-                        </div>
-                        <div class="mt-4">
-                            <small class="text-light">
-                                <i class="fas fa-check text-success me-2"></i>No credit card required
-                                <i class="fas fa-check text-success me-2 ms-3"></i>Cancel anytime
-                                <i class="fas fa-check text-success me-2 ms-3"></i>24/7 support
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="hero-widget">
-                        <div class="card bg-dark text-white border-0 shadow-lg">
-                            <div class="card-body p-4">
-                                <div class="text-center mb-4">
-                                    <div class="hero-icon">
-                                        <i class="fas fa-heart text-primary"></i>
-                                    </div>
-                                    <h5 class="card-title">Daily Progress</h5>
-                                </div>
-                                <div class="progress-item mb-3">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span>Workout Streak</span>
-                                        <span class="fw-bold">7 days 🔥</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-primary" style="width: 70%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item mb-3">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span>Weekly Goal</span>
-                                        <span class="fw-bold">4/5 workouts</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" style="width: 80%"></div>
-                                    </div>
-                                </div>
-                                <a href="dashboard.html" class="btn btn-primary w-100">View Dashboard</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <h2>Transform Your Body, Transform Your Life</h2>
+            <p>Discover personalized fitness programs, nutrition plans, and wellness strategies to help you achieve your health goals and live your best life.</p>
+            <div class="hero-btns">
+                <a href="services.html" class="btn">Get Started</a>
+                <a href="feedback.html" class="btn btn-secondary">Book a Session</a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-5 bg-light">
+    <section class="section features">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
-                    <span class="badge bg-primary mb-3">Why Choose AweSome</span>
-                    <h2 class="display-5 fw-bold mb-4">Everything You Need to Succeed</h2>
-                    <p class="lead text-muted">
-                        Comprehensive tools and guidance to help you achieve your fitness goals, 
-                        available 24/7 for your convenience.
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="feature-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-dumbbell"></i>
-                            </div>
-                            <h5 class="card-title">Smart Workout Plans</h5>
-                            <p class="card-text text-muted">
-                                AI-powered routines that adapt to your schedule and fitness level. 
-                                Perfect for midnight workout sessions!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="feature-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-apple-alt"></i>
-                            </div>
-                            <h5 class="card-title">Nutrition Coaching</h5>
-                            <p class="card-text text-muted">
-                                Personalized meal plans and recipes tailored to your goals and 
-                                dietary preferences.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="feature-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h5 class="card-title">Progress Tracking</h5>
-                            <p class="card-text text-muted">
-                                Monitor your journey with detailed analytics and habit tracking tools.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="feature-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h5 class="card-title">Community Support</h5>
-                            <p class="card-text text-muted">
-                                Connect with like-minded individuals and expert trainers in our 
-                                supportive community.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="feature-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <h5 class="card-title">24/7 Availability</h5>
-                            <p class="card-text text-muted">
-                                Access workouts, advice, and support anytime - perfect for busy 
-                                student schedules.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="feature-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <h5 class="card-title">Mobile Optimized</h5>
-                            <p class="card-text text-muted">
-                                Fully responsive design that works perfectly on all devices, 
-                                from phone to desktop.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Workouts Section -->
-    <section id="workouts" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
-                    <span class="badge bg-primary mb-3">Popular Workouts</span>
-                    <h2 class="display-5 fw-bold mb-4">Start with These Fan-Favorites</h2>
-                    <p class="lead text-muted">
-                        Carefully designed workouts for every fitness level and schedule
-                    </p>
-                </div>
+            <div class="section-title">
+                <h2>Why Choose FitLife</h2>
+                <p>Our holistic approach to health and fitness sets us apart</p>
             </div>
             
-            <!-- Workout Filters -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <div class="workout-filters text-center fade-in">
-                        <button class="btn btn-outline-primary active me-2 mb-2" data-filter="all">All Workouts</button>
-                        <button class="btn btn-outline-primary me-2 mb-2" data-filter="beginner">Beginner</button>
-                        <button class="btn btn-outline-primary me-2 mb-2" data-filter="intermediate">Intermediate</button>
-                        <button class="btn btn-outline-primary me-2 mb-2" data-filter="advanced">Advanced</button>
-                        <button class="btn btn-outline-primary me-2 mb-2" data-filter="hiit">HIIT</button>
-                        <button class="btn btn-outline-primary me-2 mb-2" data-filter="yoga">Yoga</button>
+            <div class="features-grid">
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-dumbbell"></i>
                     </div>
+                    <h3>Personalized Training</h3>
+                    <p>Custom workout plans tailored to your goals, fitness level, and preferences.</p>
+                </div>
+                
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>Nutrition Guidance</h3>
+                    <p>Expert-designed meal plans that complement your fitness journey.</p>
+                </div>
+                
+                <div class="feature-card animated">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Mindfulness Programs</h3>
+                    <p>Meditation and stress management techniques for overall wellbeing.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="row g-4" id="workoutGrid">
-                <!-- Workout cards will be populated by JavaScript -->
+    <!-- Programs Section -->
+    <section class="section programs" id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Fitness Programs</h2>
+                <p>Find the perfect program for your fitness journey</p>
             </div>
             
-            <div class="text-center mt-5 fade-in">
-                <a href="signup.html" class="btn btn-primary btn-lg">
-                    <i class="fas fa-plus me-2"></i>Access All Workouts
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Nutrition Section -->
-    <section id="nutrition" class="py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
-                    <span class="badge bg-success mb-3">Nutrition Guidance</span>
-                    <h2 class="display-5 fw-bold mb-4">Fuel Your Success</h2>
-                    <p class="lead text-muted">
-                        Personalized nutrition plans and healthy recipes to complement your fitness journey
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="nutrition-card card h-100 border-0 shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=250&fit=crop" class="card-img-top" alt="Meal Planning">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Meal Planning</span>
-                            <h5 class="card-title">Student-Friendly Meal Prep</h5>
-                            <p class="card-text text-muted">
-                                Quick, budget-friendly meals perfect for busy student life. 
-                                Prep once, eat all week!
-                            </p>
-                            <a href="signup.html" class="btn btn-outline-success">View Recipes</a>
-                        </div>
+            <div class="programs-grid">
+                <div class="program-card animated">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Strength Training">
+                    </div>
+                    <div class="program-content">
+                        <h3>Strength & Conditioning</h3>
+                        <p>Build muscle, increase strength, and improve endurance with our science-based strength training program.</p>
+                        <a href="services.html" class="btn">Learn More</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="nutrition-card card h-100 border-0 shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop" class="card-img-top" alt="Healthy Smoothies">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Quick Nutrition</span>
-                            <h5 class="card-title">Energy-Boosting Smoothies</h5>
-                            <p class="card-text text-muted">
-                                Perfect pre or post-workout nutrition that takes less than 5 minutes to prepare.
-                            </p>
-                            <a href="signup.html" class="btn btn-outline-success">Get Recipes</a>
-                        </div>
+                
+                <div class="program-card animated">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2120&q=80" alt="Yoga">
+                    </div>
+                    <div class="program-content">
+                        <h3>Yoga & Flexibility</h3>
+                        <p>Improve flexibility, balance, and mental clarity with our diverse yoga programs for all levels.</p>
+                        <a href="services.html" class="btn">Learn More</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="nutrition-card card h-100 border-0 shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=250&fit=crop" class="card-img-top" alt="Healthy Snacks">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Healthy Snacking</span>
-                            <h5 class="card-title">Study Session Snacks</h5>
-                            <p class="card-text text-muted">
-                                Brain-boosting snacks to keep you energized during those late-night study sessions.
-                            </p>
-                            <a href="signup.html" class="btn btn-outline-success">Discover More</a>
-                        </div>
+                
+                <div class="program-card animated">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="HIIT">
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wellness Section -->
-    <section id="wellness" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 fade-in">
-                    <span class="badge bg-info mb-3">Mental Wellness</span>
-                    <h2 class="display-5 fw-bold mb-4">Your Mind Matters Too</h2>
-                    <p class="lead text-muted mb-4">
-                        Fitness isn't just physical. Our wellness programs help you manage stress, 
-                        improve sleep, and maintain mental clarity - essential for student success.
-                    </p>
-                    <div class="wellness-features">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="wellness-icon me-3">
-                                <i class="fas fa-brain text-info"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Stress Management</h6>
-                                <small class="text-muted">Techniques to handle academic pressure</small>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="wellness-icon me-3">
-                                <i class="fas fa-moon text-info"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Sleep Optimization</h6>
-                                <small class="text-muted">Better sleep for better performance</small>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="wellness-icon me-3">
-                                <i class="fas fa-leaf text-info"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Mindfulness Practices</h6>
-                                <small class="text-muted">5-minute meditation for busy schedules</small>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="signup.html" class="btn btn-info btn-lg">Explore Wellness</a>
-                </div>
-                <div class="col-lg-6 fade-in">
-                    <div class="wellness-image">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop" 
-                             class="img-fluid rounded shadow" alt="Wellness and Meditation">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" class="py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
-                    <span class="badge bg-warning mb-3">Latest Articles</span>
-                    <h2 class="display-5 fw-bold mb-4">Expert Advice & Tips</h2>
-                    <p class="lead text-muted">
-                        Stay updated with the latest fitness trends, nutrition science, and wellness insights
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4" id="blogGrid">
-                <!-- Blog posts will be populated by JavaScript -->
-            </div>
-            <div class="text-center mt-5 fade-in">
-                <a href="signup.html" class="btn btn-outline-warning btn-lg">View All Articles</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
-                    <span class="badge bg-purple mb-3">Our Services</span>
-                    <h2 class="display-5 fw-bold mb-4">Personalized Coaching</h2>
-                    <p class="lead text-muted">
-                        Get one-on-one guidance from certified trainers and nutrition experts
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="service-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="service-icon mb-3">
-                                <i class="fas fa-video text-purple"></i>
-                            </div>
-                            <h5 class="card-title">Online Personal Training</h5>
-                            <p class="card-text text-muted mb-4">
-                                1-on-1 virtual sessions with certified trainers. Perfect for your schedule!
-                            </p>
-                            <div class="price mb-3">
-                                <span class="h4 fw-bold text-purple">$29</span>
-                                <span class="text-muted">/session</span>
-                            </div>
-                            <a href="signup.html" class="btn btn-purple w-100">Book Session</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="service-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="service-icon mb-3">
-                                <i class="fas fa-utensils text-purple"></i>
-                            </div>
-                            <h5 class="card-title">Nutrition Consultation</h5>
-                            <p class="card-text text-muted mb-4">
-                                Custom meal plans and nutrition guidance from registered dietitians.
-                            </p>
-                            <div class="price mb-3">
-                                <span class="h4 fw-bold text-purple">$39</span>
-                                <span class="text-muted">/consultation</span>
-                            </div>
-                            <a href="signup.html" class="btn btn-purple w-100">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="service-card card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="service-icon mb-3">
-                                <i class="fas fa-users text-purple"></i>
-                            </div>
-                            <h5 class="card-title">Group Classes</h5>
-                            <p class="card-text text-muted mb-4">
-                                Join live virtual group workouts and connect with fellow fitness enthusiasts.
-                            </p>
-                            <div class="price mb-3">
-                                <span class="h4 fw-bold text-purple">$15</span>
-                                <span class="text-muted">/class</span>
-                            </div>
-                            <a href="signup.html" class="btn btn-purple w-100">Join Class</a>
-                        </div>
+                    <div class="program-content">
+                        <h3>HIIT & Cardio</h3>
+                        <p>Burn fat and improve cardiovascular health with our high-intensity interval training sessions.</p>
+                        <a href="services.html" class="btn">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -584,347 +126,120 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-5 bg-dark text-white">
+    <section class="section testimonials">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
-                    <span class="badge bg-primary mb-3">Success Stories</span>
-                    <h2 class="display-5 fw-bold mb-4">What Our Users Say</h2>
-                    <p class="lead text-light">
-                        Real stories from students and professionals who transformed their lives
-                    </p>
-                </div>
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Hear from our satisfied members</p>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="testimonial-card card bg-transparent border-light h-100">
-                        <div class="card-body text-center">
-                            <div class="testimonial-avatar mb-3">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" 
-                                     class="rounded-circle" alt="Sarah">
-                            </div>
-                            <div class="stars mb-3">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <p class="card-text">
-                                "As a medical student, I barely had time for the gym. AweSome's midnight workout 
-                                sessions saved my fitness routine!"
-                            </p>
-                            <h6 class="card-title">Sarah Johnson</h6>
-                            <small class="text-muted">Medical Student</small>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card animated">
+                    <div class="testimonial-content">
+                        <p>"I lost 30 pounds in 4 months with the FitLife program. The trainers were incredibly supportive and the nutrition plan was easy to follow!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Member for 1 year</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="testimonial-card card bg-transparent border-light h-100">
-                        <div class="card-body text-center">
-                            <div class="testimonial-avatar mb-3">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" 
-                                     class="rounded-circle" alt="Mike">
-                            </div>
-                            <div class="stars mb-3">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <p class="card-text">
-                                "The nutrition guidance helped me maintain energy during finals week. 
-                                Game-changer for busy students!"
-                            </p>
-                            <h6 class="card-title">Mike Chen</h6>
-                            <small class="text-muted">Engineering Student</small>
+                
+                <div class="testimonial-card animated">
+                    <div class="testimonial-content">
+                        <p>"The mindfulness program helped me manage my stress levels and improve my sleep quality. I feel like a new person!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Michael Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Member for 8 months</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 fade-in">
-                    <div class="testimonial-card card bg-transparent border-light h-100">
-                        <div class="card-body text-center">
-                            <div class="testimonial-avatar mb-3">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" 
-                                     class="rounded-circle" alt="Emma">
-                            </div>
-                            <div class="stars mb-3">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <p class="card-text">
-                                "Lost 15 pounds while maintaining my GPA. The stress management techniques 
-                                were incredibly helpful!"
-                            </p>
-                            <h6 class="card-title">Emma Wilson</h6>
-                            <small class="text-muted">Psychology Student</small>
+                
+                <div class="testimonial-card animated">
+                    <div class="testimonial-content">
+                        <p>"The personalized approach made all the difference. I've never felt stronger or more confident in my body!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez">
+                        </div>
+                        <div class="author-info">
+                            <h4>Emily Rodriguez</h4>
+                            <p>Member for 1.5 years</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section id="newsletter" class="py-5 bg-primary text-white">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 fade-in">
-                    <h3 class="fw-bold mb-3">Stay Motivated with Weekly Tips</h3>
-                    <p class="mb-0">
-                        Get exclusive workout routines, study-friendly nutrition tips, and wellness advice 
-                        delivered to your inbox every week.
-                    </p>
-                </div>
-                <div class="col-lg-6 fade-in">
-                    <form id="newsletterForm" class="d-flex gap-2">
-                        <input type="email" class="form-control" placeholder="Enter your email" required>
-                        <button type="submit" class="btn btn-light text-primary fw-bold">Subscribe</button>
-                    </form>
-                    <small class="text-light mt-2 d-block">
-                        Join 10,000+ students. No spam, unsubscribe anytime.
-                    </small>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5 fade-in">
-                    <span class="badge bg-success mb-3">Get in Touch</span>
-                    <h2 class="display-5 fw-bold mb-4">Contact Us</h2>
-                    <p class="lead text-muted">
-                        Have questions? We're here to help you on your fitness journey
-                    </p>
-                </div>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-6 fade-in">
-                    <div class="contact-info">
-                        <div class="contact-item d-flex align-items-center mb-4">
-                            <div class="contact-icon me-3">
-                                <i class="fas fa-map-marker-alt text-primary"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Location</h6>
-                                <p class="text-muted mb-0">Block 8, Gaborone, Botswana</p>
-                            </div>
-                        </div>
-                        <div class="contact-item d-flex align-items-center mb-4">
-                            <div class="contact-icon me-3">
-                                <i class="fas fa-phone text-primary"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Phone</h6>
-                                <p class="text-muted mb-0">+267 76819115</p>
-                            </div>
-                        </div>
-                        <div class="contact-item d-flex align-items-center mb-4">
-                            <div class="contact-icon me-3">
-                                <i class="fas fa-envelope text-primary"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Email</h6>
-                                <p class="text-muted mb-0">dferdrick10@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item d-flex align-items-center mb-4">
-                            <div class="contact-icon me-3">
-                                <i class="fas fa-clock text-primary"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Support Hours</h6>
-                                <p class="text-muted mb-0">24/7 Online Support</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 fade-in">
-                    <form id="contactForm" class="contact-form">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" required>
-                            </div>
-                            <div class="col-12">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
-                            <div class="col-12">
-                                <label for="subject" class="form-label">Subject</label>
-                                <select class="form-select" id="subject" required>
-                                    <option value="">Choose a topic</option>
-                                    <option value="general">General Inquiry</option>
-                                    <option value="coaching">Personal Coaching</option>
-                                    <option value="nutrition">Nutrition Consultation</option>
-                                    <option value="technical">Technical Support</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" id="message" rows="5" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary btn-lg w-100">
-                                    <i class="fas fa-paper-plane me-2"></i>Send Message
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-5">
+    <footer>
         <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="footer-brand mb-4">
-                        <h4 class="fw-bold">
-                            <i class="fas fa-heart text-primary me-2"></i>AweSome
-                        </h4>
-                        <p class="text-light">
-                            Your 24/7 fitness and wellness companion. Perfect for busy students and professionals 
-                            who need flexible, effective fitness solutions.
-                        </p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-heartbeat fa-2x" style="color: #2ecc71;"></i>
+                        <h1>Fit<span>Life</span></h1>
                     </div>
+                    <p>Your journey to a healthier, happier life begins here. We provide comprehensive fitness and wellness programs tailored to your individual needs.</p>
                     <div class="social-links">
-                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="fw-bold mb-3">Quick Links</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#home" class="text-light text-decoration-none">Home</a></li>
-                        <li><a href="#workouts" class="text-light text-decoration-none">Workouts</a></li>
-                        <li><a href="#nutrition" class="text-light text-decoration-none">Nutrition</a></li>
-                        <li><a href="#wellness" class="text-light text-decoration-none">Wellness</a></li>
-                        <li><a href="#blog" class="text-light text-decoration-none">Blog</a></li>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="feedback.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="fw-bold mb-3">Services</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="signup.html" class="text-light text-decoration-none">Personal Training</a></li>
-                        <li><a href="signup.html" class="text-light text-decoration-none">Nutrition Coaching</a></li>
-                        <li><a href="signup.html" class="text-light text-decoration-none">Group Classes</a></li>
-                        <li><a href="signup.html" class="text-light text-decoration-none">Wellness Programs</a></li>
+                
+                <div class="footer-col">
+                    <h3>Our Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Personal Training</a></li>
+                        <li><a href="services.html">Group Classes</a></li>
+                        <li><a href="services.html">Yoga & Meditation</a></li>
+                        <li><a href="services.html">Nutrition Coaching</a></li>
+                        <li><a href="services.html">Online Coaching</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="fw-bold mb-3">Account</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="login.html" class="text-light text-decoration-none">Login</a></li>
-                        <li><a href="signup.html" class="text-light text-decoration-none">Sign Up</a></li>
-                        <li><a href="dashboard.html" class="text-light text-decoration-none">Dashboard</a></li>
-                        <li><a href="forgot-password.html" class="text-light text-decoration-none">Reset Password</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="fw-bold mb-3">Support</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Help Center</a></li>
-                        <li><a href="#contact" class="text-light text-decoration-none">Contact Us</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Wellness St, Fitness City</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@fitlife.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 6am - 10pm</li>
+                        <li><i class="fas fa-clock"></i> Sat-Sun: 8am - 8pm</li>
                     </ul>
                 </div>
             </div>
-            <hr class="my-4">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="mb-0 text-light">&copy; 2025 AweSome. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="mb-0 text-light">Made with ❤️ for students and fitness enthusiasts</p>
-                </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 FitLife Wellness Center. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for your health</p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JavaScript -->
     <script src="script.js"></script>
-    
-    <script>
-        // Enhanced scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Show welcome notification
-        setTimeout(() => {
-            const notification = document.getElementById('notification');
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 5000);
-        }, 1000);
-
-        // Enhanced form submissions with feedback
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
-            // Show success notification
-            showNotification('Thanks for subscribing! Check your email for confirmation.', 'success');
-            this.reset();
-        });
-
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show success notification
-            showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
-            this.reset();
-        });
-
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            const messageEl = document.getElementById('notificationMessage');
-            const alertEl = notification.querySelector('.alert');
-            
-            messageEl.textContent = message;
-            alertEl.className = `alert alert-${type} alert-dismissible fade show`;
-            
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 5000);
-        }
-    </script>
 </body>
 </html>
